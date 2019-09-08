@@ -26,20 +26,21 @@ public class MainActivity extends AppCompatActivity {
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-             //validateLogin(Name.getText().toString(), Password.getText().toString());
-                validate();
+            public void onClick(View view)
+            {
+             validateLogin(Name.getText().toString(), Password.getText().toString());
+               // validate();
             }
         });
     }
 
-    private void validate()
+  /*  private void validate()
     {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
         startActivity(intent);
-    }
+    }*/
 
-  /*  private void validateLogin(String userName, String userPassword)
+    private void validateLogin(String userName, String userPassword)
     {
         if( (userName == "Yamini") && (userPassword == "coms309") )
         {
@@ -47,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
             //to move to the next activity
             startActivity(intent);
         }
-        else
+       /* else
         {
             System.out.println("Try Again :(");
-        }
-    }*/
+        }*/
+    }
 }
