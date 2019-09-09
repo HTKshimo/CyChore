@@ -12,4 +12,8 @@
     <string name="login_uname_null">Please enter email address</string>
     <string name="login_pwd_null">Please enter password</string>
     <string name="msg_login_success">Login success!</string>
+    <string name="title_activity_usr_default_page">UsrDefaultPage</string>
+    <string name="title_tasks">Tasks</string>
+    <string name="title_group">Group</string>
+    <string name="title_chats">Chats</string>
 </resources>
