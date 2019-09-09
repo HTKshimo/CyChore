@@ -67,42 +67,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String name, final String pwd) {
-        final Handler handler = new Handler() {
-            public void handleMessage(Message msg) {
-                if (msg.what == 1) {
-                    // success
-                    Toast.makeText(MainActivity.this, R.string.msg_login_success, Toast.LENGTH_SHORT).show();
-                    finish();
-                } else if (msg.what == 0) {
-                    // fail
-                    Log.i(name, msg.toString());
-                } else if (msg.what == -1) {
-                    Log.i("==============", msg.toString());
-                }
-            }
-        };
-        new Thread() {
-            public void run() {
-                Message msg = new Message();
-                try {
-                    loginPost po = new loginPost();
-                    //String infoo = po.logina(name, pwd);
-                    String infoo = null;
-                    if (infoo != null) {
-                        msg.what = 1;// success
-                        msg.obj = infoo;
-                    } else {
-                        msg.what = 0;// fail
-                        msg.obj = "2";
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    msg.what = -1;
-                    msg.obj = e;
-                }
-                handler.sendMessage(msg);
-            }
-        }.start();
+        Intent intent = new Intent(this, UsrDefaultPage.class);
+
+        String message = email.getText().toString() + " : " + password.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
 
