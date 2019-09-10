@@ -31,4 +31,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_home" />
+
+    <TextView
+        android:id="@+id/json_login"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="56dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_status" />
 </androidx.constraintlayout.widget.ConstraintLayout>

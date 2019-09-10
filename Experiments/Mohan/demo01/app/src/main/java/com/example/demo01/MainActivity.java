@@ -28,7 +28,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "com.example.demo01_login.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
@@ -83,10 +83,10 @@ public class MainActivity extends AppCompatActivity {
     private void login(final String name, final String pwd) {
 
         // create json to be send
-        final JSONObject param = new JSONObject();//定义json对象
+        final JSONObject param = new JSONObject();
         try {
-            param.put("uid", "");
-            param.put("tier", "0");
+            param.put("request", "login");
+            param.put("tier", "0"); // user type define
             param.put("email", name);
             param.put("password", pwd);
         } catch (JSONException e) {
@@ -99,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
-                Request request = new Request.Builder().url("http://www.163.com")
+                Request request = new Request.Builder().url("http://localhost:3000")
                         .post(body)
                         .build();
                 try {
-                    Response response = client.newCall(request).execute();//发送请求
+                    Response response = client.newCall(request).execute();
                     String result = response.body().string();
-                    Log.d(TAG, "result: " + result);
-                    show(result);
+                    Log.d("Login attempt", "result: " + result);
+                    //show(result);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
-        String message = email.getText().toString() + " : " + password.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(EXTRA_MESSAGE, json);
         startActivity(intent);
     }
 

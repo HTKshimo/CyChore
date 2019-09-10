@@ -1,7 +1,8 @@
 package com.example.demo01;
 
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
+
 public class UsrDefaultPage extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,11 @@ public class UsrDefaultPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        Intent intent = getIntent();
+        String json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+
     }
 
 }
