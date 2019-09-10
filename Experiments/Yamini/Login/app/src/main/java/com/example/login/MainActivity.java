@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,8 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         Gson gson = new Gson();
 
-        User user = new User("Yamini",23, "yamini@iastate.edu" );
+        Address address = new Address("India", "Gurgaon");
+
+        User user = new User("Yamini",23, "yamini@iastate.edu", address );
         String json = gson.toJson(user);
+      /* String json = "{\"firstname\":\"John\", \"age\":23, \"mail\":\"yamini@iastate.edu\"}";
+       User user = gson.fromJson(json, User.class);
+       */
+
     }
 
   /*  private void validate()
