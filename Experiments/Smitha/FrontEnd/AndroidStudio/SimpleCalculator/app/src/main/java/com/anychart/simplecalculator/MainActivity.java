@@ -1,14 +1,17 @@
 package com.anychart.simplecalculator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
 
-    private Button plusButton, equalsButton, subtractButton, multiplyButton, divisionButton, clearButton;
+    private Button plusButton, equalsButton, subtractButton, multiplyButton, divisionButton, clearButton, storeButton;
     private EditText firstValue, secondValue, resultValue;
     private String operator;
 
@@ -16,6 +19,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         plusButton = (Button) findViewById(R.id.plusButton);
         subtractButton = findViewById(R.id.subtractButton);
@@ -28,6 +34,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         firstValue = (EditText) findViewById(R.id.firstValue);
         secondValue = (EditText) findViewById(R.id.secondValue);
         resultValue = (EditText) findViewById(R.id.resultValue);
+
+        //MORE!!!!
+        storeButton = (Button) findViewById(R.id.store);
+        storeButton.setOnClickListener(this);
 
         plusButton.setOnClickListener(this);
         subtractButton.setOnClickListener(this);
@@ -80,7 +90,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             b.setVisibility(View.VISIBLE);
             operator = b.getText().toString();
         }
-
+        if(b.getText().toString().equals("Store")){
+            Intent storePage = new Intent(this,SpringActivity.class);
+            startActivity(storePage);
+        }
     }
 
     private void hideAll() {
@@ -89,4 +102,5 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         multiplyButton.setVisibility(View.INVISIBLE);
         divisionButton.setVisibility(View.INVISIBLE);
     }
+
 }
