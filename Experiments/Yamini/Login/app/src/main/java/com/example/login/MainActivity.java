@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
                // validate();
             }
         });
+
+        Gson gson = new Gson();
+
+        User user = new User("Yamini",23, "yamini@iastate.edu" );
+        String json = gson.toJson(user);
     }
 
   /*  private void validate()
