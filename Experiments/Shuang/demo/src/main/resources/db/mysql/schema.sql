@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS owners (
+  id INT(1) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(30),
+  INDEX(first_name)
+) engine=InnoDB;
