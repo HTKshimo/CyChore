@@ -2,10 +2,12 @@ package com.example.demo01;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class UsrDefaultPage extends AppCompatActivity {
 
+    public String json;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,15 @@ public class UsrDefaultPage extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         Intent intent = getIntent();
-        String json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
 
+
+    }
+
+    public void showJson(View view){
+        TextView login_json = findViewById(R.id.json_login);
+        login_json.setText(json);
     }
 
 }

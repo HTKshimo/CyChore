@@ -142,9 +142,23 @@ public class MainActivity extends AppCompatActivity {
         }
         Intent intent = new Intent(this, RegistrationPage.class);
 
+        final JSONObject param = new JSONObject();
+        try {
+            param.put("request", "login");
+            param.put("tier", "0"); // user type define
+            param.put("email", uname);
+            param.put("password", pwd);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        final String json = param.toString();
+
+
         String message = email.getText().toString() + " : " + password.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(EXTRA_MESSAGE, json);
         startActivity(intent);
     }
+
+
 
 }
