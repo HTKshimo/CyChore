@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String name, final String pwd) {
-
+        int resCode=999;
         // create json to be send
         final JSONObject param = new JSONObject();
         try {
@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
         final String json = param.toString();
 
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -104,9 +106,12 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
+
                     String result = response.body().string();
-                    Log.d("Login attempt", "result: " + result);
-                    //show(result);
+                    JSONObject jsonObject=new JSONObject(result)；
+
+                    Log.d("Login attempt", "result: " + resBody[0]);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -124,6 +129,21 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void decodeResponse(String date) {
+        try {
+            JSONObject jsonObject = new JSONObject(date);
+            String flag = jsonObject.getString("flag");//获取返回值flag的内容
+            if (flag.equals("success")) {
+
+            } else {
+                 }
+            Message message = new Message();
+            message.what = 1;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
