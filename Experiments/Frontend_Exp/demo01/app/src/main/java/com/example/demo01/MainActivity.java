@@ -108,9 +108,8 @@ public class MainActivity extends AppCompatActivity {
                     Response response = client.newCall(request).execute();
 
                     String result = response.body().string();
-                    JSONObject jsonObject=new JSONObject(result)；
 
-                    Log.d("Login attempt", "result: " + resBody[0]);
+                    Log.d("Login attempt", "result: " + result);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -129,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // under construction, may be totally undo
     private void decodeResponse(String date) {
         try {
             JSONObject jsonObject = new JSONObject(date);
