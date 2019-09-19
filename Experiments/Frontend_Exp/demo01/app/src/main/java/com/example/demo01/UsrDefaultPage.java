@@ -2,6 +2,7 @@ package com.example.demo01;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,6 +36,8 @@ public class UsrDefaultPage extends AppCompatActivity {
 
         Intent intent = getIntent();
         json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+
+        Log.d("intent_json:",json);
 
 
 

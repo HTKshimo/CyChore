@@ -26,6 +26,7 @@ public class TasksFragment extends Fragment {
             View root = inflater.inflate(R.layout.fragment_home, container, false);
             TextView status = root.findViewById(R.id.login_status);
             status.setText("bingo");
+
             return root;
 
 

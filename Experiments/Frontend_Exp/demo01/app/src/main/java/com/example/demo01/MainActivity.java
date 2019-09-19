@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
-                Request request = new Request.Builder().url("http://localhost:3000")
+                Request request = new Request.Builder().url("https://postman-echo.com/post")
                         .post(body)
                         .build();
                 try {
