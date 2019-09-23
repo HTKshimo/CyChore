@@ -16,4 +16,6 @@
     <string name="title_tasks">Tasks</string>
     <string name="title_group">Group</string>
     <string name="title_chats">Chats</string>
+    <string name="title_profile">Profile</string>
+    <string name="login_email_null">Please enter email address.</string>
 </resources>

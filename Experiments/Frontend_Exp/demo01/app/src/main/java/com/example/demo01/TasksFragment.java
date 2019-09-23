@@ -24,8 +24,7 @@ public class TasksFragment extends Fragment {
 
         com.example.demo01.ui.home.HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
             View root = inflater.inflate(R.layout.fragment_home, container, false);
-            TextView status = root.findViewById(R.id.login_status);
-            status.setText("bingo");
+
 
             return root;
 

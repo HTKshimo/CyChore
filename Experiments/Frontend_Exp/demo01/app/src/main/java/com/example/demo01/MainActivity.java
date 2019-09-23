@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         email = (EditText) findViewById(R.id.LoginEmail);
         password = (EditText) findViewById(R.id.LoginPassword);
 
+        getSupportActionBar().hide();
+
 
     }
 
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     private void decodeResponse(String date) {
         try {
             JSONObject jsonObject = new JSONObject(date);
-            String flag = jsonObject.getString("flag");//获取返回值flag的内容
+            String flag = jsonObject.getString("flag");
             if (flag.equals("success")) {
 
             } else {
@@ -150,32 +152,9 @@ public class MainActivity extends AppCompatActivity {
     public void register(View view) {
         in.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-        String uname = email.getText().toString();
-        String pwd = password.getText().toString();
-        if (TextUtils.isEmpty(uname)) {
-            Toast.makeText(view.getContext(), R.string.login_uname_null, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(pwd)) {
-            Toast.makeText(view.getContext(), R.string.login_pwd_null, Toast.LENGTH_SHORT).show();
-            return;
-        }
+
+
         Intent intent = new Intent(this, RegistrationPage.class);
-
-        final JSONObject param = new JSONObject();
-        try {
-            param.put("request", "login");
-            param.put("tier", "0"); // user type define
-            param.put("email", uname);
-            param.put("password", pwd);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        final String json = param.toString();
-
-
-        String message = email.getText().toString() + " : " + password.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, json);
         startActivity(intent);
     }
 

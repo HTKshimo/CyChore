@@ -34,6 +34,8 @@ public class UsrDefaultPage extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        getSupportActionBar().hide();
+
         Intent intent = getIntent();
         json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
@@ -44,8 +46,7 @@ public class UsrDefaultPage extends AppCompatActivity {
     }
 
     public void showJson(View view){
-        TextView login_json = findViewById(R.id.json_login);
-        login_json.setText(json);
+
     }
 
 }
