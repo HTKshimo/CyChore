@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.content.Intent;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText password;
 
     private InputMethodManager in;
+    private Handler dialog_handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,23 @@ public class MainActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.RegisterButton);
         email = (EditText) findViewById(R.id.LoginEmail);
         password = (EditText) findViewById(R.id.LoginPassword);
+
+        dialog_handler = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                switch (msg.what) {
+                    case 1:
+                        showLoginfailDialog(1);
+                        break;
+                    case 2:
+                        showLoginfailDialog(2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            ;
+        };
 
         getSupportActionBar().hide();
 
@@ -119,17 +138,17 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
-                    String reply =response.body().string();
+                    String reply = response.body().string();
                     Log.d("login reply", reply);
                     try {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if (respond_json.getString("url").equals(login_url)) {
 
-                        loginJumpHome(reply);
-                        }else{
+                            loginJumpHome(reply);
+                        } else {
                             // TODO if fail pop up dialog with fail explained
-                            showLoginfailDialog(1);
+                            dialog_handler.sendEmptyMessage(1);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -155,10 +174,10 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.setTitle("Login failed");
 
         switch (fail_code) {
-            case 1 :
+            case 1:
                 normalDialog.setMessage("This email has not registered.");
                 break;
-            case 2 :
+            case 2:
                 normalDialog.setMessage("Email or password not correct.");
                 break;
 
@@ -183,26 +202,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("intent json", data);
         startActivity(intent);
     }
-
-
-
-    // under construction, may be totally undo
-    private void decodeResponse(String date) {
-        try {
-            JSONObject jsonObject = new JSONObject(date);
-            String flag = jsonObject.getString("flag");
-            if (flag.equals("success")) {
-
-            } else {
-            }
-            Message message = new Message();
-            message.what = 1;
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
 
     public void register(View view) {
         in.hideSoftInputFromWindow(view.getWindowToken(), 0);

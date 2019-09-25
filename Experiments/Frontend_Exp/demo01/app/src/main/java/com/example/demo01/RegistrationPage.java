@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +41,7 @@ public class RegistrationPage extends AppCompatActivity {
     private EditText password;
     private EditText repassword;
     private Spinner usr_type;
+    private Handler dialog_handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,20 @@ public class RegistrationPage extends AppCompatActivity {
         reg_email = (EditText) findViewById(R.id.reg_email);
         password = (EditText) findViewById(R.id.reg_psw);
         repassword = findViewById(R.id.reg_psw2);
+
+        dialog_handler = new Handler() {
+            public void handleMessage(android.os.Message msg) {
+                Log.d("handle","start");
+                switch (msg.what){
+                    case 0:
+                        showConfirmDialog();
+                        break;
+                    case 1:
+                        showRegfailDialog(1);
+                    default:break;
+                }
+            };
+        };
 
     }
 
@@ -132,10 +149,10 @@ public class RegistrationPage extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if (respond_json.getString("url").equals(register_url)) {
-                            showConfirmDialog();
+                            dialog_handler.sendEmptyMessage(0);
                         }else{
                             // TODO if fail pop up dialog with fail explained
-                            showRegfailDialog(1);
+                            dialog_handler.sendEmptyMessage(1);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
