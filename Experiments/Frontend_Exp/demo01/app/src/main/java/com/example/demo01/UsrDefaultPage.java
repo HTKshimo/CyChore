@@ -44,8 +44,9 @@ public class UsrDefaultPage extends AppCompatActivity {
 
 
     }
-
-    public void showJson(View view){
+    @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
 
     }
 

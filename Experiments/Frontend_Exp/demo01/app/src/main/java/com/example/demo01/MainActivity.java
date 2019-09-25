@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -64,8 +65,15 @@ public class MainActivity extends AppCompatActivity {
         String pwd = password.getText().toString();
 
         // check input legal or not
+        String email_check = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
+        Pattern regex = Pattern.compile(email_check);
+
         if (TextUtils.isEmpty(uname)) {
             Toast.makeText(view.getContext(), R.string.login_uname_null, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!regex.matcher(uname).matches()){
+            Toast.makeText(view.getContext(), R.string.invalid_email_address, Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(pwd)) {
@@ -83,12 +91,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String name, final String pwd) {
-        int resCode=999;
         // create json to be send
         final JSONObject param = new JSONObject();
         try {
             param.put("request", "login");
-            param.put("tier", "0"); // user type define
             param.put("email", name);
             param.put("password", pwd);
         } catch (JSONException e) {
@@ -111,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
                     String result = response.body().string();
 
-                    Log.d("Login attempt", "result: " + result);
+                    Log.d("Login respond", "result: " + result);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -158,6 +164,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
+
+    }
 
 
 }
