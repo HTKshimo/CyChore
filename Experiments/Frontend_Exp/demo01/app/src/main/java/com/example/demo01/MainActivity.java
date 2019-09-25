@@ -1,7 +1,9 @@
 package com.example.demo01;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
 import android.text.TextUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+    private static final String login_url = "https://postman-echo.com/post";
 
 
     private Button login;
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(view.getContext(), R.string.login_uname_null, Toast.LENGTH_SHORT).show();
             return;
         }
-        if(!regex.matcher(uname).matches()){
+        if (!regex.matcher(uname).matches()) {
             Toast.makeText(view.getContext(), R.string.invalid_email_address, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     private void login(final String name, final String pwd) {
         // create json to be send
         final JSONObject param = new JSONObject();
+
         try {
             param.put("request", "login");
             param.put("email", name);
@@ -103,21 +109,31 @@ public class MainActivity extends AppCompatActivity {
         final String json = param.toString();
 
 
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
-                Request request = new Request.Builder().url("https://postman-echo.com/post")
+                Request request = new Request.Builder().url(login_url)
                         .post(body)
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
+                    String reply =response.body().string();
+                    Log.d("login reply", reply);
+                    try {
+                        JSONObject respond_json = new JSONObject(reply);
+                        // TODO check login status and decide jump or not
+                        if (respond_json.getString("url").equals(login_url)) {
 
-                    String result = response.body().string();
-
-                    Log.d("Login respond", "result: " + result);
+                        loginJumpHome(reply);
+                        }else{
+                            // TODO if fail pop up dialog with fail explained
+                            showLoginfailDialog(1);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -126,15 +142,49 @@ public class MainActivity extends AppCompatActivity {
         }).start();
 
 
+    }
 
+    private void showLoginfailDialog(int fail_code) {
+        /* @setIcon
+         * @setTitle
+         * @setMessage
+         * setXXX func return Dialog object
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(MainActivity.this);
+        normalDialog.setTitle("Login failed");
 
+        switch (fail_code) {
+            case 1 :
+                normalDialog.setMessage("This email has not registered.");
+                break;
+            case 2 :
+                normalDialog.setMessage("Email or password not correct.");
+                break;
+
+        }
+
+        normalDialog.setPositiveButton("done",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        normalDialog.show();
+    }
+
+    private void loginJumpHome(String data) {
 
 
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
-        intent.putExtra(EXTRA_MESSAGE, json);
+        intent.putExtra(EXTRA_MESSAGE, data);
+        Log.d("intent json", data);
         startActivity(intent);
     }
+
+
 
     // under construction, may be totally undo
     private void decodeResponse(String date) {
@@ -144,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             if (flag.equals("success")) {
 
             } else {
-                 }
+            }
             Message message = new Message();
             message.what = 1;
 
@@ -154,10 +204,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void register(View view) {
         in.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
 
 
         Intent intent = new Intent(this, RegistrationPage.class);
@@ -165,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         //super.onBackPressed();
 
     }

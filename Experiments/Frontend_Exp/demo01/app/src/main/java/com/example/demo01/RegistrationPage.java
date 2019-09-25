@@ -32,6 +32,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
+    private static final String register_url = "https://postman-echo.com/post";
 
     private Button register;
     private EditText reg_email;
@@ -124,20 +125,58 @@ public class RegistrationPage extends AppCompatActivity {
                 try {
                     Response response = client.newCall(request).execute();
 
-                    String result = response.body().string();
+                    String reply = response.body().string();
 
-                    Log.d("Registration respond", result);
-
+                    Log.d("Registration respond", reply);
+                    try {
+                        JSONObject respond_json = new JSONObject(reply);
+                        // TODO check login status and decide jump or not
+                        if (respond_json.getString("url").equals(register_url)) {
+                            showConfirmDialog();
+                        }else{
+                            // TODO if fail pop up dialog with fail explained
+                            showRegfailDialog(1);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
 
-        showNormalDialog();
+
     }
 
-    private void showNormalDialog() {
+    private void showRegfailDialog(int fail_code) {
+        /* @setIcon
+         * @setTitle
+         * @setMessage
+         * setXXX func return Dialog object
+         */
+        final AlertDialog.Builder normalDialog =
+                new AlertDialog.Builder(RegistrationPage.this);
+        normalDialog.setTitle("Login failed");
+
+        switch (fail_code) {
+            case 1 :
+                normalDialog.setMessage("This email has been registered.");
+                break;
+
+        }
+
+        normalDialog.setPositiveButton("done",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        normalDialog.show();
+    }
+
+    private void showConfirmDialog() {
         /* @setIcon
          * @setTitle
          * @setMessage
