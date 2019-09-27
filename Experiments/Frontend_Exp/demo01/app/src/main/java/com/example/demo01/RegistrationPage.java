@@ -148,7 +148,7 @@ public class RegistrationPage extends AppCompatActivity {
                     try {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
-                        if (respond_json.getString("url").equals(register_url)) {
+                        if (respond_json.getString("status").equals("0")) {
                             dialog_handler.sendEmptyMessage(0);
                         }else{
                             // TODO if fail pop up dialog with fail explained

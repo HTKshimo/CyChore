@@ -3,7 +3,10 @@ package com.example.demo01;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-    private static final String login_url = "https://postman-echo.com/post";
+    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
 
 
     private Button login;
@@ -47,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
 
     private InputMethodManager in;
     private Handler dialog_handler;
+//    private ConnectivityManager cm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         in = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+//        cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
 
         login = (Button) findViewById(R.id.LoginButton);
@@ -106,6 +112,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        // check internet and server status
+//        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
+//        Log.i("Avalible", "NetworkCapalbilities:"+networkCapabilities.toString());
+//        if(!networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)){
+//            Toast.makeText(view.getContext(), R.string.cant_reach_server, Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
         // login start
         login(uname, pwd);
 
@@ -138,17 +152,20 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 try {
                     Response response = client.newCall(request).execute();
+
                     String reply = response.body().string();
                     Log.d("login reply", reply);
                     try {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
-                        if (respond_json.getString("url").equals(login_url)) {
-
-                            loginJumpHome(reply);
-                        } else {
+                        if (respond_json.getString("status").equals("0")) {
+                            loginJumpHome(respond_json.getString("uid"));
+                        } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
+                        }else if (respond_json.getString("status").equals("2")){
+                            // TODO if fail pop up dialog with fail explained
+                            dialog_handler.sendEmptyMessage(2);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -193,13 +210,13 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(String data) {
+    private void loginJumpHome(String uid) {
 
 
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
-        intent.putExtra(EXTRA_MESSAGE, data);
-        Log.d("intent json", data);
+        intent.putExtra(EXTRA_MESSAGE, uid);
+        Log.d("uid", uid);
         startActivity(intent);
     }
 

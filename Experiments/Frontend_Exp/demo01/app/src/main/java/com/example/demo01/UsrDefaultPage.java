@@ -18,7 +18,9 @@ import androidx.navigation.ui.NavigationUI;
 
 public class UsrDefaultPage extends AppCompatActivity {
 
-    public String json;
+    public static String uid = "";
+    public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +39,9 @@ public class UsrDefaultPage extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Intent intent = getIntent();
-        json = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        uid = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        Log.d("intent_json:",json);
+        Log.d("intent_uid:",uid);
 
 
 
