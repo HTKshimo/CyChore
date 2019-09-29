@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +16,6 @@ import android.view.ViewGroup;
 import com.example.demo01.R;
 import com.example.demo01.data.ProfileCollection;
 import com.example.demo01.data.ProfileCollection.ProfileSelection;
-import com.example.demo01.dummy.DummyContent;
-import com.example.demo01.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -25,7 +24,6 @@ import com.example.demo01.dummy.DummyContent.DummyItem;
  * interface.
  */
 public class ProfileFragment extends Fragment {
-
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -53,6 +51,7 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -78,35 +77,34 @@ public class ProfileFragment extends Fragment {
     }
 
 
+    @Override
+    public void onAttach(Context context) {
+        Log.d("context", getContext().toString());
+        Log.d("class name", getClass().getName());
+
+        if (this.getContext().equals(context)){
+            Log.d("same","Same");
+        }
+
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
 //    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
+//    public void onListFragmentInteraction(String primaryKey) {
+//        Log.d("called", "called");
 //    }
-//
+
 //    @Override
 //    public void onDetach() {
 //        super.onDetach();
 //        mListener = null;
 //    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(ProfileSelection item);
-    }
+
 }
