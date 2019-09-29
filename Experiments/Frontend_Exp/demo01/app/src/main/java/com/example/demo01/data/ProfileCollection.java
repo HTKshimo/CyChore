@@ -6,13 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class ProfileCollection {
-    /**
-     * An array of sample (dummy) items.
-     */
+
     public static final List<ProfileSelection> ITEMS = new ArrayList<ProfileSelection>();
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
+
     public static final Map<String, ProfileSelection> ITEM_MAP = new HashMap<String, ProfileSelection>();
 
     static {

@@ -12,8 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo01.dummy.DummyContent;
-import com.example.demo01.dummy.DummyContent.DummyItem;
+import com.example.demo01.data.ProfileCollection;
 
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class ProfileFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(ProfileCollection.ITEMS, mListener));
         }
         return view;
     }
@@ -106,6 +105,6 @@ public class ProfileFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(ProfileCollection.ProfileSelection item);
     }
 }

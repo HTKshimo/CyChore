@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
@@ -47,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private Button register;
     private EditText email;
     private EditText password;
+    private CheckBox save_pwd;
+    private CheckBox auto_log;
+
+    private SharedPreferences login_info;
 
     private InputMethodManager in;
     private Handler dialog_handler;
@@ -65,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.RegisterButton);
         email = (EditText) findViewById(R.id.LoginEmail);
         password = (EditText) findViewById(R.id.LoginPassword);
+        save_pwd = findViewById(R.id.SavePwd);
+        auto_log = findViewById(R.id.AutoLogin);
+
+
+
+        login_info = getSharedPreferences("accountInfo",Context.MODE_PRIVATE);
 
         dialog_handler = new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -84,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
         };
 
         getSupportActionBar().hide();
+
+        if(login_info.getBoolean("save_info", false)){
+            save_pwd.setChecked(true);
+            email.setText(login_info.getString("uname",""));
+            password.setText(login_info.getString("pwd",""));
+        }
+
+        if(login_info.getBoolean("auto_login", false)){
+            auto_log.setChecked(true);
+            login(email.getText().toString(),password.getText().toString());
+        }
 
 
     }
@@ -111,21 +134,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        if(save_pwd.isChecked()){
+            login_info.edit().putString("uname",uname).commit();
+            login_info.edit().putString("pwd",pwd).commit();
+        }
 
-        // check internet and server status
-//        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(cm.getActiveNetwork());
-//        Log.i("Avalible", "NetworkCapalbilities:"+networkCapabilities.toString());
-//        if(!networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)){
-//            Toast.makeText(view.getContext(), R.string.cant_reach_server, Toast.LENGTH_SHORT).show();
-//            return;
-//        }
 
         // login start
         login(uname, pwd);
-
-        // check return value for starting intent
-
-
     }
 
     private void login(final String name, final String pwd) {
@@ -135,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             param.put("request", "login");
             param.put("email", name);
-            param.put("password", pwd);
+            param.put("password", System.currentTimeMillis());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
+                Log.d("json", json);
                 Request request = new Request.Builder().url(login_url)
                         .post(body)
                         .build();
@@ -158,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
-                        if (respond_json.getString("status").equals("0")) {
+                        if ((int) respond_json.get("status") == 0) {
                             loginJumpHome(respond_json.getString("uid"));
                         } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
@@ -234,5 +251,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void checkSavePwd(View view){
+        boolean checked = save_pwd.isChecked();
+        login_info.edit().putBoolean("save_info", checked).commit();
+    }
 
+    public void checkAutoLogin(View view){
+        boolean checked = save_pwd.isChecked();
+        login_info.edit().putBoolean("auto_login", checked).commit();
+    }
 }

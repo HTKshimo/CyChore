@@ -8,21 +8,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.demo01.ProfileFragment.OnListFragmentInteractionListener;
-import com.example.demo01.dummy.DummyContent.DummyItem;
+import com.example.demo01.data.ProfileCollection;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a profile selection and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
-public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfileRecyclerViewAdapter.ViewHolder> {
+public class    MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfileRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<ProfileCollection.ProfileSelection> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyProfileRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyProfileRecyclerViewAdapter(List<ProfileCollection.ProfileSelection> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,8 +36,8 @@ public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfile
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).title);
+        holder.mContentView.setText(mValues.get(position).detail);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +60,12 @@ public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfile
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public ProfileCollection.ProfileSelection mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            mIdView = (TextView) view.findViewById(R.id.item_title);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 

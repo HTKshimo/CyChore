@@ -68,7 +68,7 @@ public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfile
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            mIdView = (TextView) view.findViewById(R.id.item_title);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 
