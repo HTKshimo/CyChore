@@ -51,7 +51,9 @@ public class SpringActivity extends AppCompatActivity {
 
     private void sendPost(final String value) throws Exception {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://10.31.49.68:8080/home";
+        //String url = "http://10.31.49.68:8080/home";
+        String url = "http://10.31.31.226:8080/home";
+        //10.27.133.161
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {

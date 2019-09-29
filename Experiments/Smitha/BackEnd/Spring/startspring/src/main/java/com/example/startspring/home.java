@@ -28,7 +28,7 @@ public class home{
 
     @PostMapping
     public String testPost(HttpServletRequest request) throws IOException {
-        System.out.println("Helooooooooooooooooo");
+        System.out.println("Hellooooooooooooooooo");
         System.out.println("test"+request.getParameter("name") );
 
         String secretKey = "boooooooooom!!!!";
