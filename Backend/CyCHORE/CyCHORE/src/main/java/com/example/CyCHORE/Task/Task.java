@@ -43,13 +43,13 @@ public class Task {
 
     public String getTimeCompleted() { return time_completed; }
 
-    public void markAsComplete(Integer user_id) {
+    public void changeCompleteStatus(Integer user_id, Boolean status) {
         Date date = new Date();
         Timestamp ts = new Timestamp(date.getTime());
         String s = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(ts);
-        this.completed = true;
+        this.completed = status;
         this.time_completed = s;
-        this.completed_by = user_id;
+        this.completed_by = (status) ? user_id : null;
     }
 
 }
