@@ -2,8 +2,6 @@ package com.example.demo01.data;
 
 import android.util.Log;
 
-import com.google.android.gms.tasks.Task;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,20 +18,24 @@ public class TaskCollection {
 
     static {
         // Add some sample items.
-        addItem(new TaskItem(10001,"buy apple",1569623441258L,1));
-        addItem(new TaskItem(10002,"kill bug",1569623441258L,1));
-        Log.d("static add", ITEMS.toString());
+        // addItem(new TaskItem(10001,"buy apple",1569623441258L,1));
+        // addItem(new TaskItem(10002,"kill bug",1569623441258L,1));
     }
 
+    public TaskCollection(){
+//        ITEMS.clear();
+//        ITEM_MAP.clear();
+
+    }
     public static void addItem(TaskItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.tid, item);
     }
 
-    public static void delItem(int i) {
+    public static void delItem(TaskItem item) {
 
-        TaskItem toBeRemove = ITEMS.remove(i);
-        ITEM_MAP.remove(toBeRemove.tid, toBeRemove);
+        ITEMS.remove(item);
+        ITEM_MAP.remove(item.tid, item);
     }
 
     public static class TaskItem extends ListItem {

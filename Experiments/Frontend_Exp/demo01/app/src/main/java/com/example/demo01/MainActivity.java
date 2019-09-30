@@ -183,8 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
-
-
     }
 
     private void showLoginfailDialog(int fail_code) {

@@ -2,6 +2,8 @@ package com.example.demo01.ui.tasksTab;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,9 +40,13 @@ public class TasksList extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView todolist;
-    private TaskCollection todoItems ;
+    private TaskCollection todoItems;
 
     private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/uid_0001_tasklist";
+    private tasksRecyclerViewAdapter todolist_adaptor;
+    private JSONArray todoItems_Json = new JSONArray();
+    private Handler listUpdateHandler;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -62,7 +68,16 @@ public class TasksList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        listUpdateHandler=new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case 0:
+                        todolist_update();
+                        break;
+                }
+            }
+        };
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -75,20 +90,20 @@ public class TasksList extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tasks, container, false);
         todolist = view.findViewById(R.id.todolist);
         todoItems = new TaskCollection();
-        retriveUsrTasks();
 
 
-        // Set the adapter
-        if (todolist instanceof RecyclerView) {
-            Context context = todolist.getContext();
-            RecyclerView recyclerView = (RecyclerView) todolist;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new tasksRecyclerViewAdapter(todoItems.ITEMS, mListener));
+        if (mColumnCount <= 1) {
+            todolist.setLayoutManager(new LinearLayoutManager(todolist.getContext()));
+        } else {
+            todolist.setLayoutManager(new GridLayoutManager(todolist.getContext(), mColumnCount));
         }
+        todolist_adaptor = new tasksRecyclerViewAdapter(todoItems.ITEMS, mListener);
+        todolist.setAdapter(todolist_adaptor);
+
+        retriveUsrTasks();
+        Log.d("todoItems_Json in main", todoItems_Json.toString());
+        translateTaskCollection(todoItems_Json);
+
         return view;
     }
 
@@ -108,7 +123,7 @@ public class TasksList extends Fragment {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
-                Log.d("json", json);
+                Log.d("json req", json);
                 Request request = new Request.Builder().url(tasklist_url)
                         .post(body)
                         .build();
@@ -116,15 +131,17 @@ public class TasksList extends Fragment {
                     Response response = client.newCall(request).execute();
 
                     String reply = response.body().string();
-                    Log.d("tasks response json", reply);
+                    Log.d("list reply", reply);
                     try {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and create task list
                         if ((int) respond_json.get("status") == 0) {
-                            translateTaskCollection(respond_json.getJSONArray("todo_list"));
-                        } else if (respond_json.getString("status").equals("1")){
+                            Log.d("items", respond_json.getJSONArray("todo_list").toString());
+                            todoItems_Json = respond_json.getJSONArray("todo_list");
+                            listUpdateHandler.sendEmptyMessage(0);
+                            Log.d("todoItems_Json", todoItems_Json.toString());
+                        } else if (respond_json.getString("status").equals("1")) {
                             // TODO if fail pop up dialog with fail explained
-
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -138,10 +155,25 @@ public class TasksList extends Fragment {
 
     }
 
+    private void todolist_update() {
+        translateTaskCollection(todoItems_Json);
+    }
+
     private void translateTaskCollection(JSONArray list) {
-
-
-        todoItems.addItem(new TaskCollection.TaskItem(20001,"smaple task",1569623441258L,1));
+        todolist_adaptor.clear();
+        Log.d("before", todoItems.ITEMS.toString());
+        if(list== null){
+            Log.d("list", list.toString());
+            return;
+        }
+        for(int i=0;i<list.length();i++) {
+            try {
+                todolist_adaptor.addDataToTail(new TaskCollection.TaskItem(list.getJSONObject(i).getInt("tid"), list.getJSONObject(i).getString("title"), list.getJSONObject(i).getLong("ddl"), list.getJSONObject(i).getInt("complete")));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.d("after", todoItems.ITEMS.toString());
     }
 
 

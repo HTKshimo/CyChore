@@ -61,6 +61,35 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         return mValues.size();
     }
 
+
+    public void addData(int position, TaskCollection.TaskItem item) {
+        mValues.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    public void addDataToTail(TaskCollection.TaskItem item) {
+        int position = mValues.size();
+        mValues.add(position, item);
+        notifyItemInserted(position);
+    }
+
+    public void removeData(TaskCollection.TaskItem item) {
+        int position = mValues.indexOf(item);
+        mValues.remove(item);
+        notifyItemRemoved(position);
+    }
+
+    public void clear(){
+        int size = mValues.size();
+        mValues.clear();
+        while(size>0){
+            notifyItemRemoved(size-1);
+            size--;
+        }
+
+    }
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
