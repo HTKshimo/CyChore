@@ -1,10 +1,14 @@
 package com.example.demo01;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.demo01.data.ProfileCollection;
+import com.example.demo01.ui.profile.OnListFragmentInteractionListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 
 
 
-public class UsrDefaultPage extends AppCompatActivity {
+public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
 
     public static String uid = "";
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
@@ -51,5 +55,34 @@ public class UsrDefaultPage extends AppCompatActivity {
         //super.onBackPressed();
 
     }
+//    @Override
+//    public void onAttachFragment(Fragment fragment) {
+//        if (fragment instanceof ProfileFragment) {
+//            ProfileFragment profileFragment = (ProfileFragment) fragment;
+//            profileFragment.setOnListFragmentInteractionListener(this);
+//        }
+//    }
 
+//    @Override
+//    public void onListFragmentInteraction(String primaryKey) {
+//        if(primaryKey.equals("Log Out")){
+//            logout();
+//        }
+//    }
+
+    public void OnListFragmentInteractionListener(){}
+
+
+    public void logout(){
+        getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onListFragmentInteraction(ProfileCollection.ProfileSelection item) {
+        if(item.title.equals("Log Out")){
+            logout();
+        }
+    }
 }

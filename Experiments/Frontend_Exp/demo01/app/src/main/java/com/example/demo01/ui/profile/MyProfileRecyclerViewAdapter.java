@@ -9,13 +9,12 @@ import android.widget.TextView;
 
 import com.example.demo01.R;
 import com.example.demo01.data.ProfileCollection;
-import com.example.demo01.ui.profile.ProfileFragment.OnListFragmentInteractionListener;
-import com.example.demo01.dummy.DummyContent.DummyItem;
+
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a item and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */

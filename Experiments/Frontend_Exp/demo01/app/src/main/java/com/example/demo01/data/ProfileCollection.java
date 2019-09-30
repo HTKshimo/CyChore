@@ -24,11 +24,6 @@ public class ProfileCollection {
         ITEM_MAP.put(item.title, item);
     }
 
-    private static ProfileSelection createDummyItem(String title) {
-        return new ProfileSelection(title);
-    }
-
-
     public static class ProfileSelection {
         public final String title;
         public final String detail;

@@ -6,11 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkCapabilities;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +18,6 @@ import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
 import android.text.TextUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,16 +51,12 @@ public class MainActivity extends AppCompatActivity {
 
     private InputMethodManager in;
     private Handler dialog_handler;
-//    private ConnectivityManager cm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         in = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
-//        cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
 
         login = (Button) findViewById(R.id.LoginButton);
         register = (Button) findViewById(R.id.RegisterButton);
@@ -239,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void register(View view) {
         in.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
 
         Intent intent = new Intent(this, RegistrationPage.class);
         startActivity(intent);
