@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.demo01.R;
 import com.example.demo01.data.ProfileCollection;
+import com.example.demo01.ui.OnListFragmentInteractionListener;
 
 
 import java.util.List;

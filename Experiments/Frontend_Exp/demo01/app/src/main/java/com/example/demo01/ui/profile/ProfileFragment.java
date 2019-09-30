@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.demo01.R;
 import com.example.demo01.data.ProfileCollection;
-import com.example.demo01.data.ProfileCollection.ProfileSelection;
+import com.example.demo01.ui.OnListFragmentInteractionListener;
 
 /**
  * A fragment representing a list of Items.
@@ -94,17 +94,6 @@ public class ProfileFragment extends Fragment {
                     + " must implement OnListFragmentInteractionListener");
         }
     }
-
-//    @Override
-//    public void onListFragmentInteraction(String primaryKey) {
-//        Log.d("called", "called");
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
 
 
 }
