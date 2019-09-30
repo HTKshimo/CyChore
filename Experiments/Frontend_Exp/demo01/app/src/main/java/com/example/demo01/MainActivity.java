@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             param.put("request", "login");
             param.put("email", name);
-            param.put("password", System.currentTimeMillis());
+            param.put("password", pwd);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -79,13 +79,6 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
-        Log.d("context", getContext().toString());
-        Log.d("class name", getClass().getName());
-
-        if (this.getContext().equals(context)){
-            Log.d("same","Same");
-        }
-
         super.onAttach(context);
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
