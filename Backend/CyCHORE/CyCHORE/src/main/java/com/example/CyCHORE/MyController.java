@@ -1,22 +1,39 @@
 package com.example.CyCHORE;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.example.CyCHORE.Task.*;
 
 @RestController
 public class MyController {
 	
 	@Autowired
 	MyDatabase db;
+
+    @Autowired
+    TaskRepository tr;
+
+//    @GetMapping("/getTaskList/{id}")
+//    List<String> getTaskList(@PathVariable Integer id){
+//        List<Task> allTaskList = tr.findAll();
+//        List<String> taskList = new ArrayList<String>();;
+//        for (Task temp : allTaskList) {
+//            if (temp.is_assigned_to() == id){
+//                taskList.add(temp.toString());
+//            }
+//        }
+//        return taskList;
+//    }
 	
 	@GetMapping("/person/{id}")
-	int getPerson(@PathVariable Integer id) {
+	Person getPerson(@PathVariable Integer id) {
 		Optional<Person> test = db.findById(id);
-		return test.get().getId();
+		return test.get();
 	}
 
 	@RequestMapping("/persons")

@@ -1,5 +1,6 @@
 package com.example.CyCHORE;
 
+import com.example.CyCHORE.Task.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.sql.DataSource;
@@ -16,6 +17,8 @@ public class CyChoreApplication implements CommandLineRunner{
 	DataSource dataSource;
 	@Autowired
 	MyDatabase db;
+	@Autowired
+    TaskRepository tr;
 
 	public static void main(String[] args) {
 
@@ -25,9 +28,9 @@ public class CyChoreApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Our DataSource is = " + dataSource);
-		Iterable<com.example.CyCHORE.Person> p = db.findAll();
+		Iterable<com.example.CyCHORE.Task.Task> p = tr.findAll();
 		System.out.println(p.iterator().hasNext());
-		for (com.example.CyCHORE.Person p1 : p) {
+		for (com.example.CyCHORE.Task.Task p1 : p) {
 			System.out.println("Here is a system: " + p1.toString());
 		}
 	}
