@@ -34,7 +34,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-    private static final String register_url = "https://postman-echo.com/post";
+    private static final String register_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
 
     private Button register;
     private EditText reg_email;
@@ -136,7 +136,7 @@ public class RegistrationPage extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(reg_json, JSON);
-                Request request = new Request.Builder().url("https://postman-echo.com/post")
+                Request request = new Request.Builder().url(register_url)
                         .post(body)
                         .build();
                 try {

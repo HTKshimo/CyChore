@@ -1,25 +1,31 @@
 package com.example.demo01;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+
+import com.example.demo01.data.ListItem;
+import com.example.demo01.data.ProfileCollection;
+import com.example.demo01.data.TaskCollection;
+import com.example.demo01.ui.OnListFragmentInteractionListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import okhttp3.MediaType;
 
 
-public class UsrDefaultPage extends AppCompatActivity {
+public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
 
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static String uid = "";
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
+
 
 
     @Override
@@ -42,14 +48,27 @@ public class UsrDefaultPage extends AppCompatActivity {
         uid = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         Log.d("intent_uid:",uid);
-
-
-
     }
     @Override
     public void onBackPressed(){
         //super.onBackPressed();
-
     }
 
+
+    public void logout(){
+        getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onListFragmentInteraction(ListItem item) {
+        if(item.title.equals("Log Out")){
+            logout();
+        }else if(item.title.equals("task")){
+            TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
+            Log.d("select task",task.toJSON());
+        }
+
+    }
 }
