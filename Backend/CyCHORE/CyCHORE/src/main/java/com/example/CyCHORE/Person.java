@@ -11,13 +11,18 @@ class Person {
 	
 	@Column
 	String email;
+
+	@Column
+	String password;
 	
 	public Integer getId() { return id; }
 	
-	public String getUser() { return email; }
+	public String getEmail() { return email; }
+
+	public String getPassword() { return password; }
 
 	public String toString() {
-		return getUser();
+		return getEmail();
 	}
 
 
