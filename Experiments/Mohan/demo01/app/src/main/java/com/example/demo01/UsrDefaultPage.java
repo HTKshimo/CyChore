@@ -15,7 +15,8 @@ import androidx.navigation.ui.NavigationUI;
 
 
 
-public class UsrDefaultPage extends AppCompatActivity {
+public class UsrDefaultPage extends AppCompatActivity
+{
 
     public String json;
 
@@ -29,6 +30,7 @@ public class UsrDefaultPage extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_tasks, R.id.navigation_group, R.id.navigation_chats)
                 .build();
+        //Controls fragment
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);

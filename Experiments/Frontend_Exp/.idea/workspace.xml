@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98e2301f-64a4-4e18-881a-c802344fd9cb" name="Default Changelist" comment="" />
+    <list default="true" id="99271c79-61a7-42e7-9221-895922018355" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Frontend_Exp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01/app/src/main/java/com/example/demo01/TasksFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01/app/src/main/java/com/example/demo01/TasksFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01/app/src/main/java/com/example/demo01/data/ProfileCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo01/app/src/main/java/com/example/demo01/data/ProfileCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo01/app/src/main/java/com/example/demo01/loginPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mohan/demo01/app/src/main/java/com/example/demo01/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Mohan/demo01/app/src/main/java/com/example/demo01/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mohan/demo01/app/src/main/java/com/example/demo01/UsrDefaultPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Mohan/demo01/app/src/main/java/com/example/demo01/UsrDefaultPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Yamini/Login/app/src/main/java/com/example/login/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Yamini/Login/app/src/main/java/com/example/login/MainActivity.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="836" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Frontend_Exp" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Frontend_Exp" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -42,24 +71,22 @@
       </list>
     </option>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="98e2301f-64a4-4e18-881a-c802344fd9cb" name="Default Changelist" comment="" />
-      <created>1568778295300</created>
+      <changelist id="99271c79-61a7-42e7-9221-895922018355" name="Default Changelist" comment="" />
+      <created>1569692458216</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1568778295300</updated>
+      <updated>1569692458216</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="836" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32980973" />
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.3297568" />
       <window_info id="Structure" side_tool="true" />
+      <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
       <window_info id="Designer" />
       <window_info id="Resources Explorer" />
@@ -71,24 +98,9 @@
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Gradle" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Palette&#9;" />
     </layout>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
