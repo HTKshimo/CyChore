@@ -11,6 +11,7 @@ public class ProfileCollection {
 
     public static final Map<String, ProfileSelection> ITEM_MAP = new HashMap<String, ProfileSelection>();
 
+    // add default items
     static {
         // Add some sample items.
         addItem(new ProfileSelection("My Account", "edit personal info"));
