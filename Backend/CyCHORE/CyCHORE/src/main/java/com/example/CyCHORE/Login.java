@@ -1,9 +1,10 @@
-package com.example.startspring;
+package com.example.CyCHORE;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
+
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -16,9 +17,11 @@ import java.io.IOException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 @RestController
 @RequestMapping("/home")
-public class home{
+public class Login{
 
     @GetMapping
     public String getHome() throws IOException {
@@ -26,9 +29,48 @@ public class home{
         return "Blobfish!!!!";
     }
 
+    @RequestMapping(value = "/login", method = POST)
+    @ResponseBody
+    public String validateLogin(HttpServletRequest request) throws JSONException {
+        JSONObject o = new JSONObject();
+        o.put("status",0);
+        o.put("uid",1001);
+        return o.toString();
+    }
+
+    @RequestMapping(value = "/singletask", method = POST)
+    @ResponseBody
+    public String SingleTask(HttpServletRequest request) throws JSONException {
+        JSONObject o = new JSONObject();
+        o.put("title", "mop floor");
+        o.put("tid",10001);
+        o.put("ddl","1569623441258");
+        o.put("complete",1);
+        return o.toString();
+    }
+
+    @RequestMapping(value = "/UserTaskList", method = POST)
+    @ResponseBody
+    public String UserTaskList(HttpServletRequest request) throws JSONException {
+        JSONObject o = new JSONObject();
+        o.put("title", "mop floor");
+        o.put("tid",10001);
+        o.put("ddl","1569623441258");
+        o.put("complete",1);
+
+//        JSONArray a = new JSONArray();
+//        a.put(o);
+        JSONObject o1 = new JSONObject();
+        o1.put("status",0);
+        o1.put("todo_count",2);
+        o1.put("todo_list",o);
+        o1.put("finish_count",1);
+        o1.put("finish_list", o);
+        return o1.toString();
+    }
     @PostMapping
     public String testPost(HttpServletRequest request) throws IOException {
-        System.out.println("Hellooooooooooooooooo");
+        System.out.println("Helooooooooooooooooo");
         System.out.println("test"+request.getParameter("name") );
 
         String secretKey = "boooooooooom!!!!";
