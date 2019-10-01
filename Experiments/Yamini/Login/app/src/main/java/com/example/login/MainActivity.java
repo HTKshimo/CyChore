@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         User user = new User("Yamini",23, "yamini@iastate.edu", address );
         String json = gson.toJson(user);
-      /*String json = "{\"firstname\":\"John\", \"age\":23, \"mail\":\"yamini@iastate.edu\"}";
+      /* String json = "{\"firstname\":\"John\", \"age\":23, \"mail\":\"yamini@iastate.edu\"}";
        User user = gson.fromJson(json, User.class);
-   */
+       */
 
     }
 

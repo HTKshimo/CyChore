@@ -15,7 +15,6 @@ public class ProfileCollection {
      */
     public static final Map<String, ProfileSelection> ITEM_MAP = new HashMap<String, ProfileSelection>();
 
-    //statically add items to the class
     static {
         // Add some sample items.
         addItem(new ProfileSelection("My Account", "edit personal info",""));
@@ -23,8 +22,7 @@ public class ProfileCollection {
         addItem(new ProfileSelection("Log Out"));
 
     }
-    //use this
-    //implement delete things
+
     private static void addItem(ProfileSelection item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
@@ -38,7 +36,7 @@ public class ProfileCollection {
     public static class ProfileSelection {
         public final String title;
         public final String detail;
-        public final String link; //to link to other activities
+        public final String link;
 
         public ProfileSelection(String givenTitle, String description, String link) {
             this.title = givenTitle;

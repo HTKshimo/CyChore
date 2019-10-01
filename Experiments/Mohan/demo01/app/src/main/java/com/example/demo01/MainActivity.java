@@ -26,8 +26,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
@@ -56,8 +55,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void login(View view)
-    {
+    public void login(View view) {
         in.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
         String uname = email.getText().toString();
@@ -82,8 +80,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void login(final String name, final String pwd)
-    {
+    private void login(final String name, final String pwd) {
 
         // create json to be send
         final JSONObject param = new JSONObject();
