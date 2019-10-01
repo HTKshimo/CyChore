@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CyChore</string>
+    <string name="app_name">demo01_login</string>
     <string name="title_activity_try_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -23,6 +23,4 @@
     <string name="invalid_email_address">Invalid Email address</string>
     <string name="reg_password_too_short">\"Password too short\"</string>
     <string name="cant_reach_server">Can not connect to Server, please try later.</string>
-    <string name="save_pwd">Save Password</string>
-    <string name="auto_login">Auto login</string>
 </resources>

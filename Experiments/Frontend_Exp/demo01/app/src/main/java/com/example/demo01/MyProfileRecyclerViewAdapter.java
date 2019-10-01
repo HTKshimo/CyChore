@@ -1,4 +1,4 @@
-package com.example.demo01.ui.profile;
+package com.example.demo01;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.demo01.R;
-import com.example.demo01.data.ProfileCollection;
-import com.example.demo01.ui.profile.ProfileFragment.OnListFragmentInteractionListener;
+import com.example.demo01.ProfileFragment.OnListFragmentInteractionListener;
 import com.example.demo01.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -21,10 +19,10 @@ import java.util.List;
  */
 public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfileRecyclerViewAdapter.ViewHolder> {
 
-    private final List<ProfileCollection.ProfileSelection> mValues;
+    private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyProfileRecyclerViewAdapter(List<ProfileCollection.ProfileSelection> items, OnListFragmentInteractionListener listener) {
+    public MyProfileRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -39,8 +37,8 @@ public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfile
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).title);
-        holder.mContentView.setText(mValues.get(position).detail);
+        holder.mIdView.setText(mValues.get(position).id);
+        holder.mContentView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +61,7 @@ public class MyProfileRecyclerViewAdapter extends RecyclerView.Adapter<MyProfile
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public ProfileCollection.ProfileSelection mItem;
+        public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);

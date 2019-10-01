@@ -6,16 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 public class ProfileCollection {
-
+    /**
+     * An array of sample (dummy) items.
+     */
     public static final List<ProfileSelection> ITEMS = new ArrayList<ProfileSelection>();
-
+    /**
+     * A map of sample (dummy) items, by ID.
+     */
     public static final Map<String, ProfileSelection> ITEM_MAP = new HashMap<String, ProfileSelection>();
 
     //statically add items to the class
     static {
         // Add some sample items.
-        addItem(new ProfileSelection("My Account", "edit personal info"));
-        addItem(new ProfileSelection("My Group", "view group info"));
+        addItem(new ProfileSelection("My Account", "edit personal info",""));
+        addItem(new ProfileSelection("My Group", "view group info",""));
         addItem(new ProfileSelection("Log Out"));
 
     }
@@ -26,7 +30,6 @@ public class ProfileCollection {
         ITEM_MAP.put(item.title, item);
     }
 
-<<<<<<< HEAD
     private static ProfileSelection createDummyItem(String title) {
         return new ProfileSelection(title);
     }
@@ -42,21 +45,22 @@ public class ProfileCollection {
             this.detail = description;
             this.link = link;
         }
-=======
-    public static class ProfileSelection extends ListItem {
->>>>>>> 1666b0de74ea0bde6f2c4b494a80c432b33de7b5
 
-        public ProfileSelection(String givenTitle, String description) {
-            super(givenTitle,description);
+        public ProfileSelection(String givenTitle, String link) {
+            this.title = givenTitle;
+            this.detail = "";
+            this.link = link;
         }
 
         public ProfileSelection(String givenTitle) {
-            super(givenTitle,"");
+            this.title = givenTitle;
+            this.detail = "";
+            this.link = "blank";
         }
 
         @Override
         public String toString() {
-            return title + ": " + detail;
+            return title + ": " + link;
         }
     }
 }

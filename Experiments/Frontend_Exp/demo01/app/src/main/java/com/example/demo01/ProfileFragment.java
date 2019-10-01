@@ -1,4 +1,4 @@
-package com.example.demo01.ui.profile;
+package com.example.demo01;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,11 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.demo01.R;
-import com.example.demo01.data.ProfileCollection;
-import com.example.demo01.data.ProfileCollection.ProfileSelection;
 import com.example.demo01.dummy.DummyContent;
 import com.example.demo01.dummy.DummyContent.DummyItem;
+
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -72,28 +71,28 @@ public class ProfileFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(ProfileCollection.ITEMS, mListener));
+            recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
 
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -107,6 +106,6 @@ public class ProfileFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(ProfileSelection item);
+        void onListFragmentInteraction(DummyItem item);
     }
 }
