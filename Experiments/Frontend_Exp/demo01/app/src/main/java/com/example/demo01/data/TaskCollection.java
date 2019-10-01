@@ -1,5 +1,7 @@
 package com.example.demo01.data;
 
+
+import android.os.Bundle;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -11,10 +13,55 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TaskCollection {
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.*;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.demo01.MainActivity;
+import com.example.demo01.R;
+import com.example.demo01.UsrDefaultPage;
+
+public class TaskCollection extends MainActivity {
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
 
     public static final Map<Integer, TaskItem> ITEM_MAP = new HashMap<Integer, TaskItem>();
+
+    //
+   private Button completed;
+   private Button completed3;
+    TextView textView;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_tasks);
+        completed = (Button) findViewById(R.id.complete_button);
+        completed3 = (Button)findViewById(R.id.complete_button3);
+        textView = (TextView) findViewById(R.id.complete_button);
+
+       // completed.setOnClickListener( new View.OnClickListener() {
+
+  /*          @Override
+            public void onClick(View v) {
+                //textView.setText("INCOMPLETE");
+                completed.setText("INCOMPLETE!");
+                completed3.setText("INCOMPLETE!");
+            }
+        });*/
+
+    }
+    public void change_status(View v)
+    {
+        // = (Button) findViewById(R.id.complete_button);
+        //set button's new text programmatically
+        //setText() method allow us to set a widget's displayed text
+        completed.setText("Incomplete!");
+        completed3.setText("Incomplete!");
+
+    }
 
     static {
         // Add some sample items.
@@ -42,12 +89,46 @@ public class TaskCollection {
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
+        private Button completed; //changeButtonText
+
+        // Button btn = (Button) findViewById(R.id.button_complete);
+       //TextView textView = (TextView) findiewById(R.id.my_textview);
 
         public TaskItem(int givenTid, String description, long givenTime, int status) {
             super("task",description);
             tid = givenTid;
             ddl.setTime(givenTime);
             tstatus = status;
+        }
+
+        //@Override
+ /* public View onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+  {
+      View view = inflater.inflate(R.layout.TaskCollection, container, false);
+      completed = (Button) view.findViewById(R.id.);
+      completed.setOnClickListener(this);
+      return view;
+      //super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  public void onClick(View v)
+  {
+      textView.setText("INCOMPLETE");
+  }*/
+
+
+        public int changeStatus()
+        {
+            if(tstatus == 0)
+            {
+                return 0;
+            }
+
+            else
+            {
+                return 1;
+            }
         }
 
         @Override
