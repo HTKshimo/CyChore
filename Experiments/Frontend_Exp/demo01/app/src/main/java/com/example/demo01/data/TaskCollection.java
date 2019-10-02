@@ -23,7 +23,7 @@ import com.example.demo01.MainActivity;
 import com.example.demo01.R;
 import com.example.demo01.UsrDefaultPage;
 
-public class TaskCollection  extends UsrDefaultPage{
+public class TaskCollection  extends MainActivity{
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
 
     public static final Map<Integer, TaskItem> ITEM_MAP = new HashMap<Integer, TaskItem>();
@@ -38,30 +38,43 @@ public class TaskCollection  extends UsrDefaultPage{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tasks);
-        completed = (Button) findViewById(R.id.complete_button);
-        completed3 = (Button)findViewById(R.id.complete_button3);
-        textView = (TextView) findViewById(R.id.complete_button);
+        Button btn1 = (Button) findViewById(R.id.complete_button);
+        Button btn2 = (Button) findViewById(R.id.complete_button3);
+      // Button completed3 = (Button)findViewById(R.id.complete_button3);
+      //  textView = (TextView) findViewById(R.id.complete_button);
 
-        // completed.setOnClickListener( new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                TextView statusText = findViewById(R.id.complete_button);
+                TextView statusText3 = findViewById(R.id.complete_button3);
+                if(statusText.getText().toString().equals("INCOMPLETE!"))
+                {
+                    Log.i("enter if" , statusText.getText().toString());
+                    statusText.setText("COMPLETE!");
+                }
+                else
+                {
+                    statusText.setText("INCOMPLETE!");
+                }
 
-  /*          @Override
-            public void onClick(View v) {
-                //textView.setText("INCOMPLETE");
-                completed.setText("INCOMPLETE!");
-                completed3.setText("INCOMPLETE!");
+                //completed button 3
+                if(statusText3.getText().toString().equals("INCOMPLETE!"))
+                {
+                    Log.i("enter if" , statusText3.getText().toString());
+                    statusText3.setText("COMPLETE!");
+                }
+                else
+                {
+                    Log.i("enter if" , statusText3.getText().toString());
+                    statusText3.setText("INCOMPLETE!");
+                }
             }
-        });*/
-
+        });
     }
-    public void change_status(View v)
-    {
-        // = (Button) findViewById(R.id.complete_button);
-        //set button's new text programmatically
-        //setText() method allow us to set a widget's displayed text
-        completed.setText("INCOMPLETE!");
-        completed3.setText("INCOMPLETE!");
 
-    }
 
 
     static {
