@@ -7,6 +7,7 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,11 @@ import android.view.View;
 import com.example.demo01.MainActivity;
 import com.example.demo01.R;
 import com.example.demo01.UsrDefaultPage;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class TaskCollection  extends MainActivity{
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
@@ -111,6 +117,8 @@ public class TaskCollection  extends MainActivity{
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
+        private static final String task_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
+
 
         public TaskItem(int givenTid, String description, long givenTime, int status) {
             super("task",description);
@@ -125,7 +133,7 @@ public class TaskCollection  extends MainActivity{
                 tstatus = task_status;
             }
         }
-        public int changeStatus()
+      /*  public int changeStatus()
         {
             if(tstatus == 0)
             {
@@ -136,14 +144,16 @@ public class TaskCollection  extends MainActivity{
             {
                 return 1;
             }
-        }
+        }*/
 
         @Override
-        public String toString() {
+        public String toString()
+        {
             return title + ": " + detail;
         }
 
-        public String toJSON(){
+        public String toJSON()
+        {
             JSONObject task = new JSONObject();
             String json;
             try {
@@ -154,7 +164,46 @@ public class TaskCollection  extends MainActivity{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = RequestBody.create(task_json, JSON);
+                    Request request = new Request.Builder().url(task_url)
+                            .post(body)
+                            .build();
+                    try {
+                        Response response = client.newCall(request).execute();
+
+                        String reply = response.body().string();
+
+                        Log.d("Registration respond", reply);
+                        try {
+                            JSONObject respond_json = new JSONObject(reply);
+                            if (respond_json.getString("status").equals("0")) {
+                               // dialog_handler.sendEmptyMessage(0);
+                                tstatus = 0;
+                            }
+                            else
+                                {
+
+                               // dialog_handler.sendEmptyMessage(1);
+                                    tstatus = 1;
+                            }
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
             return task.toString();
         }
+
+
     }
 }
