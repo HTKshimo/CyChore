@@ -31,6 +31,7 @@ public class TaskCollection  extends MainActivity{
     //
     private Button completed;
     private Button completed3;
+    public int task_status;
     TextView textView;
 
 
@@ -54,10 +55,12 @@ public class TaskCollection  extends MainActivity{
                 {
                     Log.i("enter if" , statusText.getText().toString());
                     statusText.setText("COMPLETE!");
+                    task_status = 0;
                 }
                 else
                 {
                     statusText.setText("INCOMPLETE!");
+                    task_status = 1;
                 }
 
                 //completed button 3
@@ -65,11 +68,13 @@ public class TaskCollection  extends MainActivity{
                 {
                     Log.i("enter if" , statusText3.getText().toString());
                     statusText3.setText("COMPLETE!");
+                    task_status = 0;
                 }
                 else
                 {
                     Log.i("enter if" , statusText3.getText().toString());
                     statusText3.setText("INCOMPLETE!");
+                    task_status = 1;
                 }
             }
         });
@@ -99,17 +104,13 @@ public class TaskCollection  extends MainActivity{
         ITEM_MAP.remove(item.tid, item);
     }
 
-    public static class TaskItem extends ListItem
+
+
+    public class TaskItem extends ListItem
     {
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
-       // private Button completed; //changeButtonText
-
-
-
-        // Button btn = (Button) findViewById(R.id.button_complete);
-       //TextView textView = (TextView) findiewById(R.id.my_textview);
 
         public TaskItem(int givenTid, String description, long givenTime, int status) {
             super("task",description);
@@ -117,24 +118,13 @@ public class TaskCollection  extends MainActivity{
             ddl.setTime(givenTime);
             tstatus = status;
         }
-
-        //@Override
- /* public View onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-  {
-      View view = inflater.inflate(R.layout.TaskCollection, container, false);
-      completed = (Button) view.findViewById(R.id.);
-      completed.setOnClickListener(this);
-      return view;
-      //super.onCreate(savedInstanceState);
-  }
-
-  @Override
-  public void onClick(View v)
-  {
-      textView.setText("INCOMPLETE");
-  }*/
-
-
+        public void taskStatus(TaskItem item)
+        {
+            if(!(task_status == tstatus))
+            {
+                tstatus = task_status;
+            }
+        }
         public int changeStatus()
         {
             if(tstatus == 0)
