@@ -23,14 +23,14 @@ import com.example.demo01.MainActivity;
 import com.example.demo01.R;
 import com.example.demo01.UsrDefaultPage;
 
-public class TaskCollection extends MainActivity {
+public class TaskCollection  extends UsrDefaultPage{
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
 
     public static final Map<Integer, TaskItem> ITEM_MAP = new HashMap<Integer, TaskItem>();
 
     //
-   private Button completed;
-   private Button completed3;
+    private Button completed;
+    private Button completed3;
     TextView textView;
 
 
@@ -42,7 +42,7 @@ public class TaskCollection extends MainActivity {
         completed3 = (Button)findViewById(R.id.complete_button3);
         textView = (TextView) findViewById(R.id.complete_button);
 
-       // completed.setOnClickListener( new View.OnClickListener() {
+        // completed.setOnClickListener( new View.OnClickListener() {
 
   /*          @Override
             public void onClick(View v) {
@@ -58,10 +58,11 @@ public class TaskCollection extends MainActivity {
         // = (Button) findViewById(R.id.complete_button);
         //set button's new text programmatically
         //setText() method allow us to set a widget's displayed text
-        completed.setText("Incomplete!");
-        completed3.setText("Incomplete!");
+        completed.setText("INCOMPLETE!");
+        completed3.setText("INCOMPLETE!");
 
     }
+
 
     static {
         // Add some sample items.
@@ -85,11 +86,14 @@ public class TaskCollection extends MainActivity {
         ITEM_MAP.remove(item.tid, item);
     }
 
-    public static class TaskItem extends ListItem {
+    public static class TaskItem extends ListItem
+    {
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
-        private Button completed; //changeButtonText
+       // private Button completed; //changeButtonText
+
+
 
         // Button btn = (Button) findViewById(R.id.button_complete);
        //TextView textView = (TextView) findiewById(R.id.my_textview);
