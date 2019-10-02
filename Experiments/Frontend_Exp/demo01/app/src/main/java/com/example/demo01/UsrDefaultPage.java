@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
@@ -69,6 +70,10 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
             Log.d("select task",task.toJSON());
         }
+
+    }
+
+    public void test(View view){
 
     }
 }

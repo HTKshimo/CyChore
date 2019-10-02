@@ -39,6 +39,8 @@ public class TaskCollection  extends MainActivity{
     private Button completed3;
     public int task_status;
     TextView textView;
+    private Spinner usr_type;
+
 
 
     @Override
@@ -63,7 +65,7 @@ public class TaskCollection  extends MainActivity{
                     statusText.setText("COMPLETE!");
                     task_status = 0;
                 }
-                else
+                if(statusText.getText().toString().equals("COMPLETE!"))
                 {
                     statusText.setText("INCOMPLETE!");
                     task_status = 1;
@@ -76,17 +78,21 @@ public class TaskCollection  extends MainActivity{
                     statusText3.setText("COMPLETE!");
                     task_status = 0;
                 }
-                else
+               /* else
                 {
                     Log.i("enter if" , statusText3.getText().toString());
                     statusText3.setText("INCOMPLETE!");
                     task_status = 1;
+                }*/
+                if(statusText.getText().toString().equals("COMPLETE!"))
+                {
+                    statusText.setText("INCOMPLETE!");
+                    task_status = 1;
                 }
+
             }
         });
     }
-
-
 
     static {
         // Add some sample items.
@@ -117,7 +123,7 @@ public class TaskCollection  extends MainActivity{
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
-        private static final String task_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
+        private static final String task_url = "https://us-central1-task-demo-309.cloudfunctions.net/log_0";
 
 
         public TaskItem(int givenTid, String description, long givenTime, int status) {
@@ -152,31 +158,54 @@ public class TaskCollection  extends MainActivity{
             return title + ": " + detail;
         }
 
-        public String toJSON()
+        public void register(View view) {
+            //ASK. Do I need to get Title, tid and ddl?
+            String title = reg_email.getText().toString();
+            String pwd = password.getText().toString();
+            String pwd2 = repassword.getText().toString();
+
+            usr_type = (Spinner) findViewById(R.id.usr_type_spinner);
+            int usr_tier = 1;
+            if (usr_type.getSelectedItem().toString() == "Tenant") {
+                usr_tier = 1;
+            } else {
+                usr_tier = 2;
+            }
+
+            toJSON(title, tid, ddl, tstatus);
+        }
+
+            public String toJSON()
         {
             JSONObject task = new JSONObject();
             String json;
-            try {
-                task.put("title", detail);
+            try
+            {
+                task.put("request", "task_update");
+                task.put("uid", uid);
                 task.put("tid", tid);
                 task.put("ddl", ddl.getTime());
-                task.put("status", tstatus);
-            } catch (JSONException e) {
+                task.put("changeto", tstatus);
+            }
+            catch (JSONException e)
+            {
                 e.printStackTrace();
             }
+            json = task.toString();
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     OkHttpClient client = new OkHttpClient();
-                    RequestBody body = RequestBody.create(task_json, JSON);
+                    //Sending and receiving network calls
+                    RequestBody body = RequestBody.create(json, JSON); //ASK. Have to make this URL work.
                     Request request = new Request.Builder().url(task_url)
                             .post(body)
                             .build();
-                    try {
+                    try
+                    {
                         Response response = client.newCall(request).execute();
-
                         String reply = response.body().string();
-
                         Log.d("Task respond", reply);
                         try {
                             JSONObject respond_json = new JSONObject(reply);
@@ -200,7 +229,7 @@ public class TaskCollection  extends MainActivity{
                     }
                 }
             }).start();
-            return task.toString();
+            return "";
         }
 
 
