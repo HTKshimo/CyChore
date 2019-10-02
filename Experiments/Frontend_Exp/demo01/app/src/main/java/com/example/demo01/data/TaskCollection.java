@@ -177,7 +177,7 @@ public class TaskCollection  extends MainActivity{
 
                         String reply = response.body().string();
 
-                        Log.d("Registration respond", reply);
+                        Log.d("Task respond", reply);
                         try {
                             JSONObject respond_json = new JSONObject(reply);
                             if (respond_json.getString("status").equals("0")) {
@@ -186,7 +186,6 @@ public class TaskCollection  extends MainActivity{
                             }
                             else
                                 {
-
                                // dialog_handler.sendEmptyMessage(1);
                                     tstatus = 1;
                             }
