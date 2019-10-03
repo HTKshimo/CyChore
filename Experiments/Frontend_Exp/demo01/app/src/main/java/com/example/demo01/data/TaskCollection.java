@@ -56,14 +56,47 @@ public class TaskCollection  extends MainActivity{
         ITEM_MAP.remove(item.tid, item);
     }
 
+    public static class TaskItem extends ListItem {
+        public int tid ;
+        public int tstatus = 1;
+        public Time ddl = new Time(System.currentTimeMillis());
+
+        public TaskItem(int givenTid, String description, long givenTime, int status) {
+            super("task",description);
+            tid = givenTid;
+            ddl.setTime(givenTime);
+            tstatus = status;
+        }
+
+        @Override
+        public String toString() {
+            return title + ": " + detail;
+        }
+
+        public String toJSON(){
+            JSONObject task = new JSONObject();
+            String json;
+            try {
+                task.put("title", detail);
+                task.put("tid", tid);
+                task.put("ddl", ddl.getTime());
+                task.put("status", tstatus);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return task.toString();
+        }
+    }
 
 
-    public class TaskItem extends ListItem
+  /*  public class TaskItem extends ListItem
     {
         public int tid ;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
-        //private static final String task_url = "https://us-central1-task-demo-309.cloudfunctions.net/log_0";
+        private static final String task_url = "https://us-central1-task-demo-309.cloudfunctions.net/log_0";
+        private Spinner usr_type;
+
 
 
         public TaskItem(int givenTid, String description, long givenTime, int status) {
@@ -92,19 +125,18 @@ public class TaskCollection  extends MainActivity{
             }
         }*/
 
-        @Override
+    /*    @Override
         public String toString()
         {
             return title + ": " + detail;
         }
 
-    /*    public void register(View view)
+        public void register(View view)
         {
             //ASK. Do I need to get Title, tid and ddl?
             String title = reg_email.getText().toString();
             String pwd = password.getText().toString();
             String pwd2 = repassword.getText().toString();
-
             usr_type = (Spinner) findViewById(R.id.usr_type_spinner);
             int usr_tier = 1;
             if (usr_type.getSelectedItem().toString() == "Tenant") {
@@ -114,7 +146,7 @@ public class TaskCollection  extends MainActivity{
             }
 
             toJSON(title, tid, ddl, tstatus);
-        }*/
+        }
 
             public String toJSON()
         {
@@ -137,5 +169,5 @@ public class TaskCollection  extends MainActivity{
         }
 
 
-    }
+    }*/
 }
