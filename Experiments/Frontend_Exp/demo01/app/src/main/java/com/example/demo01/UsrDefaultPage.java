@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
@@ -18,7 +21,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
@@ -26,6 +38,11 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static String uid = "";
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
+    //private Button completed;
+    //private Button completed3;
+    public int task_status;
+    TextView textView;
+    private Spinner usr_type;
 
 
 
@@ -50,6 +67,37 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
         Log.d("intent_uid:",uid);
     }
+
+   /* @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_tasks);*/
+    public void finish_button(View view)
+    {
+        Button btn1 = (Button) findViewById(R.id.Finish);
+        TextView statusText = findViewById(R.id.Finish);
+        view.getId();
+      // statusText = R.id.view.statusText();
+     /*   btn1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {*/
+
+                if(statusText.getText().toString().equals("INCOMPLETE!"))
+                {
+                    Log.i("enter if" , statusText.getText().toString());
+                    statusText.setText("COMPLETE!");
+                    task_status = 0;
+                }
+                if(statusText.getText().toString().equals("COMPLETE!"))
+                {
+                    statusText.setText("INCOMPLETE!");
+                    task_status = 1;
+                }
+          //  }
+       // });
+    }
     @Override
     public void onBackPressed(){
         //super.onBackPressed();
@@ -73,7 +121,47 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
     }
 
-    public void test(View view){
+    public void test(View view)
+    {
 
     }
+
+  /*  json = task.toString();
+
+            new Thread(new Runnable() {
+        @Override
+        public void run() {
+            OkHttpClient client = new OkHttpClient();
+            //Sending and receiving network calls
+            RequestBody body = RequestBody.create(json, JSON); //ASK. Have to make this URL work.
+            Request request = new Request.Builder().url(task_url)
+                    .post(body)
+                    .build();
+            try
+            {
+                Response response = client.newCall(request).execute();
+                String reply = response.body().string();
+                Log.d("Task respond", reply);
+                try {
+                    JSONObject respond_json = new JSONObject(reply);
+                    if (respond_json.getString("status").equals("0")) {
+                        // dialog_handler.sendEmptyMessage(0);
+                        tstatus = 0;
+                    }
+                    else
+                    {
+                        // dialog_handler.sendEmptyMessage(1);
+                        tstatus = 1;
+                    }
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }).start();*/
 }
