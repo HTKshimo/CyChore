@@ -84,15 +84,16 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             public void onClick(View v)
             {*/
 
-                if(statusText.getText().toString().equals("INCOMPLETE!"))
+                if(statusText.getText().toString().toLowerCase().equals("incomplete!"))
                 {
                     Log.i("enter if" , statusText.getText().toString());
-                    statusText.setText("COMPLETE!");
+                    statusText.setText("complete!");
                     task_status = 0;
                 }
-                if(statusText.getText().toString().equals("COMPLETE!"))
+                if(statusText.getText().toString().toLowerCase().equals("complete!"))
                 {
-                    statusText.setText("INCOMPLETE!");
+                    Log.i("enter if" , statusText.getText().toString());
+                    statusText.setText("incomplete!");
                     task_status = 1;
                 }
           //  }
