@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private InputMethodManager in;
     private Handler dialog_handler;
 
+    private int checkAdmin = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,16 +128,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         //check if admin
-        if(uname.toLowerCase().equals("admin@iastate.edu"))
+        if((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2")) )
         {
             Log.i("User:", "Admin");
+            checkAdmin =0;
             //go to Admin Fragment
 
         }
-        if(pwd.toLowerCase().equals("adminks_2"))
+
+
+      /*  if(pwd.toLowerCase().equals("adminks_2"))
         {
             Log.i("Password:", "Admin");
-        }
+            checkAdmin = 0;
+        }*/
 
         if(save_pwd.isChecked()){
             login_info.edit().putString("uname",uname).commit();
@@ -259,5 +265,20 @@ public class MainActivity extends AppCompatActivity {
     public void checkAutoLogin(View view){
         boolean checked = save_pwd.isChecked();
         login_info.edit().putBoolean("auto_login", checked).commit();
+    }
+
+    public int getCheckAdmin(int checkAdmin)
+    {
+        checkAdmin = this.checkAdmin;
+        if (checkAdmin == 0)
+        {
+            //go to Admin Dashboard containing, user list, complaints and requests to sublisting
+            return 0;
+        }
+        else
+        {
+            //regular user
+            return 1;
+        }
     }
 }
