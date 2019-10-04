@@ -124,6 +124,19 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+
+        //check if admin
+        if(uname.toLowerCase().equals("admin@iastate.edu"))
+        {
+            Log.i("User:", "Admin");
+            //go to Admin Fragment
+
+        }
+        if(pwd.toLowerCase().equals("adminks_2"))
+        {
+            Log.i("Password:", "Admin");
+        }
+
         if(save_pwd.isChecked()){
             login_info.edit().putString("uname",uname).commit();
             login_info.edit().putString("pwd",pwd).commit();
