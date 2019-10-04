@@ -51,6 +51,7 @@ public class TaskController {
             }
         }
         toSend.put("status", "0");
+        
         toSend.put("todo_count",todoCount);
         toSend.put("finish_count",finishCount);
         toSend.put("todo_json",toDo.toString());
