@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //check if admin
+        //don't do it this way, change on server 
         if((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2")) )
         {
             Log.i("User:", "Admin");

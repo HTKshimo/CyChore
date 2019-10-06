@@ -90,7 +90,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
                     statusText.setText("complete!");
                     task_status = 0;
                 }
-                if(statusText.getText().toString().toLowerCase().equals("complete!"))
+                else if(statusText.getText().toString().toLowerCase().equals("complete!"))
                 {
                     Log.i("enter if" , statusText.getText().toString());
                     statusText.setText("incomplete!");
