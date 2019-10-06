@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //check if admin
-        //don't do it this way, change on server 
+        //don't do it this way, change on server
         if((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2")) )
         {
             Log.i("User:", "Admin");
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
-                            loginJumpHome(respond_json.getString("uid"));
+                            loginJumpHome(respond_json.getString("uid"), respond_json.getBoolean("inGroup"));
                         } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
@@ -235,9 +235,8 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(String uid) {
-
-
+    private void loginJumpHome(String uid, Boolean inGroup) {
+        login_info.edit().putBoolean("Has Group", inGroup);
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
         intent.putExtra(EXTRA_MESSAGE, uid);
@@ -268,6 +267,8 @@ public class MainActivity extends AppCompatActivity {
         login_info.edit().putBoolean("auto_login", checked).commit();
     }
 
+        /*@Yamini
+        * */
     public int getCheckAdmin(int checkAdmin)
     {
         checkAdmin = this.checkAdmin;

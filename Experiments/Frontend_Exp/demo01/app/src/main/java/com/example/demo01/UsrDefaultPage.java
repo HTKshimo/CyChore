@@ -43,14 +43,24 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public int task_status;
     TextView textView;
     private Spinner usr_type;
+    private Boolean inGroup;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        inGroup = getSharedPreferences("account info", Context.MODE_PRIVATE).getBoolean("inGroup", false));
         setContentView(R.layout.activity_usr_default_page);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        if(inGroup)
+        {
+            //show dashboard
+        }
+        else
+        {
+           //show fragment with "Join Group" Button
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -72,11 +82,15 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tasks);*/
+
+   /* @Yamini
+   * */
     public void finish_button(View view)
     {
         Button btn1 = (Button) findViewById(R.id.Finish);
         TextView statusText = findViewById(R.id.Finish);
         view.getId();
+        Log.d("ID: ", "" + view.getId());
       // statusText = R.id.view.statusText();
      /*   btn1.setOnClickListener(new View.OnClickListener()
         {
