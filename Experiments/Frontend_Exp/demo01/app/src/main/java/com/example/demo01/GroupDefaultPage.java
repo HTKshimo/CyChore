@@ -26,9 +26,14 @@ public class GroupDefaultPage extends AppCompatActivity
                 // TODO Auto-generated method stub
                 //Intent i = new Intent(getApplicationContext(),SendPhotos.class);
                // startActivity(i);
+                if(v.getId() == R.id.add_task)
+                {
+                   Intent i = new Intent(GroupDefaultPage.this, AddTaskPage.class);
+                   startActivity(i);
+                }
             }
         });
 
     }
-    shar
+
 }
