@@ -1,15 +1,20 @@
 package com.example.myapplication;
 
+import androidx.recyclerview.widget.*;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.recyclerview;
 // import androidx.recyclerview.widget.*;
 
 public class MainActivity extends AppCompatActivity
 {
 private RecyclerView recyclerView;
+   // private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
