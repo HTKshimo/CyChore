@@ -50,7 +50,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        inGroup = getSharedPreferences("account info", Context.MODE_PRIVATE).getBoolean("inGroup", false));
+        inGroup = getSharedPreferences("account info", Context.MODE_PRIVATE).getBoolean("inGroup", false);
         setContentView(R.layout.activity_usr_default_page);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         if(inGroup)
