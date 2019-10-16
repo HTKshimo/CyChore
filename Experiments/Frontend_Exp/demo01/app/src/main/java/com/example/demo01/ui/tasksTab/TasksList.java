@@ -44,7 +44,7 @@ public class TasksList extends Fragment {
     private RecyclerView todolist;
     private TaskCollection todoItems;
 
-    private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/not_in_group_tasklist";
+    private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/uid_0001_tasklist";
 //    private static final String tasklist_url = "http://coms-309-ks-2.misc.iastate.edu:8080/getTaskList/5";
     private tasksRecyclerViewAdapter todolist_adaptor;
     private JSONArray todoItems_Json = new JSONArray();

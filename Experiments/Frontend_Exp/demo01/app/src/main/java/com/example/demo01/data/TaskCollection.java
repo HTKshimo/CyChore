@@ -22,11 +22,12 @@ public class TaskCollection {
         // addItem(new TaskItem(10002,"kill bug",1569623441258L,1));
     }
 
-    public TaskCollection(){
+    public TaskCollection() {
 //        ITEMS.clear();
 //        ITEM_MAP.clear();
 
     }
+
     public static void addItem(TaskItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.tid, item);
@@ -39,15 +40,34 @@ public class TaskCollection {
     }
 
     public static class TaskItem extends ListItem {
-        public int tid ;
+        public int tid;
         public int tstatus = 1;
         public Time ddl = new Time(System.currentTimeMillis());
+        public String dueTime = "";
 
-        public TaskItem(int givenTid, String description, long givenTime, int status) {
-            super("task",description);
+        public TaskItem(int givenTid, String name, long givenTime, int status) {
+            super("task", name);
             tid = givenTid;
             ddl.setTime(givenTime);
             tstatus = status;
+
+            long time_delta = givenTime - System.currentTimeMillis();
+            if (time_delta < 0) {
+                dueTime = "Overdue!";
+            } else if (time_delta / (1000 * 60 * 60 * 24) > 7) {
+                dueTime = "More than a week";
+            } else if (time_delta / (1000 * 60 * 60 * 24) > 1) {
+                dueTime = time_delta / (1000 * 60 * 60 * 24) + "days";
+            } else if (time_delta / (1000 * 60 * 60) > 0) {
+                dueTime = time_delta / (1000 * 60 * 60) + "hours";
+            }else if(time_delta/ (1000 * 60)>30){
+                dueTime = "More than 30 min";
+            }else if(time_delta/ (1000 * 60)>0){
+                dueTime = time_delta/ (1000 * 60)+"minutes";
+            }else{
+                dueTime = "less than a minutes";
+            }
+
         }
 
         @Override
@@ -55,9 +75,8 @@ public class TaskCollection {
             return title + ": " + detail;
         }
 
-        public String toJSON(){
+        public String toJSON() {
             JSONObject task = new JSONObject();
-            String json;
             try {
                 task.put("title", detail);
                 task.put("tid", tid);

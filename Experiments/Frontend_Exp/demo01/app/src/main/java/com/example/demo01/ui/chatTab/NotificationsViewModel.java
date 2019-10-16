@@ -1,4 +1,4 @@
-package com.example.demo01.ui.notifications;
+package com.example.demo01.ui.chatTab;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

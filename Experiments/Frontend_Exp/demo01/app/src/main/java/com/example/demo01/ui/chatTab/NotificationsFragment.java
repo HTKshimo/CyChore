@@ -1,4 +1,4 @@
-package com.example.demo01.ui.notifications;
+package com.example.demo01.ui.chatTab;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

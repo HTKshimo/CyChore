@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,7 +42,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).detail);
-        holder.mContentView.setText(mValues.get(position).ddl.toString());
+        holder.mContentView.setText(mValues.get(position).dueTime);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +51,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
+                    // TODO: set onclick listener for buttons in holder
                 }
             }
         });
@@ -94,6 +96,8 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final Button PoolTask;
+        public final Button Finish;
         public TaskCollection.TaskItem mItem;
 
         public ViewHolder(View view) {
@@ -101,6 +105,8 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
+            PoolTask = view.findViewById(R.id.PoolTask);
+            Finish = view.findViewById(R.id.Finish);
         }
 
         @Override

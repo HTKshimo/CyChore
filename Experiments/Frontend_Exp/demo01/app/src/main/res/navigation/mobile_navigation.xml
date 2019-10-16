@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_chats"
-        android:name="com.example.demo01.ui.notifications.NotificationsFragment"
+        android:name="com.example.demo01.ui.chatTab.NotificationsFragment"
         android:label="@string/title_chats"
         tools:layout="@layout/fragment_notifications" />
 

@@ -75,7 +75,18 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             logout();
         }else if(item.title.equals("task")){
             TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
-            Log.d("select task",task.toJSON());
+            Intent intent = new Intent(this, TaskDetail.class);
+
+
+            TaskDetail.tid = task.tid;
+            TaskDetail.uid = uid;
+            TaskDetail.tstatus = task.tstatus;
+            TaskDetail.ddl = task.ddl.getTime();
+            TaskDetail.name = task.detail;
+            TaskDetail.detail = "N/A";
+
+
+            startActivity(intent);
         }
 
     }

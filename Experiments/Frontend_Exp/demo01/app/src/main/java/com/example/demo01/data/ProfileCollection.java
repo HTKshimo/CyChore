@@ -15,6 +15,7 @@ public class ProfileCollection {
         // Add some sample items.
         addItem(new ProfileSelection("My Account", "edit personal info"));
         addItem(new ProfileSelection("My Group", "view group info"));
+        addItem(new ProfileSelection("My Complains", "view your complains"));
         addItem(new ProfileSelection("Log Out"));
 
     }
