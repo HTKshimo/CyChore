@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_group"
-        android:name="com.example.demo01.ui.dashboard.DashboardFragment"
+        android:name="com.example.demo01.ui.groupTab.DashboardFragment"
         android:label="@string/title_group"
         tools:layout="@layout/fragment_dashboard" />
 

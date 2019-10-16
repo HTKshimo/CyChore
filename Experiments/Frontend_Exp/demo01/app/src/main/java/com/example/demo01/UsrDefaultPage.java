@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
@@ -23,8 +24,11 @@ import okhttp3.MediaType;
 public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    public static String uid = "";
+    public static int uid;
+    public static int groupid;
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
+
+
 
 
 
@@ -45,9 +49,8 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         getSupportActionBar().hide();
 
         Intent intent = getIntent();
-        uid = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        Log.d("intent_uid:",uid);
+        Log.d("pass_uid:",uid+"");
     }
     @Override
     public void onBackPressed(){
@@ -58,6 +61,11 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public void logout(){
         getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void jumpJoinGroup(View view){
+        Intent intent = new Intent(this, JoinGroup.class);
         startActivity(intent);
     }
 

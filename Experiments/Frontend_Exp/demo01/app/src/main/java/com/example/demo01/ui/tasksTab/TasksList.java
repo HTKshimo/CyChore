@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -30,6 +31,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.demo01.UsrDefaultPage.JSON;
+import static com.example.demo01.UsrDefaultPage.groupid;
 import static com.example.demo01.UsrDefaultPage.uid;
 
 public class TasksList extends Fragment {
@@ -42,11 +44,12 @@ public class TasksList extends Fragment {
     private RecyclerView todolist;
     private TaskCollection todoItems;
 
-//  private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/uid_0001_tasklist";
-    private static final String tasklist_url = "http://coms-309-ks-2.misc.iastate.edu:8080/getTaskList/5";
+    private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/not_in_group_tasklist";
+//    private static final String tasklist_url = "http://coms-309-ks-2.misc.iastate.edu:8080/getTaskList/5";
     private tasksRecyclerViewAdapter todolist_adaptor;
     private JSONArray todoItems_Json = new JSONArray();
     private Handler listUpdateHandler;
+    private Button joinGroupButton;
 
 
     /**
@@ -90,8 +93,16 @@ public class TasksList extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tasks, container, false);
         todolist = view.findViewById(R.id.todolist);
-        todoItems = new TaskCollection();
+        joinGroupButton = view.findViewById(R.id.joinGroup);
 
+        if(groupid==0){
+            todolist.setVisibility(View.GONE);
+        }else {
+            joinGroupButton.setVisibility(View.GONE);
+        }
+
+        todoItems = new TaskCollection();
+        
 
         if (mColumnCount <= 1) {
             todolist.setLayoutManager(new LinearLayoutManager(todolist.getContext()));
@@ -143,6 +154,7 @@ public class TasksList extends Fragment {
                             Log.d("todoItems_Json", todoItems_Json.toString());
                         } else if (respond_json.getString("status").equals("1")) {
                             // TODO if fail pop up dialog with fail explained
+
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -163,7 +175,7 @@ public class TasksList extends Fragment {
     private void translateTaskCollection(JSONArray list) {
         todolist_adaptor.clear();
         Log.d("before", todoItems.ITEMS.toString());
-        if(list== null){
+        if(list== null||list.length()==0){
             Log.d("list", list.toString());
             return;
         }

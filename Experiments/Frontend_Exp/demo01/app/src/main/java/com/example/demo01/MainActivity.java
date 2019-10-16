@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-//  private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
-    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
+    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
+//    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
 
     private Button login;
     private Button register;
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
-                            loginJumpHome(respond_json.getString("uid"));
+                            loginJumpHome(respond_json.getInt("uid"), respond_json.getInt("groupid"));
                         } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
@@ -214,13 +214,15 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(String uid) {
+    private void loginJumpHome(int uid, int groupid) {
 
 
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
-        intent.putExtra(EXTRA_MESSAGE, uid);
-        Log.d("uid", uid);
+        UsrDefaultPage.groupid = groupid;
+        UsrDefaultPage.uid = uid;
+        Log.d("login_uid", uid+"");
+        Log.d("login_groupid", groupid+"");
         startActivity(intent);
     }
 

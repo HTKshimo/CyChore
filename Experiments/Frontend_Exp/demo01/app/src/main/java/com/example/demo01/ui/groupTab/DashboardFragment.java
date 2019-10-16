@@ -1,4 +1,4 @@
-package com.example.demo01.ui.dashboard;
+package com.example.demo01.ui.groupTab;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
