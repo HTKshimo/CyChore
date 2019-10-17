@@ -42,13 +42,13 @@ public class TasksList extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView todolist;
-    private TaskCollection todoItems;
+    private static TaskCollection todoItems;
 
     private static final String tasklist_url = "https://us-central1-login-demo-309.cloudfunctions.net/uid_0001_tasklist";
 //    private static final String tasklist_url = "http://coms-309-ks-2.misc.iastate.edu:8080/getTaskList/5";
-    private tasksRecyclerViewAdapter todolist_adaptor;
-    private JSONArray todoItems_Json = new JSONArray();
-    private Handler listUpdateHandler;
+    private static tasksRecyclerViewAdapter todolist_adaptor;
+    private static JSONArray todoItems_Json = new JSONArray();
+    private static Handler listUpdateHandler;
     private Button joinGroupButton;
 
 
@@ -119,7 +119,7 @@ public class TasksList extends Fragment {
         return view;
     }
 
-    private void retriveUsrTasks() {
+    public static void retriveUsrTasks() {
         final JSONObject param = new JSONObject();
 
         try {
@@ -168,11 +168,11 @@ public class TasksList extends Fragment {
 
     }
 
-    private void todolist_update() {
+    public static void todolist_update() {
         translateTaskCollection(todoItems_Json);
     }
 
-    private void translateTaskCollection(JSONArray list) {
+    private static void translateTaskCollection(JSONArray list) {
         todolist_adaptor.clear();
         Log.d("before", todoItems.ITEMS.toString());
         if(list== null||list.length()==0){

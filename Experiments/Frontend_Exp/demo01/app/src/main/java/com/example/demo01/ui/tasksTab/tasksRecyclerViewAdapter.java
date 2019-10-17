@@ -6,15 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.demo01.R;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
+import com.example.demo01.util.TaskStatusUpadateUtil;
 
 
 import java.util.List;
+
+import static com.example.demo01.UsrDefaultPage.uid;
 
 public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecyclerViewAdapter.ViewHolder> {
 
@@ -22,7 +26,6 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     private final List<TaskCollection.TaskItem> mValues;
 
     private final OnListFragmentInteractionListener mListener;
-
 
 
     public tasksRecyclerViewAdapter(List<TaskCollection.TaskItem> items, OnListFragmentInteractionListener listener) {
@@ -81,11 +84,11 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         notifyItemRemoved(position);
     }
 
-    public void clear(){
+    public void clear() {
         int size = mValues.size();
         mValues.clear();
-        while(size>0){
-            notifyItemRemoved(size-1);
+        while (size > 0) {
+            notifyItemRemoved(size - 1);
             size--;
         }
 
@@ -106,7 +109,33 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
             PoolTask = view.findViewById(R.id.PoolTask);
+            PoolTask.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int responseCode;
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 3);
+                    if (responseCode == 0) {
+                        Toast.makeText(v.getContext(), "Task get pooled!", Toast.LENGTH_SHORT).show();
+                        TasksList.retriveUsrTasks();
+                    } else {
+                        Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
             Finish = view.findViewById(R.id.Finish);
+            Finish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int responseCode;
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 0);
+                    if (responseCode == 0) {
+                        Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
+                        TasksList.retriveUsrTasks();
+                    } else {
+                        Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
         @Override

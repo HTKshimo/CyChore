@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_group"
-        android:name="com.example.demo01.ui.groupTab.DashboardFragment"
+        android:name="com.example.demo01.ui.groupTab.GroupTabFragment"
         android:label="@string/title_group"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_group_tab" />
 
     <fragment
         android:id="@+id/navigation_chats"
