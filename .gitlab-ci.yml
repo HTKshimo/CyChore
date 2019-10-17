@@ -20,8 +20,8 @@ maven-build:
 maven-test:
   stage: maventest
   tags:
-  - backend_tag
-    script:
+    - backend_tag
+  script:
     - cd Spring
     - mvn test
   artifacts:
