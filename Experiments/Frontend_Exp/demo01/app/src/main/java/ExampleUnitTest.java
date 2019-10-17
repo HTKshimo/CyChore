@@ -3,7 +3,11 @@ import android.content.Context;
 import com.example.demo01.R;
 import com.example.demo01.ui.ClassUnderTest;
 
-public class ExampleUnitTest {
+
+/*How to use Mockito: https://dzone.com/articles/how-to-use-mockito-in-android*/
+
+public class ExampleUnitTest
+{
     private static final String TEST_STRING = "HELLO WORLD!";
     //As we don't have access to Context in our JUnit test classes, we need to mock it
     @Mock
