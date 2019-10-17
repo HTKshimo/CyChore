@@ -16,4 +16,4 @@ public class ClassUnderTest
         return mContext.getString(R.string.text_hello_word);
     }*/
 }
-}
+
