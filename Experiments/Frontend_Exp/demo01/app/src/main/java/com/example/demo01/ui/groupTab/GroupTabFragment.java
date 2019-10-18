@@ -149,6 +149,8 @@ public class GroupTabFragment extends Fragment
         }
 
         poollist_adaptor = new tasksRecyclerViewAdapter(poolItems.ITEMS, mListener);
+        poollist_adaptor.setVisibilityType(R.integer.poolListView);
+
         poollist.setAdapter(poollist_adaptor);
         retrivePoolTasks();
         Log.d("poolItems_Json in main", poolItems_Json.toString());
@@ -170,6 +172,8 @@ public class GroupTabFragment extends Fragment
         }
 
         historylist_adaptor = new tasksRecyclerViewAdapter(historyItems.ITEMS, mListener);
+        historylist_adaptor.setVisibilityType(R.integer.historyListView);
+
         historylist.setAdapter(historylist_adaptor);
         retrivePoolTasks();
         Log.d("poolItems_Json in main", historyItems_Json.toString());

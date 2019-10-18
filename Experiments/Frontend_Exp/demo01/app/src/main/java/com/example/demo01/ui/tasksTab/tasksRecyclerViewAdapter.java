@@ -26,6 +26,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     private final List<TaskCollection.TaskItem> mValues;
 
     private final OnListFragmentInteractionListener mListener;
+    private int appearanceType=0;
 
 
     public tasksRecyclerViewAdapter(List<TaskCollection.TaskItem> items, OnListFragmentInteractionListener listener) {
@@ -48,6 +49,22 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).detail);
         holder.mContentView.setText(mValues.get(position).dueTime);
+
+        if(appearanceType==R.integer.toDoListView){
+            holder.Pickup.setVisibility(View.GONE);
+            holder.Complain.setVisibility(View.GONE);
+        }else if(appearanceType==R.integer.poolListView){
+            holder.PoolTask.setVisibility(View.GONE);
+            holder.Complain.setVisibility(View.GONE);
+            holder.Finish.setVisibility(View.GONE);
+        }else if(appearanceType==R.integer.historyListView){
+            holder.Pickup.setVisibility(View.GONE);
+            holder.PoolTask.setVisibility(View.GONE);
+            holder.Finish.setVisibility(View.GONE);
+            holder.mContentView.setVisibility(View.GONE);
+            holder.duein.setVisibility(View.GONE);
+
+        }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,11 +113,16 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
 
     }
 
+    public void setVisibilityType(int i) {
+        appearanceType = i;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
+        public final TextView duein;
         public final Button PoolTask;
         public final Button Finish;
         public final Button Pickup;
@@ -111,6 +133,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            duein = view.findViewById(R.id.duein);
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
             PoolTask = view.findViewById(R.id.PoolTask);
@@ -144,10 +167,10 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             });
 
             Pickup = view.findViewById(R.id.Pickup);
-            Pickup.setVisibility(View.GONE);
+
 
             Complain = view.findViewById(R.id.TaskComplain);
-            Complain.setVisibility(View.GONE);
+
 
 
         }
