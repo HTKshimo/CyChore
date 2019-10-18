@@ -38,6 +38,8 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.usr_task, parent, false);
+
+
         return new ViewHolder(view);
     }
 
@@ -101,7 +103,10 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         public final TextView mContentView;
         public final Button PoolTask;
         public final Button Finish;
+        public final Button Pickup;
+        public final Button Complain;
         public TaskCollection.TaskItem mItem;
+
 
         public ViewHolder(View view) {
             super(view);
@@ -109,6 +114,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
             PoolTask = view.findViewById(R.id.PoolTask);
+
             PoolTask.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -122,7 +128,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     }
                 }
             });
-            Finish = view.findViewById(R.id.Finish);
+            Finish = view.findViewById(R.id.TaskFinish);
             Finish.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -136,6 +142,14 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     }
                 }
             });
+
+            Pickup = view.findViewById(R.id.Pickup);
+            Pickup.setVisibility(View.GONE);
+
+            Complain = view.findViewById(R.id.TaskComplain);
+            Complain.setVisibility(View.GONE);
+
+
         }
 
         @Override
