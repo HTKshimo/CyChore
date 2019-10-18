@@ -53,7 +53,11 @@
                 android:id="@+id/TaskPool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/usr_task"
+
+                />
 
             <TextView
                 android:id="@+id/textView2"
@@ -65,7 +69,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/HistoryTasks"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </ScrollView>

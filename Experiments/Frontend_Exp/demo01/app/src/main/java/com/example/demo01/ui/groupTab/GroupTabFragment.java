@@ -34,16 +34,25 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.demo01.UsrDefaultPage.JSON;
+import static com.example.demo01.UsrDefaultPage.groupid;
 import static com.example.demo01.UsrDefaultPage.uid;
 
 
 public class GroupTabFragment extends Fragment
 {
     private static final String ARG_COLUMN_COUNT = "column-count";
+
+    //Pool List view declarations
     private static TaskCollection poolItems;
     private static tasksRecyclerViewAdapter poollist_adaptor;
     private static JSONArray poolItems_Json = new JSONArray();
     private RecyclerView poollist;
+
+    //History List view declarations
+    private static TaskCollection historyItems;
+    private static tasksRecyclerViewAdapter historylist_adaptor;
+    private static JSONArray historyItems_Json = new JSONArray();
+    private RecyclerView historylist;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -62,10 +71,12 @@ public class GroupTabFragment extends Fragment
 
     private OnListFragmentInteractionListener mListener;
 
-    private static final String poollist_url = "https://us-central1-login-demo-309.cloudfunctions.net/uid_0001_tasklist";
+    private static final String poollist_url = "https://us-central1-login-demo-309.cloudfunctions.net/poollist";
+    private static final String historylist_url = "https://us-central1-login-demo-309.cloudfunctions.net/historylist";
 
 
-    public GroupTabFragment() {
+    public GroupTabFragment()
+    {
         // Required empty public constructor
     }
 
@@ -120,8 +131,10 @@ public class GroupTabFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_tasks, container, false);
-        poollist = view.findViewById(R.id.todolist);
+        View view = inflater.inflate(R.layout.fragment_group_tab, container, false);
+
+        //Pool List View
+        poollist = view.findViewById(R.id.TaskPool);
 
         poolItems = new TaskCollection();
 
@@ -138,10 +151,31 @@ public class GroupTabFragment extends Fragment
         poollist_adaptor = new tasksRecyclerViewAdapter(poolItems.ITEMS, mListener);
         poollist.setAdapter(poollist_adaptor);
         retrivePoolTasks();
-        Log.d("todoItems_Json in main", poolItems_Json.toString());
-        translateTaskCollection(poolItems_Json);
+        Log.d("poolItems_Json in main", poolItems_Json.toString());
+        translatePoolTaskCollection(poolItems_Json);
 
-        return inflater.inflate(R.layout.fragment_group_tab, container, false);
+        //History List View
+        historylist = view.findViewById(R.id.HistoryTasks);
+
+        historyItems = new TaskCollection();
+
+
+        if (mColumnCount <= 1)
+        {
+            historylist.setLayoutManager(new LinearLayoutManager(historylist.getContext()));
+        }
+        else
+        {
+            historylist.setLayoutManager(new GridLayoutManager(historylist.getContext(), mColumnCount));
+        }
+
+        historylist_adaptor = new tasksRecyclerViewAdapter(historyItems.ITEMS, mListener);
+        historylist.setAdapter(historylist_adaptor);
+        retrivePoolTasks();
+        Log.d("poolItems_Json in main", historyItems_Json.toString());
+        translateHistoryTaskCollection(historyItems_Json);
+
+        return view;
     }
 
 
@@ -152,6 +186,7 @@ public class GroupTabFragment extends Fragment
         try {
             param.put("request", "pooltasklist");
             param.put("uid", uid);
+            param.put("groupID", groupid);
         }
         catch (JSONException e)
         {
@@ -179,10 +214,70 @@ public class GroupTabFragment extends Fragment
                         // TODO check login status and create task list
                         if ((int) respond_json.get("status") == 0)
                         {
-                            Log.d("items", respond_json.getJSONArray("todo_list").toString());
-                            poolItems_Json = respond_json.getJSONArray("todo_list");
+                            Log.d("items", respond_json.getJSONArray("pool_list").toString());
+                            poolItems_Json = respond_json.getJSONArray("pool_list");
                             listUpdateHandler.sendEmptyMessage(0);
-                            Log.d("todoItems_Json", poolItems_Json.toString());
+                            Log.d("poolItems_Json", poolItems_Json.toString());
+                        }
+                        else if (respond_json.getString("status").equals("1"))
+                        {
+                            // TODO if fail pop up dialog with fail explained
+
+                        }
+                    }
+                    catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public static void retriveHistoryTasks()
+    {
+        final JSONObject param = new JSONObject();
+
+        try {
+            param.put("request", "historytasklist");
+            param.put("uid", uid);
+            param.put("groupID", groupid);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+        final String json = param.toString();
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                RequestBody body = RequestBody.create(json, JSON);
+                Log.d("json req", json);
+                Request request = new Request.Builder().url(historylist_url)
+                        .post(body)
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+
+                    String reply = response.body().string();
+                    Log.d("list reply", reply);
+                    try {
+                        JSONObject respond_json = new JSONObject(reply);
+                        // TODO check login status and create task list
+                        if ((int) respond_json.get("status") == 0)
+                        {
+                            Log.d("items", respond_json.getJSONArray("history_list").toString());
+                            historyItems_Json = respond_json.getJSONArray("history_list");
+                            listUpdateHandler.sendEmptyMessage(0);
+                            Log.d("historyItems_Json", historyItems_Json.toString());
                         }
                         else if (respond_json.getString("status").equals("1"))
                         {
@@ -206,10 +301,17 @@ public class GroupTabFragment extends Fragment
 
     public static void poollist_update()
     {
-        translateTaskCollection(poolItems_Json);
+        translatePoolTaskCollection(poolItems_Json);
     }
 
-    private static void translateTaskCollection(JSONArray list)
+    public static void historylist_update()
+    {
+        translateHistoryTaskCollection(historyItems_Json);
+    }
+
+
+
+    private static void translatePoolTaskCollection(JSONArray list)
     {
         poollist_adaptor.clear();
         Log.d("before", poolItems.ITEMS.toString());
@@ -232,6 +334,28 @@ public class GroupTabFragment extends Fragment
         Log.d("after", poolItems.ITEMS.toString());
     }
 
+    private static void translateHistoryTaskCollection(JSONArray list)
+    {
+        historylist_adaptor.clear();
+        Log.d("before", historyItems.ITEMS.toString());
+        if(list== null||list.length()==0)
+        {
+            Log.d("list", list.toString());
+            return;
+        }
+        //should we create a new PoolItem Class?
+        for(int i=0;i<list.length();i++)
+        {
+            try
+            { historylist_adaptor.addDataToTail(new TaskCollection.TaskItem(list.getJSONObject(i).getInt("tid"), list.getJSONObject(i).getString("title"), list.getJSONObject(i).getLong("ddl"), list.getJSONObject(i).getInt("complete")));
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        Log.d("after", historyItems.ITEMS.toString());
+    }
+
 
     @Override
     public void onAttach(Context context)
@@ -249,7 +373,6 @@ public class GroupTabFragment extends Fragment
         }
     }
 
-    //why do we need this?
     @Override
     public void onDetach()
     {
