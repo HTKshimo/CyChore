@@ -351,7 +351,8 @@ public class GroupTabFragment extends Fragment
         for(int i=0;i<list.length();i++)
         {
             try
-            { historylist_adaptor.addDataToTail(new TaskCollection.TaskItem(list.getJSONObject(i).getInt("tid"), list.getJSONObject(i).getString("title"), list.getJSONObject(i).getLong("ddl"), list.getJSONObject(i).getInt("complete")));
+            {
+                historylist_adaptor.addDataToTail(new TaskCollection.TaskItem(list.getJSONObject(i).getInt("tid"), list.getJSONObject(i).getString("title"), list.getJSONObject(i).getLong("ddl"), list.getJSONObject(i).getInt("complete")));
             } catch (JSONException e)
             {
                 e.printStackTrace();
