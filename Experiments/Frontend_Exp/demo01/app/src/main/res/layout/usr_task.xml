@@ -7,87 +7,106 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/taskName"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textAlignment="viewStart"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/duein"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Due in "
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskName" />
-
-    <TextView
-        android:id="@+id/ddl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="viewStart"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="#CB000000"
-        app:layout_constraintStart_toEndOf="@+id/duein"
-        app:layout_constraintTop_toBottomOf="@+id/taskName" />
-
-    <Button
-        android:id="@+id/PoolTask"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="7dp"
-        android:gravity="clip_horizontal|center_horizontal"
-        android:text="Pool it!"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TaskFinish"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/TaskFinish"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        android:gravity="clip_horizontal|center_horizontal"
-        android:text="Complete!"
-        android:textAlignment="center"
-        android:textSize="14sp"
+        android:layout_marginBottom="8dp"
+        android:background="#3203A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/TaskComplain"
-        android:layout_width="83dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
-        android:background="#D2DF3327"
-        android:text="Complain"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PoolTask"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/ddl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="#CB000000"
+            app:layout_constraintStart_toEndOf="@+id/duein"
+            app:layout_constraintTop_toBottomOf="@+id/taskName" />
 
-    <Button
-        android:id="@+id/Pickup"
-        android:layout_width="87dp"
-        android:layout_height="34dp"
-        android:text="Pickup"
-        android:textAlignment="center"
+        <Button
+            android:id="@+id/Pickup"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="7dp"
+            android:background="#8BF7EC16"
+            android:text="Pickup"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/PoolTask"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/TaskComplain"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="4dp"
+            android:background="#D2DF3327"
+            android:text="Complain"
+            app:layout_constraintEnd_toStartOf="@+id/TaskFinish"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/taskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sample name"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/duein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Due in "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskName" />
+
+        <Button
+            android:id="@+id/PoolTask"
+            android:layout_width="67dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="10dp"
+            android:background="#A92196F3"
+            android:gravity="clip_horizontal|center_horizontal"
+            android:text="Pool it!"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/TaskFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="7dp"
+            android:background="#7C45E028"
+            android:text="Complete!"
+            app:layout_constraintEnd_toStartOf="@+id/Pickup"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:foregroundTint="#3F51B5"
+        android:foregroundTintMode="src_over"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TaskComplain"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

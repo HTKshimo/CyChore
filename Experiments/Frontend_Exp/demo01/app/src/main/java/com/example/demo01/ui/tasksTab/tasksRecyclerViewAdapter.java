@@ -167,10 +167,34 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             });
 
             Pickup = view.findViewById(R.id.Pickup);
-
+            Pickup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int responseCode;
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 5);
+                    if (responseCode == 0) {
+                        Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
+                        TasksList.retriveUsrTasks();
+                    } else {
+                        Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
             Complain = view.findViewById(R.id.TaskComplain);
-
+            Complain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int responseCode;
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 2);
+                    if (responseCode == 0) {
+                        Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
+                        TasksList.retriveUsrTasks();
+                    } else {
+                        Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
 
         }
