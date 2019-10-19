@@ -70,6 +70,11 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         startActivity(intent);
     }
 
+    public void jumpAddTask(View view){
+        Intent intent = new Intent(this, AddTaskPage.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onListFragmentInteraction(ListItem item) {
         if(item.title.equals("Log Out")){

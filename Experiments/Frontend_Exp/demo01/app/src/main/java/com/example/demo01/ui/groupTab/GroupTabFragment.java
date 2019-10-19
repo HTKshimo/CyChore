@@ -60,9 +60,7 @@ public class GroupTabFragment extends Fragment
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     private static Handler listUpdateHandler;
 
@@ -80,14 +78,7 @@ public class GroupTabFragment extends Fragment
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GroupTabFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static GroupTabFragment newInstance(String param1, String param2)
     {
@@ -103,11 +94,6 @@ public class GroupTabFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null)
-        {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         listUpdateHandler=new Handler(){
             @Override
@@ -132,6 +118,15 @@ public class GroupTabFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_group_tab, container, false);
+
+        if(groupid==0){
+            view.findViewById(R.id.GroupTabMain).setVisibility(View.GONE);
+            view.findViewById(R.id.AddTaskButton).setVisibility(View.GONE);
+            return view;
+        }else{
+            view.findViewById(R.id.GroupTabJoinGroupButton).setVisibility(View.GONE);
+        }
+
 
         //Pool List View
         poollist = view.findViewById(R.id.TaskPool);
@@ -178,6 +173,7 @@ public class GroupTabFragment extends Fragment
         retrivePoolTasks();
         Log.d("poolItems_Json in main", historyItems_Json.toString());
         translateHistoryTaskCollection(historyItems_Json);
+
 
         return view;
     }
