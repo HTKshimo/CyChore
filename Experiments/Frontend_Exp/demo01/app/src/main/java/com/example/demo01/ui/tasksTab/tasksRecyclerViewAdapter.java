@@ -156,8 +156,6 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 2);
                     if (responseCode == 0) {
                         Toast.makeText(v.getContext(), "Task get pooled!", Toast.LENGTH_SHORT).show();
-                        TasksList.retriveUsrTasks();
-                        GroupTabFragment.retriveHistoryTasks();
                         GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
@@ -174,7 +172,6 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                         Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
                         TasksList.retriveUsrTasks();
                         GroupTabFragment.retriveHistoryTasks();
-                        GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
                     }
@@ -190,7 +187,6 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     if (responseCode == 0) {
                         Toast.makeText(v.getContext(), "Pick up successfully!", Toast.LENGTH_SHORT).show();
                         TasksList.retriveUsrTasks();
-                        GroupTabFragment.retriveHistoryTasks();
                         GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
