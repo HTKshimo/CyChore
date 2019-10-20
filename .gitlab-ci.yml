@@ -12,6 +12,7 @@ maven-build:
   tags:
   - backend_tag, spring_tag
   script:
+  - whoami
   - sudo /usr/local/bin/
   - mvn package -B
   
