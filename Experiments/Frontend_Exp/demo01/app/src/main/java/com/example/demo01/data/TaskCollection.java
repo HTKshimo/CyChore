@@ -23,8 +23,6 @@ public class TaskCollection {
     }
 
     public TaskCollection() {
-//        ITEMS.clear();
-//        ITEM_MAP.clear();
 
     }
 

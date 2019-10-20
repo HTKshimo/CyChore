@@ -109,7 +109,7 @@ public class TasksList extends Fragment {
         } else {
             todolist.setLayoutManager(new GridLayoutManager(todolist.getContext(), mColumnCount));
         }
-        todolist_adaptor = new tasksRecyclerViewAdapter(todoItems.ITEMS, mListener);
+        todolist_adaptor = new tasksRecyclerViewAdapter(todoItems.ITEMS, mListener,0);
 
         todolist_adaptor.setVisibilityType(R.integer.toDoListView);
 

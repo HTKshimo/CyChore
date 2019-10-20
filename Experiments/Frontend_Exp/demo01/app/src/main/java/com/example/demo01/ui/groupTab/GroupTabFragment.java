@@ -102,6 +102,7 @@ public class GroupTabFragment extends Fragment
                 {
                     case 0:
                         poollist_update();
+                        historylist_update();
                         break;
                 }
             }
@@ -143,7 +144,7 @@ public class GroupTabFragment extends Fragment
             poollist.setLayoutManager(new GridLayoutManager(poollist.getContext(), mColumnCount));
         }
 
-        poollist_adaptor = new tasksRecyclerViewAdapter(poolItems.ITEMS, mListener);
+        poollist_adaptor = new tasksRecyclerViewAdapter(poolItems.ITEMS, mListener, 1);
         poollist_adaptor.setVisibilityType(R.integer.poolListView);
 
         poollist.setAdapter(poollist_adaptor);
@@ -166,11 +167,11 @@ public class GroupTabFragment extends Fragment
             historylist.setLayoutManager(new GridLayoutManager(historylist.getContext(), mColumnCount));
         }
 
-        historylist_adaptor = new tasksRecyclerViewAdapter(historyItems.ITEMS, mListener);
+        historylist_adaptor = new tasksRecyclerViewAdapter(historyItems.ITEMS, mListener,2);
         historylist_adaptor.setVisibilityType(R.integer.historyListView);
 
         historylist.setAdapter(historylist_adaptor);
-        retrivePoolTasks();
+        retriveHistoryTasks();
         Log.d("poolItems_Json in main", historyItems_Json.toString());
         translateHistoryTaskCollection(historyItems_Json);
 

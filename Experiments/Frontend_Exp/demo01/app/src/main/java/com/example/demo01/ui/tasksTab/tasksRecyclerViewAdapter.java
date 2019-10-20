@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.example.demo01.R;
 import com.example.demo01.TaskDetail;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
+import com.example.demo01.ui.groupTab.GroupTabFragment;
 import com.example.demo01.util.TaskStatusUpadateUtil;
 
 
@@ -31,12 +33,14 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
 
     private final OnListFragmentInteractionListener mListener;
     private int appearanceType=0;
+    private int listType;
 
 
-    public tasksRecyclerViewAdapter(List<TaskCollection.TaskItem> items, OnListFragmentInteractionListener listener) {
+    public tasksRecyclerViewAdapter(List<TaskCollection.TaskItem> items, OnListFragmentInteractionListener listener, int curlistType) {
         mValues = items;
         Log.d("todolist", items.toString());
         mListener = listener;
+        listType = curlistType;
     }
 
     @Override
@@ -76,7 +80,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mItem,listType);
                     // TODO: set onclick listener for buttons in holder
                 }
             }
@@ -131,6 +135,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         public final Button Finish;
         public final Button Pickup;
         public final Button Complain;
+
         public TaskCollection.TaskItem mItem;
 
 
@@ -140,16 +145,20 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             duein = view.findViewById(R.id.duein);
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
+
+
             PoolTask = view.findViewById(R.id.PoolTask);
 
             PoolTask.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int responseCode;
-                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 3);
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 2);
                     if (responseCode == 0) {
                         Toast.makeText(v.getContext(), "Task get pooled!", Toast.LENGTH_SHORT).show();
                         TasksList.retriveUsrTasks();
+                        GroupTabFragment.retriveHistoryTasks();
+                        GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
                     }
@@ -164,6 +173,8 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     if (responseCode == 0) {
                         Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
                         TasksList.retriveUsrTasks();
+                        GroupTabFragment.retriveHistoryTasks();
+                        GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
                     }
@@ -175,10 +186,12 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                 @Override
                 public void onClick(View v) {
                     int responseCode;
-                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 5);
+                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 4);
                     if (responseCode == 0) {
-                        Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), "Pick up successfully!", Toast.LENGTH_SHORT).show();
                         TasksList.retriveUsrTasks();
+                        GroupTabFragment.retriveHistoryTasks();
+                        GroupTabFragment.retrivePoolTasks();
                     } else {
                         Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
                     }
@@ -198,6 +211,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
                     TaskDetail.ddl = mItem.ddl.getTime();
                     TaskDetail.name = mItem.detail;
                     TaskDetail.detail = "N/A";
+                    TaskDetail.listType = 2;
 
                     v.getContext().startActivity(intent);
 

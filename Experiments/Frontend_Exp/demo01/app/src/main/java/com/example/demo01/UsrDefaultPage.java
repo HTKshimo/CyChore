@@ -11,6 +11,7 @@ import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
+import com.example.demo01.ui.tasksTab.TasksList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -76,7 +77,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     }
 
     @Override
-    public void onListFragmentInteraction(ListItem item) {
+    public void onListFragmentInteraction(ListItem item, int listType) {
         if(item.title.equals("Log Out")){
             logout();
         }else if(item.title.equals("task")){
@@ -90,6 +91,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             TaskDetail.ddl = task.ddl.getTime();
             TaskDetail.name = task.detail;
             TaskDetail.detail = "N/A";
+            TaskDetail.listType = listType;
 
 
             startActivity(intent);
