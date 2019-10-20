@@ -45,8 +45,8 @@ public class AddTaskPage extends AppCompatActivity
     private TextView deadline;
     private Button btngocalendar;
 
-    private  static final String TAG = "CalendarActivity";
     private CalendarView mCalendarView;
+    private Button SetDate;
 
     //Use Callable instead of runnable for HTTP
     @Override
@@ -64,22 +64,26 @@ public class AddTaskPage extends AppCompatActivity
         Task  = (TextView) findViewById(R.id.Task);
         task_description = (TextView) findViewById(R.id.task_description);
         submit_task = (Button) findViewById(R.id.submit_task);
-       // deadline = (TextView) findViewById(R.id.date);
+        mCalendarView = findViewById(R.id.AddTaskDate);
+        mCalendarView.setVisibility(View.GONE);
+
+        SetDate = findViewById(R.id.AddTaskSetDate);
+        SetDate.setVisibility(View.GONE);
+
+        //deadline = (TextView) findViewById(R.id.date);
         btngocalendar = (Button) findViewById(R.id.btngocalendar);
+        btngocalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCalendarView.setVisibility(View.VISIBLE);
+                SetDate.setVisibility(View.VISIBLE);
+            }
+        });
 
         Intent incoming = getIntent();
         String date = incoming.getStringExtra("date");
-        deadline.setText(date);
+        //deadline.setText(date);
 
-        btngocalendar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(AddTaskPage.this,CalendarActivity.class);
-                startActivity(intent);
-            }
-        });
 
         dialog_handler = new Handler()
         {

@@ -22,71 +22,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/Task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="130dp"
-        android:hint="Enter a task to complete"
-        android:textAlignment="center"
-        android:textSize="30sp"
+    <ScrollView
+        android:layout_width="416dp"
+        android:layout_height="656dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/task_description"
-        android:layout_width="342dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="130dp"
-        android:hint="Description (optional)"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/Task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter a task to complete"
+                android:textAlignment="center"
+                android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/submit_task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="164dp"
-        android:background="@color/colorPrimary"
-        android:onClick="setTask_deadline"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+            <EditText
+                android:id="@+id/task_description"
+                android:layout_width="358dp"
+                android:layout_height="101dp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="Description (optional)"
+                android:textAlignment="center"
+                android:textSize="24sp" />
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+            <Button
+                android:id="@+id/btngocalendar"
+                android:layout_width="327dp"
+                android:layout_height="wrap_content"
+                android:text="Deadline" />
 
-    <Button
-        android:id="@+id/btngocalendar"
-        android:layout_width="342dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="228dp"
-        android:text="Deadline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <CalendarView
+                android:id="@+id/AddTaskDate"
+                android:layout_width="327dp"
+                android:layout_height="295dp" />
+
+            <Button
+                android:id="@+id/AddTaskSetDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Date" />
+
+            <Button
+                android:id="@+id/submit_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:onClick="setTask_deadline"
+                android:text="Submit" />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
