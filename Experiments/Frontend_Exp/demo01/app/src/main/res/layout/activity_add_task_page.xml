@@ -72,18 +72,21 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="270dp"
+        android:layout_marginBottom="120dp"
         android:orientation="vertical"
-     />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/btngocalendar"
-        android:layout_width="266dp"
-        android:layout_height="47dp"
+        android:layout_width="342dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="228dp"
         android:text="Deadline"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="223dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

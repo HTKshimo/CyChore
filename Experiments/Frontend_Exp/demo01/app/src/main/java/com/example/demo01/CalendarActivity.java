@@ -22,7 +22,6 @@ import android.widget.CalendarView;
 
     public class CalendarActivity extends AddTaskPage
     {
-
         private  static final String TAG = "CalendarActivity";
         private CalendarView mCalendarView;
 
@@ -37,7 +36,7 @@ import android.widget.CalendarView;
                 @Override
                 public void onSelectedDayChange(CalendarView CalendarView, int year, int month, int dayOfMonth)
                 {
-                    String date = year + "/" + month + "/"+ dayOfMonth ;
+                    String date = year + "/" + month + "/"+ dayOfMonth;
                     Log.d(TAG, "onSelectedDayChange: yyyy/mm/dd:" + date);
                     Intent intent = new Intent(CalendarActivity.this,MainActivity.class);
                     intent.putExtra("date",date);
