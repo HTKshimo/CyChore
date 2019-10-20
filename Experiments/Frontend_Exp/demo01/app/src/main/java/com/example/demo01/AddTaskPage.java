@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import okhttp3.MediaType;
@@ -48,6 +49,9 @@ public class AddTaskPage extends AppCompatActivity
     private CalendarView mCalendarView;
     private Button SetDate;
 
+    private boolean calendar_visibility;
+
+
     //Use Callable instead of runnable for HTTP
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +68,7 @@ public class AddTaskPage extends AppCompatActivity
         Task  = (TextView) findViewById(R.id.Task);
         task_description = (TextView) findViewById(R.id.task_description);
         submit_task = (Button) findViewById(R.id.submit_task);
+
         mCalendarView = findViewById(R.id.AddTaskDate);
         mCalendarView.setVisibility(View.GONE);
 
@@ -72,18 +77,33 @@ public class AddTaskPage extends AppCompatActivity
 
         //deadline = (TextView) findViewById(R.id.date);
         btngocalendar = (Button) findViewById(R.id.btngocalendar);
-        btngocalendar.setOnClickListener(new View.OnClickListener() {
+        btngocalendar.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
-                mCalendarView.setVisibility(View.VISIBLE);
-                SetDate.setVisibility(View.VISIBLE);
+            public void onClick(View view)
+            {
+                if (!calendar_visibility)
+                {
+                    mCalendarView.setVisibility(View.VISIBLE);
+                    calendar_visibility = true;
+                    SetDate.setVisibility(View.VISIBLE);
+
+                }
+                else
+                    {
+                    // get date
+                    Date ddl= new Date(mCalendarView.getDate());
+                    btngocalendar.setText("Deadline is:" + ddl);
+
+                    mCalendarView.setVisibility(View.GONE);
+                    SetDate.setVisibility(View.GONE);
+                    calendar_visibility=false;
+                }
             }
         });
 
         Intent incoming = getIntent();
         String date = incoming.getStringExtra("date");
-        //deadline.setText(date);
-
 
         dialog_handler = new Handler()
         {
@@ -93,9 +113,11 @@ public class AddTaskPage extends AppCompatActivity
                 switch (msg.what){
                     case 0:
                         showConfirmDialog();
+                        submit_task.setText("Submitted!");
+
                         break;
                     case 1:
-                        showRegfailDialog(1);
+                        showAddfailDialog(1);
                     default:break;
                 }
             };
@@ -120,7 +142,7 @@ public class AddTaskPage extends AppCompatActivity
         }
         if (!regex.matcher(task).matches())
         {
-            Toast.makeText(view.getContext(), "Task should be maximum 3 characters long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Task should be maximum 13 characters long", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(task_detail))
@@ -134,11 +156,11 @@ public class AddTaskPage extends AppCompatActivity
 
     private void setSubmitTask(final String task,final String task_detail)
     {
-        Log.d("Register func", "start");
+        Log.d("Submit func", "start");
         final JSONObject param = new JSONObject();
         try
         {
-            param.put("request", "register");
+            param.put("request", "submit task");
             //param.put("tier", usr_tier); // user type define
             param.put("task", task);
             param.put("task_detail", task_detail);
@@ -164,7 +186,7 @@ public class AddTaskPage extends AppCompatActivity
 
                     String reply = response.body().string();
 
-                    Log.d("Registration respond", reply);
+                    Log.d("Task submission respond", reply);
                     try
                     {
                         JSONObject respond_json = new JSONObject(reply);
@@ -209,13 +231,13 @@ public class AddTaskPage extends AppCompatActivity
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        jumpLogin();
+                        // TODO
                     }
                 });
         normalDialog.show();
     }
 
-    private void showRegfailDialog(int fail_code)
+    private void showAddfailDialog(int fail_code)
     {
         /* @setIcon
          * @setTitle
@@ -246,9 +268,5 @@ public class AddTaskPage extends AppCompatActivity
         normalDialog.show();
     }
 
-    private void jumpLogin()
-    {
-        Intent intent = new Intent(this, TasksList.class);
-        startActivity(intent);
-    }
+
 }

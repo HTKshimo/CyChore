@@ -117,15 +117,18 @@ public class RegistrationPage extends AppCompatActivity {
     }
 
 
-        private void register(final String email,final String pwd,final int usr_tier) {
+        private void register(final String email,final String pwd,final int usr_tier)
+        {
         Log.d("Register func", "start");
         final JSONObject param = new JSONObject();
-        try {
+        try
+        {
             param.put("request", "register");
             param.put("tier", usr_tier); // user type define
             param.put("email", email);
             param.put("password", pwd);
-        } catch (
+        }
+        catch (
                 JSONException e) {
             e.printStackTrace();
         }
@@ -139,25 +142,33 @@ public class RegistrationPage extends AppCompatActivity {
                 Request request = new Request.Builder().url(register_url)
                         .post(body)
                         .build();
-                try {
+                try
+                {
                     Response response = client.newCall(request).execute();
 
                     String reply = response.body().string();
 
                     Log.d("Registration respond", reply);
-                    try {
+                    try
+                    {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if (respond_json.getString("status").equals("0")) {
                             dialog_handler.sendEmptyMessage(0);
-                        }else{
+                        }
+                        else
+                            {
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
                         }
-                    } catch (JSONException e) {
+                    }
+                    catch (JSONException e)
+                    {
                         e.printStackTrace();
                     }
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -166,7 +177,8 @@ public class RegistrationPage extends AppCompatActivity {
 
     }
 
-    private void showRegfailDialog(int fail_code) {
+    private void showRegfailDialog(int fail_code)
+    {
         /* @setIcon
          * @setTitle
          * @setMessage
@@ -186,14 +198,16 @@ public class RegistrationPage extends AppCompatActivity {
         normalDialog.setPositiveButton("done",
                 new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
 
                     }
                 });
         normalDialog.show();
     }
 
-    private void showConfirmDialog() {
+    private void showConfirmDialog()
+    {
         /* @setIcon
          * @setTitle
          * @setMessage
@@ -213,7 +227,8 @@ public class RegistrationPage extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void jumpLogin() {
+    private void jumpLogin()
+    {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
