@@ -1,5 +1,6 @@
-package com.example.demo01.ui.profile;
+package com.example.demo01.ui;
 
+import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
 
 /**
@@ -14,5 +15,5 @@ import com.example.demo01.data.ProfileCollection;
  */
 public interface OnListFragmentInteractionListener {
     // TODO: Update argument type and name
-    void onListFragmentInteraction(ProfileCollection.ProfileSelection item);
+    void onListFragmentInteraction(ListItem item);
 }

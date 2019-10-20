@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
+import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
-import com.example.demo01.ui.profile.OnListFragmentInteractionListener;
+import com.example.demo01.ui.OnListFragmentInteractionListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -46,31 +44,11 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         uid = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         Log.d("intent_uid:",uid);
-
-
-
     }
     @Override
     public void onBackPressed(){
         //super.onBackPressed();
-
     }
-//    @Override
-//    public void onAttachFragment(Fragment fragment) {
-//        if (fragment instanceof ProfileFragment) {
-//            ProfileFragment profileFragment = (ProfileFragment) fragment;
-//            profileFragment.setOnListFragmentInteractionListener(this);
-//        }
-//    }
-
-//    @Override
-//    public void onListFragmentInteraction(String primaryKey) {
-//        if(primaryKey.equals("Log Out")){
-//            logout();
-//        }
-//    }
-
-    public void OnListFragmentInteractionListener(){}
 
 
     public void logout(){
@@ -80,7 +58,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     }
 
     @Override
-    public void onListFragmentInteraction(ProfileCollection.ProfileSelection item) {
+    public void onListFragmentInteraction(ListItem item) {
         if(item.title.equals("Log Out")){
             logout();
         }
