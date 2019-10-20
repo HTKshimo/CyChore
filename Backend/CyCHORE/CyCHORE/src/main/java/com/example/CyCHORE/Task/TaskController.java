@@ -1,5 +1,7 @@
 package com.example.CyCHORE.Task;
 
+import com.example.CyCHORE.Group.*;
+import com.example.CyCHORE.User.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+
+import com.example.CyCHORE.Group.GroupController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -18,6 +23,10 @@ public class TaskController {
 
     @Autowired
     TaskRepository tr;
+    @Autowired
+    GroupRepository gr;
+    @Autowired
+    UserRepository ur;
 
     @RequestMapping(value = "/getTaskList/{id}", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
@@ -59,13 +68,73 @@ public class TaskController {
         return toSend.toString();
     }
 
-    @PutMapping("/markAsCompleted/{user_id}/{task_id}")
-    String markAsCompleted(@PathVariable Integer user_id, @PathVariable Integer task_id){
-        Optional<Task> test = tr.findById(task_id);
+    @PostMapping("/task")
+    Task createTask(@RequestBody Task t){
+        tr.save(t);
+        return t;
+    }
+    @DeleteMapping("/delete/{t_id}")
+    Boolean deleteTask(@PathVariable Integer t_id){
+        Boolean success = tr.existsById(t_id);
+        if (success) {
+            Optional<Task> test = tr.findById((t_id));
+            Task t = test.get();
+            tr.delete(t);
+        }
+        return success;
+    }
+
+    @PutMapping("/markAsCompleted/{u_id}/{t_id}")
+    String markAsCompleted(@PathVariable Integer u_id, @PathVariable Integer t_id){
+        Optional<Task> test = tr.findById(t_id);
         Task t = test.get();
-        t.markAsComplete(user_id);
+        t.changeCompleteStatus(u_id, true);
         tr.save(t);
         return t.getTimeCompleted();
+    }
+
+    @PutMapping("/pickup/{u_id}/{t_id}")
+    Boolean assignTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id){
+        Boolean success = tr.existsById(t_id);
+        if (success) {
+            Optional<Task> test = tr.findById((t_id));
+            Task t = test.get();
+            success = success && t.getIn_pool();
+            if (success) {
+                t.assignTaskToUser(u_id);
+                tr.save(t);
+            }
+        }
+        return success;
+    }
+
+    public List<Integer> getUsersInGroup(Integer g_id) {
+        List<User> allUsers;
+        allUsers = ur.findAll();
+        List<Integer> allUserIDs = new ArrayList<Integer>();
+        for (User u : allUsers){
+            if (u.getGroupId() == g_id){
+                allUserIDs.add(u.getId());
+            }
+        }
+        return allUserIDs;
+    }
+
+    @PutMapping("randomlyAssign/{t_id}")
+    //get task's group id, find all users in group, randomly assign
+    Boolean randomlyAssignTaskToUser(@PathVariable Integer t_id) {
+        Boolean success = tr.existsById(t_id);
+        if (success) {
+            Optional<Task> test = tr.findById((t_id));
+            Task t = test.get();
+            Integer g_id = t.getGroup_id();
+            List<Integer> usersInGroup = getUsersInGroup(g_id);
+            Random rand = new Random();
+            Integer selected = usersInGroup.get(rand.nextInt(usersInGroup.size()));
+            t.assignTaskToUser(selected);
+            tr.save(t);
+        }
+        return success;
     }
 
 }
