@@ -1,5 +1,6 @@
 package com.example.demo01.ui.tasksTab;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.demo01.JoinGroup;
 import com.example.demo01.R;
+import com.example.demo01.TaskDetail;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
 import com.example.demo01.util.TaskStatusUpadateUtil;
@@ -18,6 +21,7 @@ import com.example.demo01.util.TaskStatusUpadateUtil;
 
 import java.util.List;
 
+import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.demo01.UsrDefaultPage.uid;
 
 public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecyclerViewAdapter.ViewHolder> {
@@ -185,14 +189,18 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
             Complain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int responseCode;
-                    responseCode = TaskStatusUpadateUtil.UpdateTaskStatus(mItem.tid, uid, 2);
-                    if (responseCode == 0) {
-                        Toast.makeText(v.getContext(), "Complete status logged!", Toast.LENGTH_SHORT).show();
-                        TasksList.retriveUsrTasks();
-                    } else {
-                        Toast.makeText(v.getContext(), "Something wrong... Try later", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(v.getContext(), TaskDetail.class);
+
+
+                    TaskDetail.tid = mItem.tid;
+                    TaskDetail.uid = uid;
+                    TaskDetail.tstatus = mItem.tstatus;
+                    TaskDetail.ddl = mItem.ddl.getTime();
+                    TaskDetail.name = mItem.detail;
+                    TaskDetail.detail = "N/A";
+
+                    v.getContext().startActivity(intent);
+
                 }
             });
 
