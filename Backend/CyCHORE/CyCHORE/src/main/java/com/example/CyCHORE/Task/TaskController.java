@@ -9,10 +9,9 @@ import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.example.CyCHORE.Group.GroupController;
 
@@ -68,8 +67,14 @@ public class TaskController {
         return toSend.toString();
     }
 
-    @PostMapping("/task")
-    Task createTask(@RequestBody Task t){
+    @PostMapping("/createTask/{title}/{description}/{g_id}/{ddl}")
+    Task createTask(@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl){
+        Task t = new Task();
+        Timestamp timestamp = new Timestamp(ddl);
+        t.deadline = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(timestamp);
+        t.group_id = g_id;
+        t.description = description;
+        t.title = title;
         tr.save(t);
         return t;
     }

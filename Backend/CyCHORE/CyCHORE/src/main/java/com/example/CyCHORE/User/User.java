@@ -27,6 +27,10 @@ public class User {
 
     public Integer getGroupId() { return group_id; }
 
+    public void setGroup_id(Integer g_id) {
+        this.group_id = g_id;
+    }
+
     public String toString() {
         return getUser();
     }
