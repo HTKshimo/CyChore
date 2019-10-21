@@ -64,6 +64,8 @@ public class Login{
         JSONObject o = new JSONObject();
         o.put("status",isValid);
         o.put("uid",userID);
+        o.put("tier", 1);
+        o.put("groupid", 101);
 
         return o.toString();
     }

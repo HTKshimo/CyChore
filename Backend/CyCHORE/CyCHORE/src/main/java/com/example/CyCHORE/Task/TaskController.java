@@ -24,7 +24,7 @@ public class TaskController {
     private String getTaskList(@PathVariable Integer id) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
-        List<String> taskList = new ArrayList<String>();;
+        List<String> taskList = new ArrayList<String>();
         JSONObject toSend = new JSONObject();
         int todoCount = 0;
         int finishCount = 0;
@@ -51,13 +51,14 @@ public class TaskController {
             }
         }
         toSend.put("status", "0");
-        
+
         toSend.put("todo_count",todoCount);
         toSend.put("finish_count",finishCount);
         toSend.put("todo_json",toDo.toString());
         toSend.put("finish_json",finished.toString());
         return toSend.toString();
     }
+
 
     @PutMapping("/markAsCompleted/{user_id}/{task_id}")
     String markAsCompleted(@PathVariable Integer user_id, @PathVariable Integer task_id){
