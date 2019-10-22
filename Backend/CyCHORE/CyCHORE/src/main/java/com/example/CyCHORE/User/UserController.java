@@ -11,13 +11,14 @@ public class UserController {
     @Autowired
     UserRepository ur;
 
-    @PostMapping("/registerUser/{first_name}/{email}")
-    User registerUser(@PathVariable String first_name, @PathVariable String email){
+    @PostMapping("/registerUser/{first_name}/{email}/{tier}")
+    String registerUser(@PathVariable String first_name, @PathVariable String email, @PathVariable Integer tier){
         User u = new User();
         u.email = email;
         u.first_name = first_name;
+        u.tier = tier;
         ur.save(u);
-        return u;
+        return "0";
     }
 
     @PutMapping("/addUserToGroup/{u_id}/{g_id}")

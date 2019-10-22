@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.example.CyCHORE.MyDatabase;
 
+
 @SpringBootApplication
 public class CyChoreApplication implements CommandLineRunner{
 
