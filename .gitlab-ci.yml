@@ -12,8 +12,7 @@ maven-build:
   tags:
   - backend_tag, spring_tag
   script:
-  - whoami
-  - sudo /usr/local/bin/
+  - cd Backend/CyCHORE/CyCHORE
   - mvn package -B
   
 # artifacts are created when job executes successfully, and can be manually downloaded from GitLab GUI.
