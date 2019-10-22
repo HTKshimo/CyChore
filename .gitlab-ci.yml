@@ -10,7 +10,7 @@ stages:
 maven-build:
   stage: mavenbuild
   tags:
-    -Back-end
+    - Back-end
   script:
   - cd Backend/CyCHORE/CyCHORE
   - mvn package -B
