@@ -19,6 +19,9 @@ public class User {
     @Column
     Integer group_id;
 
+    @Column
+    Integer tier;
+
     public Integer getId() { return id; }
 
     public String getUser() { return email; }
@@ -26,6 +29,14 @@ public class User {
     public String getFirst_name() {return first_name;}
 
     public Integer getGroupId() { return group_id; }
+
+    public void setGroup_id(Integer g_id) {
+        this.group_id = g_id;
+    }
+
+    public void setTier(Integer tier) {
+        this.tier = tier;
+    }
 
     public String toString() {
         return getUser();

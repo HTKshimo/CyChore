@@ -1,4 +1,4 @@
-# Stages of pipeline, should match with stage tag inside each job.
+# 1 Stages of pipeline, should match with stage tag inside each job.
 # Each stages executes in sequence, if previous job fails, then all the preceeding jobs are skipped.
 stages:
     - mavenbuild
@@ -10,9 +10,9 @@ stages:
 maven-build:
   stage: mavenbuild
   tags:
-  - backend_tag, spring_tag
+    - Back-end
   script:
-  - cd Spring
+  - cd Backend/CyCHORE/CyCHORE
   - mvn package -B
   
 # artifacts are created when job executes successfully, and can be manually downloaded from GitLab GUI.
@@ -20,9 +20,9 @@ maven-build:
 maven-test:
   stage: maventest
   tags:
-    - backend_tag
+    - Back-end
   script:
-    - cd Spring
+    - cd Backend/CyCHORE/CyCHORE
     - mvn test
   artifacts:
     paths:
@@ -35,12 +35,12 @@ maven-test:
 autoDeploy:
   stage: autodeploy
   tags:
-  - shell
+  - Back-end
   script:
-  - cd Spring
+  - cd Backend/CyCHORE/CyCHORE
   - mvn package
   - sudo mv target/*.jar /target/web-demo.jar 
-  - sudo systemctl stop systemd-web-demo
-  - sudo systemctl start systemd-web-demo
+  - sudo systemctl stop system-web-demo
+  - sudo systemctl start system-web-demo
 
 

@@ -37,6 +37,9 @@ public class Task {
     @Column(name = "group_id")
     Integer group_id;
 
+    @Column(name = "title")
+    String title;
+
     public Integer getId() { return id; }
 
     public Boolean is_completed() { return completed; }
@@ -49,9 +52,13 @@ public class Task {
 
     public String getTimeCompleted() { return time_completed; }
 
+    public String getTitle() { return title; }
+
     public Boolean getIn_pool() {return in_pool; }
 
     public Integer getGroup_id() { return group_id; }
+
+    public void setGroup_id(Integer g_id) { this.group_id = g_id; }
 
     public void changeCompleteStatus(Integer user_id, Boolean status) {
         Date date = new Date();

@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import com.example.CyCHORE.Group.GroupController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -33,7 +37,7 @@ public class TaskController {
     private String getTaskList(@PathVariable Integer id) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
-        List<String> taskList = new ArrayList<String>();;
+	List<String> taskList = new ArrayList<String>();
         JSONObject toSend = new JSONObject();
         int todoCount = 0;
         int finishCount = 0;
@@ -57,7 +61,7 @@ public class TaskController {
                     todoCount++;
                     toDo.put(temp.toString(), curTask);
                 }
-            }
+           }
         }
         toSend.put("status", "0");
         
@@ -68,8 +72,38 @@ public class TaskController {
         return toSend.toString();
     }
 
-    @PostMapping("/task")
-    Task createTask(@RequestBody Task t){
+    @RequestMapping(value = "/getTaskListHistory/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    private String getTaskListHistory(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+        List<Task> allTaskList;
+        allTaskList = tr.findAll();
+        JSONObject toSend = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Task temp : allTaskList) {
+            if(temp.completed == true) {
+                if (temp.is_assigned_to() == uid || temp.group_id == gid) {
+                    JSONObject curTask = new JSONObject();
+                    curTask.put("title", temp.toString());
+                    curTask.put("tid", temp.getId());
+                    curTask.put("ddl", temp.getDdl());
+                    curTask.put("complete", temp.is_completed());
+                    jsonArray.put(curTask);
+                }
+            }
+        }
+        toSend.put("status", "0");
+        toSend.put("history",jsonArray.toString());
+        return toSend.toString();
+    }
+
+    @PostMapping("/createTask/{title}/{description}/{g_id}/{ddl}")
+    Task createTask(@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl){
+        Task t = new Task();
+        Timestamp timestamp = new Timestamp(ddl);
+        t.deadline = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(timestamp);
+        t.group_id = g_id;
+        t.description = description;
+        t.title = title;
         tr.save(t);
         return t;
     }
@@ -93,8 +127,40 @@ public class TaskController {
         return t.getTimeCompleted();
     }
 
-    @PutMapping("/pickup/{u_id}/{t_id}")
-    Boolean assignTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id){
+    @PostMapping("/ChangeTaskStatus/{request}/{uid}/{tid}/{changeTo}")
+    String ChangeTaskStatus(@PathVariable String request, @PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String changeTo){
+
+        List<Task> allTaskList;
+        allTaskList = tr.findAll();
+        Task toUpdate=null;
+        for (Task temp : allTaskList) {
+            if (temp.id == tid) {
+                toUpdate=temp;
+                if(changeTo.equals("0")){
+                    toUpdate.completed = true;
+                }
+                else if(changeTo.equals("1")){
+                    toUpdate.completed = false;
+                }
+                else if(changeTo.equals("2")){
+                    toUpdate.in_pool = true;
+                }
+                else if(changeTo.equals("3")){
+                    System.out.println("3");
+                }
+                else if(changeTo.equals("5")){
+                    toUpdate.assigned_to = uid;
+                    toUpdate.id = tid;
+                }
+                tr.save(toUpdate);
+                return "0";
+            }
+        }
+        return "1";
+    }
+
+    @PostMapping("/pickup/{request}/{changeTo}/{u_id}/{t_id}")
+    String assignPickUpTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id){
         Boolean success = tr.existsById(t_id);
         if (success) {
             Optional<Task> test = tr.findById((t_id));
@@ -105,7 +171,10 @@ public class TaskController {
                 tr.save(t);
             }
         }
-        return success;
+        if(success){
+            return "0";
+        }
+        return "1";
     }
 
     public List<Integer> getUsersInGroup(Integer g_id) {
@@ -120,9 +189,9 @@ public class TaskController {
         return allUserIDs;
     }
 
-    @PutMapping("randomlyAssign/{t_id}")
+    @PostMapping("randomlyAssign/{t_id}")
     //get task's group id, find all users in group, randomly assign
-    Boolean randomlyAssignTaskToUser(@PathVariable Integer t_id) {
+    String randomlyAssignTaskToUser(@PathVariable Integer t_id) {
         Boolean success = tr.existsById(t_id);
         if (success) {
             Optional<Task> test = tr.findById((t_id));
@@ -134,7 +203,34 @@ public class TaskController {
             t.assignTaskToUser(selected);
             tr.save(t);
         }
-        return success;
+        if(success){
+            return "0";
+        }
+        return "1";
+    }
+
+    @RequestMapping(value = "/getTaskPool/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    private String getTaskPool(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+        List<Task> allTaskList;
+        allTaskList = tr.findAll();
+        JSONObject toSend = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Task temp : allTaskList) {
+            JSONObject curTask = new JSONObject();
+            if(temp.in_pool == true) {
+                if (temp.is_assigned_to() == uid || temp.group_id == gid) {
+                    curTask.put("title", temp.toString());
+                    curTask.put("tid", temp.getId());
+                    curTask.put("ddl", temp.getDdl());
+                    curTask.put("complete", temp.is_completed());
+                    jsonArray.put(curTask);
+                }
+            }
+        }
+        toSend.put("status", "0");
+        toSend.put("pool_list",jsonArray.toString());
+        return toSend.toString();
     }
 
 }

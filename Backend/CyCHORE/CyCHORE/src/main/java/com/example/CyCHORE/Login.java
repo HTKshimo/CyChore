@@ -64,6 +64,8 @@ public class Login{
         JSONObject o = new JSONObject();
         o.put("status",isValid);
         o.put("uid",userID);
+        o.put("tier", 1);
+        o.put("groupid", 101);
 
         return o.toString();
     }
@@ -81,6 +83,24 @@ public class Login{
 
 
     }
+
+    @RequestMapping(value = "/CompletedDate", method = POST)
+    @ResponseBody
+    public String CheckCompletedDate(HttpServletRequest request) throws JSONException {
+        JSONObject o = new JSONObject();
+        Task t = new Task();
+        Person p = new Person();
+
+        o.put("completed_date", t.getDdl());
+        //t.getDdl();
+
+        return o.toString();
+
+
+    }
+
+
+
 
     @RequestMapping(value = "/singletask", method = POST)
     @ResponseBody
