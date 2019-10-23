@@ -29,6 +29,8 @@ public class User {
     public String getFirst_name() {return first_name;}
 
     public Integer getGroupId() { return group_id; }
+    public  String getEmail() { return email;}
+    //public String getPassword() { return password;}
 
     public void setGroup_id(Integer g_id) {
         this.group_id = g_id;
