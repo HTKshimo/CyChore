@@ -19,6 +19,20 @@ public class User {
     @Column
     Integer group_id;
 
+    public User() {
+    }
+
+    public User(String email, String first_name, int group_id) {
+        this.email = email;
+        this.first_name = first_name;
+        this.group_id = group_id;
+    }
+
+    public User(String email, String first_name) {
+        this.email = email;
+        this.first_name = first_name;
+    }
+
     public Integer getId() { return id; }
 
     public String getUser() { return email; }
