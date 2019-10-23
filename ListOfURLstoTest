@@ -1,0 +1,9 @@
+1. /getTaskListHistory/{request}/{uid}/{gid}
+2. /createTask/{title}/{description}/{g_id}/{ddl}
+3. /ChangeTaskStatus/{request}/{uid}/{tid}/{changeTo}
+4. /pickup/{request}/{changeTo}/{u_id}/{t_id}
+5. /getTaskPool/{request}/{uid}/{gid}
+This is my IP address: 10.27.247.76, you can use it to test the above
+6. /registerUser/{first_name}/{email}/{tier}
+7. /addUserToGroup/{u_id}/{g_id}
+
