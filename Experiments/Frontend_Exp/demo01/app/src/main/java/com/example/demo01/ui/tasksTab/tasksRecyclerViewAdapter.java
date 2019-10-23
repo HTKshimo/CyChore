@@ -23,7 +23,6 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     private final OnListFragmentInteractionListener mListener;
 
 
-
     public tasksRecyclerViewAdapter(List<TaskCollection.TaskItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         Log.d("todolist", items.toString());
@@ -79,28 +78,39 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
         notifyItemRemoved(position);
     }
 
-    public void clear(){
+    public void clear() {
         int size = mValues.size();
         mValues.clear();
-        while(size>0){
-            notifyItemRemoved(size-1);
+        while (size > 0) {
+            notifyItemRemoved(size - 1);
             size--;
         }
 
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
         public TaskCollection.TaskItem mItem;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view)
+        {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.taskName);
             mContentView = (TextView) view.findViewById(R.id.ddl);
+            mView.setOnClickListener(this);
+
+        }
+
+
+        @Override
+        public void onClick(View view)
+        {
+            Log.d("onclick", "onClick " + getLayoutPosition() + "");
         }
 
         @Override

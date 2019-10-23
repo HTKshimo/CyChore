@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private InputMethodManager in;
     private Handler dialog_handler;
 
+    private int checkAdmin = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +125,24 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+
+        //check if admin
+        //don't do it this way, change on server
+        if((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2")) )
+        {
+            Log.i("User:", "Admin");
+            checkAdmin =0;
+            //go to Admin Fragment
+
+        }
+
+
+      /*  if(pwd.toLowerCase().equals("adminks_2"))
+        {
+            Log.i("Password:", "Admin");
+            checkAdmin = 0;
+        }*/
+
         if(save_pwd.isChecked()){
             login_info.edit().putString("uname",uname).commit();
             login_info.edit().putString("pwd",pwd).commit();
@@ -165,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
-                            loginJumpHome(respond_json.getString("uid"));
+                            loginJumpHome(respond_json.getString("uid"), respond_json.getBoolean("inGroup"));
                         } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
@@ -214,9 +234,8 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(String uid) {
-
-
+    private void loginJumpHome(String uid, Boolean inGroup) {
+        login_info.edit().putBoolean("Has Group", inGroup);
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
         intent.putExtra(EXTRA_MESSAGE, uid);
@@ -245,5 +264,22 @@ public class MainActivity extends AppCompatActivity {
     public void checkAutoLogin(View view){
         boolean checked = save_pwd.isChecked();
         login_info.edit().putBoolean("auto_login", checked).commit();
+    }
+
+        /*@Yamini
+        * */
+    public int getCheckAdmin(int checkAdmin)
+    {
+        checkAdmin = this.checkAdmin;
+        if (checkAdmin == 0)
+        {
+            //go to Admin Dashboard containing, user list, complaints and requests to sublisting
+            return 0;
+        }
+        else
+        {
+            //regular user
+            return 1;
+        }
     }
 }

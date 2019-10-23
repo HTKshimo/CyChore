@@ -1,8 +1,10 @@
 package com.example.CyCHORE;
+import com.example.CyCHORE.User.*;
 
-
+import com.example.CyCHORE.Task.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,15 +15,23 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.security.spec.KeySpec;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+
 
 @RestController
 @RequestMapping("/home")
 public class Login{
+
+    @Autowired
+    MyDatabase db;
 
     @GetMapping
     public String getHome() throws IOException {
@@ -29,13 +39,49 @@ public class Login{
         return "Blobfish!!!!";
     }
 
-    @RequestMapping(value = "/login", method = POST)
+    @RequestMapping(value = "/login", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String validateLogin(HttpServletRequest request) throws JSONException {
+    public String validateLogin(HttpServletRequest request) throws JSONException, IOException {
+
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        String email = (String) jsonObj.get("email");
+        String password = (String) jsonObj.get("password");
+
+        int userID = -1;
+        List<Person> people = db.findAll();
+        int isValid = 0;
+        for(int i =0;i<people.size();i++){
+            Person p = people.get(i);
+            if(p.getEmail().equals(email)){
+                if(p.getPassword().equals(password)){
+                    isValid=1;
+                    userID = p.getId();
+                }
+            }
+        }
+
         JSONObject o = new JSONObject();
-        o.put("status",0);
-        o.put("uid",1001);
+        o.put("status",isValid);
+        o.put("uid",userID);
+        o.put("tier", 1);
+        o.put("groupid", 101);
+
         return o.toString();
+    }
+    @RequestMapping(value = "/CompletedDate", method = POST)
+    @ResponseBody
+    public String CheckCompletedDate(HttpServletRequest request) throws JSONException {
+        JSONObject o = new JSONObject();
+        Task t = new Task();
+        Person p = new Person();
+
+        o.put("completed_date", t.getDdl());
+        //t.getDdl();
+
+        return o.toString();
+
+
     }
 
     @RequestMapping(value = "/singletask", method = POST)
