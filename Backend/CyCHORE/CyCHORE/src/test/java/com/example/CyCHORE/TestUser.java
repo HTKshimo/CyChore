@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class TestUser {
     }
 
     @Test
-    public void registerUserTest(){
+    public void registerUserTest() throws JSONException {
 
         when(ur.save(isA(User.class))).thenReturn(new User("test@test.edu", "Sarah", 1));
 

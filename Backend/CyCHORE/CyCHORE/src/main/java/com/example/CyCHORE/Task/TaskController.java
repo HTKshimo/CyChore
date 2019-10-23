@@ -80,14 +80,16 @@ public class TaskController {
         JSONObject toSend = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Task temp : allTaskList) {
-            if(temp.completed == true) {
-                if (temp.is_assigned_to() == uid || temp.group_id == gid) {
-                    JSONObject curTask = new JSONObject();
-                    curTask.put("title", temp.toString());
-                    curTask.put("tid", temp.getId());
-                    curTask.put("ddl", temp.getDdl());
-                    curTask.put("complete", temp.is_completed());
-                    jsonArray.put(curTask);
+            if(temp.completed!=null) {
+                if (temp.completed == true) {
+                    if (temp.is_assigned_to() == uid || temp.group_id == gid) {
+                        JSONObject curTask = new JSONObject();
+                        curTask.put("title", temp.toString());
+                        curTask.put("tid", temp.getId());
+                        curTask.put("ddl", temp.getDdl());
+                        curTask.put("complete", temp.is_completed());
+                        jsonArray.put(curTask);
+                    }
                 }
             }
         }
@@ -235,6 +237,7 @@ public class TaskController {
         JSONArray jsonArray = new JSONArray();
         for (Task temp : allTaskList) {
             JSONObject curTask = new JSONObject();
+            if(temp.in_pool != null){
             if(temp.in_pool == true) {
                 if (temp.is_assigned_to() == uid || temp.group_id == gid) {
                     curTask.put("title", temp.toString());
@@ -243,6 +246,7 @@ public class TaskController {
                     curTask.put("complete", temp.is_completed());
                     jsonArray.put(curTask);
                 }
+            }
             }
         }
         toSend.put("status", "0");

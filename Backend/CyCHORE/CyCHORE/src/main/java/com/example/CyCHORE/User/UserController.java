@@ -17,8 +17,13 @@ public class UserController {
     @Autowired
     UserRepository ur;
 
+
+    public UserController(UserRepository ur) {
+        this.ur = ur;
+    }
+
     @RequestMapping(value = "/registerUser/{first_name}/{email}/{tier}", method = POST, produces = "application/json;charset=UTF-8")
-    String registerUser(@PathVariable String first_name, @PathVariable String email, @PathVariable Integer tier) throws JSONException {
+    public String registerUser(@PathVariable String first_name, @PathVariable String email, @PathVariable Integer tier) throws JSONException {
         User u = new User();
         JSONObject toReturn = new JSONObject();
         List<User> users= ur.findAll();
