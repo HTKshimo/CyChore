@@ -9,6 +9,11 @@ import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -32,7 +37,7 @@ public class TaskController {
     private String getTaskList(@PathVariable Integer uid) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
-        List<String> taskList = new ArrayList<String>();
+	List<String> taskList = new ArrayList<String>();
         JSONObject toSend = new JSONObject();
         int todoCount = 0;
         int finishCount = 0;
@@ -56,10 +61,10 @@ public class TaskController {
                     todoCount++;
                     toDo.put(temp.toString(), curTask);
                 }
-            }
+           }
         }
         toSend.put("status", "0");
-
+        
         toSend.put("todo_count",todoCount);
         toSend.put("finish_count",finishCount);
         toSend.put("todo_json",toDo.toString());
