@@ -22,6 +22,22 @@ public class User {
     @Column
     Integer tier;
 
+    public User() {
+    }
+
+    public User(String email, String first_name, Integer group_id, Integer tier) {
+        this.email = email;
+        this.first_name = first_name;
+        this.group_id = group_id;
+        this.tier = tier;
+    }
+
+    public User(String email, String first_name, Integer tier) {
+        this.email = email;
+        this.first_name = first_name;
+        this.tier = tier;
+    }
+
     public Integer getId() { return id; }
 
     public String getUser() { return email; }
@@ -29,6 +45,8 @@ public class User {
     public String getFirst_name() {return first_name;}
 
     public Integer getGroupId() { return group_id; }
+
+    public Integer getTier() { return tier; }
 
     public void setGroup_id(Integer g_id) {
         this.group_id = g_id;

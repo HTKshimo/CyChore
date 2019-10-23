@@ -11,8 +11,12 @@ public class UserController {
     @Autowired
     UserRepository ur;
 
+    public UserController(UserRepository ur) {
+        this.ur = ur;
+    }
+
     @PostMapping("/registerUser/{first_name}/{email}/{tier}")
-    String registerUser(@PathVariable String first_name, @PathVariable String email, @PathVariable Integer tier){
+    public String registerUser(@PathVariable String first_name, @PathVariable String email, @PathVariable Integer tier){
         User u = new User();
         u.email = email;
         u.first_name = first_name;

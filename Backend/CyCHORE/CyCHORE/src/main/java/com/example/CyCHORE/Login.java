@@ -83,7 +83,7 @@ public class Login{
 
 
     }
-    
+
     @RequestMapping(value = "/singletask", method = POST)
     @ResponseBody
     public String SingleTask(HttpServletRequest request) throws JSONException {
