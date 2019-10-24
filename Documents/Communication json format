@@ -1,0 +1,161 @@
+Communication json format
+
+1.  request for login
+	url:	to be determined
+{
+	"request" : "login",
+	"email" : "aabbcc@abc.com",
+	"password" : "abc123"
+}
+
+
+2.	response for login success
+{
+	"status" : 0, 
+	"uid" : 1001,
+	"tier" : 1,		// 0 for admin, 1 for tenant, 2 for co.
+	"groupid" : 101
+}
+
+3.	response for login fail
+{
+	"status" : "1"
+}
+
+4.	single task json
+{
+	"title" : "mop floor", 
+	"tid" : 10001,						// task unique id
+	"ddl" :1569623441258,			 	// deadline: System.currentTimeMillis()
+	"complete" : 1						// 0 for complete, 1 for not complete, 2 
+										// for being complained
+}
+
+5.	request for tasklist of one user
+	url: to be determined
+{
+	"request" : "usrtasklist",
+	"uid" : 1001
+}
+
+6. 	response for tasklist of one user
+{
+	"status" : 0,						// 1 for user without a group
+	"todo_list" :[	{	"title" : "mop floor", 
+						"tid" : 10001,
+						"ddl" :1569623441258, 
+						"complete" : 1,
+
+					},
+					{	"title" : "mop window", 
+						"tid" : 10002,
+						"ddl" :1569623441258, 
+						"complete" : 1
+					}
+				],
+	"finish_list": [{	"title" : "mop window", 
+						"tid" : 10003,
+						"ddl" :1569623441258, 
+						"complete" : 0
+						"cpltime": 1569623441258		// complete time
+					}]	
+}
+
+7.	request for change task status
+	url: to be determined
+{
+	"request" : "task_update",
+	"uid" : 1001,
+	"tid" : 10001,
+	"changeto" : "0"		// 0 for finish, 2 for pool, 3 for complain
+}
+
+8. response for change task status
+{
+	"status" : "0"						// 0 for successful change
+}
+
+9. request for register
+	url: to be determined
+{
+	"request" : "register",
+	"email" : "aabbcc@abc.com",
+	"password" : "abc123",
+	"tier": 1
+}
+
+10. response for register
+{
+	"status" : 0		// 0 for good, 1 for email has been registered
+}
+
+11. request for pick up task
+	server need change the task status to 1 if request pass
+	url: to be determined
+{
+	"request" : "task_pickup",
+	"uid" : 1001,
+	"tid" : 10001
+}
+
+12. response for pick up task
+{
+	"status" = 0;		// 1 for illegal pick up
+}
+
+13. request for group info
+{
+	"request" : "groupinfo",
+	"uid": 1001,
+	"groupid" : 101
+}
+
+14. response for group info
+{
+	"status" : 0,
+	"members" : [
+	{	
+		"email" : "aabbcc@abc.com",
+		"colorcode" : "green"
+
+	},
+	{	
+		"email" : "aabbcc@abc.com",
+		"colorcode" : "red"
+	}
+	]
+
+}
+
+15. request for task detail
+	url:
+{
+	"request" : "taskdetail",
+	"uid": 1001,
+	"tid": 10001
+}
+
+16. response for task detail
+{
+	"status":0,
+	"tid": 10001,
+	"title" : "mop window", 
+	"ddl" :1569623441258, 
+	"complete" : 0,
+	"cpltime": 1569623441258,
+	"description" : "mop left most living room window"
+}
+
+17. complain request
+	url:
+{
+	"request" : "complain",
+	"uid" : 1001,
+	"tid" : 10001,
+	"complain" : "bla bla bla bla blabla bla"
+}
+
+18. response for complain
+{
+	"status" : 0
+}
