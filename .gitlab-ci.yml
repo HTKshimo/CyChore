@@ -29,18 +29,20 @@ maven-test:
     - Spring/target/*.jar
     
     
-# Below stage builds, deploys and executes the jar as service.
-# Make sure there is /target directory in your server, else script will fail, or use any other folder you like.
-# If you are changing the folder, reflect the change in systemd-web-demo service too.
-autoDeploy:
-  stage: autodeploy
-  tags:
-  - Back-end
-  script:
-  - cd Backend/CyCHORE/CyCHORE
-  - mvn package
-  - sudo mv target/*.jar /target/web-demo.jar 
-  - sudo systemctl stop system-web-demo
-  - sudo systemctl start system-web-demo
+
+android-build:
+    image: javiersantos/android-ci:latest
+    stage: androidbuild
+    before_script: 
+        - export GRADLE_USER_HOME=`pwd`/.gradle
+        - chmod +x ./FrontEnd/CyChore/gradlew
+    tags:
+        - FrontEnd
+    script:
+        - cd Android_test
+        - ./gradlew assemble 
+    artifacts:
+        paths:
+        - Android_test/app/build/outputs
 
 
