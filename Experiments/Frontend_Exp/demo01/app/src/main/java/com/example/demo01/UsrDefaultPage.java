@@ -5,14 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.view.Window;
 
 import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
+import com.example.demo01.ui.tasksTab.TasksList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +35,8 @@ import okhttp3.Response;
 public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    public static String uid = "";
+    public static int uid;
+    public static int groupid;
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
     //private Button completed;
     //private Button completed3;
@@ -44,6 +44,8 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     TextView textView;
     private Spinner usr_type;
     private Boolean inGroup;
+
+
 
 
 
@@ -73,9 +75,8 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         getSupportActionBar().hide();
 
         Intent intent = getIntent();
-        uid = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        Log.d("intent_uid:",uid);
+        Log.d("pass_uid:",uid+"");
     }
 
    /* @Override
@@ -125,13 +126,35 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         startActivity(intent);
     }
 
+    public void jumpJoinGroup(View view){
+        Intent intent = new Intent(this, JoinGroup.class);
+        startActivity(intent);
+    }
+
+    public void jumpAddTask(View view){
+        Intent intent = new Intent(this, AddTaskPage.class);
+        startActivity(intent);
+    }
+
     @Override
-    public void onListFragmentInteraction(ListItem item) {
+    public void onListFragmentInteraction(ListItem item, int listType) {
         if(item.title.equals("Log Out")){
             logout();
         }else if(item.title.equals("task")){
             TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
-            Log.d("select task",task.toJSON());
+            Intent intent = new Intent(this, TaskDetail.class);
+
+
+            TaskDetail.tid = task.tid;
+            TaskDetail.uid = uid;
+            TaskDetail.tstatus = task.tstatus;
+            TaskDetail.ddl = task.ddl.getTime();
+            TaskDetail.name = task.detail;
+            TaskDetail.detail = "N/A";
+            TaskDetail.listType = listType;
+
+
+            startActivity(intent);
         }
 
     }
