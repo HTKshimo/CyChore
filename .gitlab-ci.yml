@@ -44,6 +44,6 @@ android-build:
         - ./gradlew assemble 
     artifacts:
         paths:
-        - androidTest/app/build/outputs
+        - Android_test/app/build/outputs
 
 
