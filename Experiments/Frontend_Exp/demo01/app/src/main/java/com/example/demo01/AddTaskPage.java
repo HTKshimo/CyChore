@@ -28,7 +28,7 @@ class AddTaskPage
                     // startActivity(i);
                     if(v.getId() == R.id.add_task)
                     {
-                        Intent i = new Intent(com.example.demo01.AddTaskPage.this, AddTaskPage.class);
+                        Intent i = new Intent( com.example.demo01.AddTaskPage.this, AddTaskPage.class);
                         startActivity(i);
                     }
                 }
