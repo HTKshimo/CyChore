@@ -58,7 +58,7 @@ android-build:
     tags:
         - FrontEnd
     script:
-        - cd Android_test
+        - cd androidTest
         - ./gradlew assemble 
     artifacts:
         paths:
