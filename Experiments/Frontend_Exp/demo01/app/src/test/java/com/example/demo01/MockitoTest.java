@@ -1,0 +1,34 @@
+package com.example.demo01;
+
+import com.example.demo01.data.TaskCollection;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.MockitoAnnotations;
+import static org.mockito.Mockito.*;
+
+import java.util.LinkedList;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+
+public class MockitoTest {
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Test
+    public void test1() {
+        assertEquals(1, 1);
+    }
+
+    @Test
+    public void testTasks() {
+        TaskCollection mockedTasks = mock(TaskCollection.class);
+        mockedTasks.addItem(new TaskCollection.TaskItem(10002,"kill bug",1569623441258L,1));
+        verify(mockedTasks).addItem(new TaskCollection.TaskItem(10002,"kill bug",1569623441258L,1));
+        assertEquals("Overdue!", mockedTasks.ITEMS.get(0).dueTime);
+    }
+
+}

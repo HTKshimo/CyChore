@@ -34,8 +34,8 @@ public class RegistrationPage extends AppCompatActivity {
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
-    private static final String register_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
-
+//    private static final String register_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
+    private static final String register_url = "http://coms-309-ks-2.misc.iastate.edu:8080/registerUser/";
     private Button register;
     private EditText reg_email;
     private EditText password;
@@ -139,7 +139,7 @@ public class RegistrationPage extends AppCompatActivity {
             public void run() {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(reg_json, JSON);
-                Request request = new Request.Builder().url(register_url)
+                Request request = new Request.Builder().url(register_url+"a"+"/"+email+"/"+"1")
                         .post(body)
                         .build();
                 try

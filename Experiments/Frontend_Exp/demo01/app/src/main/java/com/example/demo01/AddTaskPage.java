@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.CalendarView;
 
-import com.example.demo01.ui.tasksTab.TasksList;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +45,7 @@ public class AddTaskPage extends AppCompatActivity
     private Handler dialog_handler;
     private TextView deadline;
     private Button btngocalendar;
+    private Date ddl;
 
     private CalendarView mCalendarView;
     private Button SetDate;
@@ -59,10 +60,6 @@ public class AddTaskPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task_page);
 
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-
         getSupportActionBar().hide();
 
         Task  = (TextView) findViewById(R.id.Task);
@@ -70,6 +67,15 @@ public class AddTaskPage extends AppCompatActivity
         submit_task = (Button) findViewById(R.id.submit_task);
 
         mCalendarView = findViewById(R.id.AddTaskDate);
+        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+                //TODO
+            }
+        });
+
         mCalendarView.setVisibility(View.GONE);
 
         SetDate = findViewById(R.id.AddTaskSetDate);
@@ -92,7 +98,8 @@ public class AddTaskPage extends AppCompatActivity
                 else
                     {
                     // get date
-                    Date ddl= new Date(mCalendarView.getDate());
+                    ddl= new Date(mCalendarView.getDate());
+                        Log.d("set date", new Date(mCalendarView.getDate()).toString());
                     btngocalendar.setText("Deadline is:" + ddl);
 
                     mCalendarView.setVisibility(View.GONE);
@@ -102,8 +109,6 @@ public class AddTaskPage extends AppCompatActivity
             }
         });
 
-        Intent incoming = getIntent();
-        String date = incoming.getStringExtra("date");
 
         dialog_handler = new Handler()
         {
@@ -130,26 +135,10 @@ public class AddTaskPage extends AppCompatActivity
     {
         String task = Task.getText().toString();
         String task_detail = task_description.getText().toString();
-       // task_deadline = (TextView) findViewById(R.id.d);
 
-        String task_check = "\\w[-\\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\\.)+[A-Za-z]{2,14}";
+        String task_check = "[A-Za-z]{2,14}";
         Pattern regex = Pattern.compile(task_check);
 
-        if (TextUtils.isEmpty(task))
-        {
-            Toast.makeText(view.getContext(), "Please enter a task", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (!regex.matcher(task).matches())
-        {
-            Toast.makeText(view.getContext(), "Task should be maximum 13 characters long", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (TextUtils.isEmpty(task_detail))
-        {
-            Toast.makeText(view.getContext(), "Enter the details of the task", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         setSubmitTask(task , task_detail);
     }
@@ -246,12 +235,12 @@ public class AddTaskPage extends AppCompatActivity
          */
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(AddTaskPage.this);
-        normalDialog.setTitle("Login failed");
+        normalDialog.setTitle("Action failed");
 
         switch (fail_code)
         {
             case 1 :
-                normalDialog.setMessage("This email has been registered.");
+                normalDialog.setMessage("Something wrong... Try again.");
                 break;
 
         }
