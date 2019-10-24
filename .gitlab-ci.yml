@@ -37,7 +37,7 @@ android-build:
         - export GRADLE_USER_HOME=`pwd`/.gradle
         - chmod +x ./FrontEnd/CyChore/gradlew
     tags:
-        - FrontEnd
+        - Front-end
     script:
         - cd Android_test
         - ./gradlew assemble 
