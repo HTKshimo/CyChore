@@ -18,6 +18,7 @@
             android:label="@string/title_activity_usr_default_page" />
         <activity android:name=".RegistrationPage" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

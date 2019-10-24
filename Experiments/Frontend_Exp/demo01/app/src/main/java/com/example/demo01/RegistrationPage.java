@@ -75,7 +75,8 @@ public class RegistrationPage extends AppCompatActivity {
 
     }
 
-    public void register(View view) {
+    public void register(View view)
+    {
         String email = reg_email.getText().toString();
         String pwd = password.getText().toString();
         String pwd2 = repassword.getText().toString();
