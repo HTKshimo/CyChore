@@ -56,7 +56,7 @@ android-build:
         - export GRADLE_USER_HOME='pwd'/.gradle
         - chmod +x ./Android_test/gradlew
     tags:
-        - android_tag1
+        - Front-end
     script:
         - cd Android_test
         - ./gradlew assemble 
