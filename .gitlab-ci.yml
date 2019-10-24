@@ -36,11 +36,11 @@ android-build:
     stage: androidbuild
     before_script: 
         - export GRADLE_USER_HOME=`pwd`/.gradle
-        - chmod +x ./FrontEnd/CyChore/gradlew
+        - chmod +x ./Experiments/Frontend_Exp/demo01/gradlew
     tags:
         - Front-end
     script:
-        - cd FrontEnd/CyChore
+        - cd Experiments/Frontend_Exp/demo01
         - ./gradlew assemble 
     artifacts:
         paths:
