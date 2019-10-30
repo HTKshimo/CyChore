@@ -43,5 +43,5 @@ public class ExampleUnitTest
         //String result = objectUnderTest.getHelloWorldString();
         //Asserts that result is the value of TEST_STRING
        // assertThat(result, is(TEST_STRING));
-    }
+
 }
