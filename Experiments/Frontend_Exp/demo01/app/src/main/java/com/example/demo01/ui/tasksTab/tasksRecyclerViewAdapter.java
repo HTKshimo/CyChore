@@ -126,7 +126,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    public class ViewHolder extends RecyclerView.ViewHolder
     {
         public final View mView;
         public final TextView mIdView;

@@ -1,8 +1,10 @@
 package com.example.demo01;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.widget.*;
 import android.content.Intent;
@@ -18,11 +20,13 @@ import android.widget.Toast;
 import android.widget.CalendarView;
 
 
+import com.example.demo01.data.TaskCollection;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
 
@@ -38,22 +42,26 @@ public class AddTaskPage extends AppCompatActivity
 
     private static final String task_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
 
-    private Spinner task_deadline;
     private TextView Task;
     private TextView task_description;
     private Button submit_task;
     private Handler dialog_handler;
-    private TextView deadline;
-    private Button btngocalendar;
-    private Date ddl;
 
-    private CalendarView mCalendarView;
-    private Button SetDate;
 
-    private boolean calendar_visibility;
+    private Spinner spinner_year;
+    private Spinner spinner_month;
+    private Spinner spinner_day;
+    private Spinner spinner_hour;
+    private Spinner spinner_min ;
+
+    private Calendar ddl_calendar;
+    private long ddl;
+    private String dueIn = "";
+
 
 
     //Use Callable instead of runnable for HTTP
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,52 +70,24 @@ public class AddTaskPage extends AppCompatActivity
 
         getSupportActionBar().hide();
 
-        Task  = (TextView) findViewById(R.id.Task);
-        task_description = (TextView) findViewById(R.id.task_description);
-        submit_task = (Button) findViewById(R.id.submit_task);
+        Task  = findViewById(R.id.Task);
+        task_description = findViewById(R.id.task_description);
+        submit_task = findViewById(R.id.submit_task);
 
-        mCalendarView = findViewById(R.id.AddTaskDate);
-        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        ddl_calendar = Calendar.getInstance();
 
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month,
-                                            int dayOfMonth) {
-                //TODO
-            }
-        });
+        spinner_year = findViewById(R.id.DdlYear);
+        spinner_year.setSelection(0);
+        spinner_month = findViewById(R.id.DdlMonth);
+        spinner_month.setSelection(10);
+        spinner_day = findViewById(R.id.DdlDay);
+        spinner_day.setSelection(15);
+        spinner_hour = findViewById(R.id.DdlHour);
+        spinner_hour.setSelection(20);
+        spinner_min = findViewById(R.id.DdlMin);
+        spinner_min.setSelection(0);
 
-        mCalendarView.setVisibility(View.GONE);
 
-        SetDate = findViewById(R.id.AddTaskSetDate);
-        SetDate.setVisibility(View.GONE);
-
-        //deadline = (TextView) findViewById(R.id.date);
-        btngocalendar = (Button) findViewById(R.id.btngocalendar);
-        btngocalendar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                if (!calendar_visibility)
-                {
-                    mCalendarView.setVisibility(View.VISIBLE);
-                    calendar_visibility = true;
-                    SetDate.setVisibility(View.VISIBLE);
-
-                }
-                else
-                    {
-                    // get date
-                    ddl= new Date(mCalendarView.getDate());
-                        Log.d("set date", new Date(mCalendarView.getDate()).toString());
-                    btngocalendar.setText("Deadline is:" + ddl);
-
-                    mCalendarView.setVisibility(View.GONE);
-                    SetDate.setVisibility(View.GONE);
-                    calendar_visibility=false;
-                }
-            }
-        });
 
 
         dialog_handler = new Handler()
@@ -133,26 +113,68 @@ public class AddTaskPage extends AppCompatActivity
 
     public void setTask_deadline(View view)
     {
-        String task = Task.getText().toString();
+        String task_name = Task.getText().toString();
         String task_detail = task_description.getText().toString();
 
         String task_check = "[A-Za-z]{2,14}";
         Pattern regex = Pattern.compile(task_check);
 
+        if (TextUtils.isEmpty(task_name)) {
+            Toast.makeText(view.getContext(), R.string.task_name_null, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!regex.matcher(task_name).matches()) {
+            Toast.makeText(view.getContext(), R.string.invalid_task_name, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        setSubmitTask(task , task_detail);
+
+
+
+
+
+        int year = 2019+spinner_year.getSelectedItemPosition();
+        int month = 1+spinner_month.getSelectedItemPosition();
+        int day = 1+spinner_day.getSelectedItemPosition();
+        int hour = 1+spinner_hour.getSelectedItemPosition();
+        int min = spinner_min.getSelectedItemPosition()*15;
+
+
+        ddl_calendar.set(year,month,day,hour,min);
+        ddl = ddl_calendar.getTimeInMillis();
+
+        TaskCollection.TaskItem curTask = new TaskCollection.TaskItem(0,task_name,ddl,1);
+        dueIn = curTask.dueTime;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        setSubmitTask(task_name , task_detail);
     }
 
-    private void setSubmitTask(final String task,final String task_detail)
+    private void setSubmitTask(final String task_name,final String task_detail)
     {
         Log.d("Submit func", "start");
         final JSONObject param = new JSONObject();
         try
         {
             param.put("request", "submit task");
-            //param.put("tier", usr_tier); // user type define
-            param.put("task", task);
+
+            param.put("task", task_name);
             param.put("task_detail", task_detail);
+            param.put("ddl", ddl);
         }
         catch (
                 JSONException e)
@@ -185,7 +207,7 @@ public class AddTaskPage extends AppCompatActivity
                             dialog_handler.sendEmptyMessage(0);
                         }
                         else
-                            {
+                        {
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
                         }
@@ -215,12 +237,12 @@ public class AddTaskPage extends AppCompatActivity
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(AddTaskPage.this);
         normalDialog.setTitle("Task confirmed");
-        normalDialog.setMessage("Your task has been confirmed.");
+        normalDialog.setMessage("Your task has been confirmed. It will due in "+dueIn);
         normalDialog.setPositiveButton("done",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // TODO
+                        finish();
                     }
                 });
         normalDialog.show();
