@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
-                            loginJumpHome(respond_json.getInt("uid"), respond_json.getInt("groupid"));
+                            loginJumpHome(respond_json.getInt("uid"), respond_json.getInt("groupid"), respond_json.getString("uname"));
                         } else if (respond_json.getString("status").equals("1")){
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
@@ -234,15 +234,17 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(int uid, int groupid) {
+    private void loginJumpHome(int uid, int groupid, String uname) {
 
 
         // if login success, jump to home
         Intent intent = new Intent(this, UsrDefaultPage.class);
         UsrDefaultPage.groupid = groupid;
         UsrDefaultPage.uid = uid;
+        UsrDefaultPage.usrName = uname;
         Log.d("login_uid", uid+"");
         Log.d("login_groupid", groupid+"");
+        Log.d( "login_uname: ",uname);
         startActivity(intent);
     }
 

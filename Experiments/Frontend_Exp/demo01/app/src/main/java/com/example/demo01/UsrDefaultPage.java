@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import com.example.demo01.data.ChatCollection;
 import com.example.demo01.data.ListItem;
 import com.example.demo01.data.ProfileCollection;
 import com.example.demo01.data.TaskCollection;
@@ -28,6 +29,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static int uid;
     public static int groupid;
+    public static String usrName;
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
 
 
@@ -80,6 +82,15 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public void onListFragmentInteraction(ListItem item, int listType) {
         if(item.title.equals("Log Out")){
             logout();
+        }else if(item.title.equals("chat")){
+
+            ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
+            Intent intent = new Intent(this, ChatRoom.class);
+
+            ChatRoom.chatRoomName = ((ChatCollection.ChatSelection) item).ChatTitle;
+            ChatRoom.chatlog = ((ChatCollection.ChatSelection) item).ChatContent;
+
+            startActivity(intent);
         }else if(item.title.equals("task")){
             TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
             Intent intent = new Intent(this, TaskDetail.class);

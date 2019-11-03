@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_chats"
-        android:name="com.example.demo01.ui.chatTab.NotificationsFragment"
+        android:name="com.example.demo01.ui.chatTab.ChatTabFragment"
         android:label="@string/title_chats"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_chat" />
 
     <fragment
         android:id="@+id/navigation_profile"
