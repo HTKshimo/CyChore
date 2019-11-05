@@ -30,9 +30,6 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     public static final String url_head = "https://us-central1-login-demo-309.cloudfunctions.net/";
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,35 +48,43 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
         Intent intent = getIntent();
 
-        Log.d("pass_uid:",uid+"");
+        Log.d("pass_uid:", uid + "");
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         //super.onBackPressed();
     }
 
 
-    public void logout(){
+    public void logout() {
         getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void jumpJoinGroup(View view){
+    public void jumpJoinGroup(View view) {
         Intent intent = new Intent(this, JoinGroup.class);
         startActivity(intent);
     }
 
-    public void jumpAddTask(View view){
+    public void jumpAddTask(View view) {
         Intent intent = new Intent(this, AddTaskPage.class);
+        startActivity(intent);
+    }
+
+    public void jumpProfileEdit() {
+        Intent intent = new Intent(this, ProfileEditPage.class);
         startActivity(intent);
     }
 
     @Override
     public void onListFragmentInteraction(ListItem item, int listType) {
-        if(item.title.equals("Log Out")){
+        if (item.title.equals("Log Out")) {
             logout();
-        }else if(item.title.equals("chat")){
+        } else if (item.title.equals("My Account")) {
+            jumpProfileEdit();
+        } else if (item.title.equals("chat")) {
 
             ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
             Intent intent = new Intent(this, ChatRoom.class);
@@ -89,7 +94,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             ChatRoom.chatPosition = listType;
 
             startActivity(intent);
-        }else if(item.title.equals("task")){
+        } else if (item.title.equals("task")) {
             TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
             Intent intent = new Intent(this, TaskDetail.class);
 
