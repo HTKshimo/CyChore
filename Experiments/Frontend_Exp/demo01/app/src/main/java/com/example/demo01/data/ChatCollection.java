@@ -24,6 +24,10 @@ public class ChatCollection {
         MrHouseChatLog.add("JohnSmith: Goodbye.");
         MrHouseChatLog.add("MrHouse: Well enough. Be on your way.");
         addItem(new ChatSelection("MrHouse",MrHouseChatLog));
+
+        ArrayList<String> echoLog = new ArrayList<>();
+        echoLog.add("echo: start");
+        addItem(new ChatSelection("Echo",echoLog));
     }
 
     private static void addItem(ChatSelection item) {

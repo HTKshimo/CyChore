@@ -37,7 +37,7 @@ public class chatsRecyclerViewAdapter extends RecyclerView.Adapter<chatsRecycler
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mValues.get(position);
         holder.ChatTitle.setText(mValues.get(position).ChatTitle);
         holder.ChatLatestLine.setText(mValues.get(position).lastestLine);
@@ -48,7 +48,7 @@ public class chatsRecyclerViewAdapter extends RecyclerView.Adapter<chatsRecycler
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem,0);
+                    mListener.onListFragmentInteraction(holder.mItem,position);
                     // TODO: set onclick listener for buttons in holder
                 }
             }

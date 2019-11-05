@@ -26,12 +26,11 @@ import org.json.JSONArray;
 public class ChatTabFragment extends Fragment {
 
     private RecyclerView chatlist;
-    private static ChatCollection chatItems;
-    private static JSONArray todoItems_Json = new JSONArray();
-    private static Handler chatsLogUpdateHandler;
+    public static ChatCollection chatItems;
 
-    private static chatsRecyclerViewAdapter chatlist_adaptor;
+    public static chatsRecyclerViewAdapter chatlist_adaptor;
     private OnListFragmentInteractionListener mListener;
+    private Handler chatsLogUpdateHandler;
 
 
     public ChatTabFragment() {

@@ -22,11 +22,24 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.demo01.UsrDefaultPage.JSON;
+
+/**
+ * A helper util class for static methods of changing task status by communicating with server by using Http post request.
+ */
 public class TaskStatusUpadateUtil {
-    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+//    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static String task_update_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
 
 
+    /**
+     * Communication method for update task status, by creating callable thread
+     *
+     * @param tid task id of the task being concerned
+     * @param uid user id of the user who try to change the task status
+     * @param newStatus status code for server to notify if the task is completed or not
+     * @return status code of the thread's excution
+     */
     @SuppressLint("HandlerLeak")
     public static int UpdateTaskStatus(int tid, int uid, int newStatus) {
         int result = 1;
@@ -66,6 +79,15 @@ public class TaskStatusUpadateUtil {
         return result;
     }
 
+    /**
+     * Communication method specific for complain task, by creating callable thread
+     *
+     * @param tid task id of the task being concerned
+     * @param uid user id of the user who try to change the task status
+     * @param newStatus status code for server to notify if the task is completed or not
+     * @param Complain String of user's complaining detail
+     * @return status code of the thread's excution
+     */
     public static int UpdateTaskStatus(int tid, int uid, int newStatus, String Complain){
         int result = 1;
 

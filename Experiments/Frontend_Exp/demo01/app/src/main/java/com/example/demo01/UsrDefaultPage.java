@@ -5,14 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 
 import com.example.demo01.data.ChatCollection;
 import com.example.demo01.data.ListItem;
-import com.example.demo01.data.ProfileCollection;
 import com.example.demo01.data.TaskCollection;
 import com.example.demo01.ui.OnListFragmentInteractionListener;
-import com.example.demo01.ui.tasksTab.TasksList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,13 +37,13 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usr_default_page);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        BottomNavigationView navView = findViewById(R.id.nav_view_admin);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_tasks, R.id.navigation_group, R.id.navigation_chats)
+                R.id.navigation_tasks, R.id.navigation_group, R.id.navigation_chats, R.id.navigation_profile)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
@@ -89,6 +86,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
             ChatRoom.chatRoomName = ((ChatCollection.ChatSelection) item).ChatTitle;
             ChatRoom.chatlog = ((ChatCollection.ChatSelection) item).ChatContent;
+            ChatRoom.chatPosition = listType;
 
             startActivity(intent);
         }else if(item.title.equals("task")){
