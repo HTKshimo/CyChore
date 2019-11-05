@@ -39,6 +39,11 @@ public class Login{
         return "Blobfish!!!!";
     }
 
+    /**
+    	This method is used to login returning users to the application by taking in values such as; email and password to verify the identity of the user (verifying this information in the database as well).
+    	It returns information such as the; status (‘0’ if successful and ‘1’ if not) user_id, tier_id and group_id (if the user is in a group or not).
+
+     */
     @RequestMapping(value = "/login", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String validateLogin(HttpServletRequest request) throws JSONException, IOException {

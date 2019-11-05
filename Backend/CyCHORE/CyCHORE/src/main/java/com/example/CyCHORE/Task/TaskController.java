@@ -32,9 +32,15 @@ public class TaskController {
     @Autowired
     UserRepository ur;
 
+    /**
+    This method returns a list of task assigned to a user (whether or not they are in a group). Information that is sent to this method includes the user_id and group_id.
+    It returns a status of ‘0’ if successful and ‘1’ if not (due to some error) along with the list of the task description in the correct JSON format pertaining to that user.
+
+     */
+
     @RequestMapping(value = "/getTaskList/{uid}", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    private String getTaskList(@PathVariable Integer uid) throws JSONException {
+    public String getTaskList(@PathVariable Integer uid) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
 	List<String> taskList = new ArrayList<String>();
@@ -72,9 +78,14 @@ public class TaskController {
         return toSend.toString();
     }
 
+    /**
+     This method returns a list of completed tasks by a user (whether or not they are in a group). Information that is sent to this method includes the user_id and group_id.
+    It returns a status of ‘0’ if successful and ‘1’ if not (due to some error) along with the list of the completed tasks (history) in the correct JSON format pertaining to that user.
+
+     */
     @RequestMapping(value = "/getTaskListHistory/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    private String getTaskListHistory(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+    public String getTaskListHistory(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject toSend = new JSONObject();
@@ -98,8 +109,15 @@ public class TaskController {
         return toSend.toString();
     }
 
+    /**
+
+    	This method takes input from the frontend to create a task using information such as; task description, deadline, task_id, task title as well as a ‘complete’ field to indicate whether or not it is completed.
+    	Returns a status of ‘0’ if successful and ‘1’ if not.
+
+     */
+
     @RequestMapping(value = "/createTask/{title}/{description}/{g_id}/{ddl}", method = POST, produces = "application/json;charset=UTF-8")
-    String createTask(@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl) throws JSONException {
+    public String createTask(@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl) throws JSONException {
         JSONObject toReturn = new JSONObject();
         Task t = new Task();
         Timestamp timestamp = new Timestamp(ddl);
@@ -117,8 +135,14 @@ public class TaskController {
 
         return toReturn.toString();
     }
+
+    /**
+    	This method deletes a tasks to a user (by taking information such as; task description, deadline, task_id, task title as well as a ‘complete’ field to indicate whether or not it is completed.
+    	It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
+
+     */
     @DeleteMapping("/delete/{t_id}")
-    Boolean deleteTask(@PathVariable Integer t_id){
+    public Boolean deleteTask(@PathVariable Integer t_id){
         Boolean success = tr.existsById(t_id);
         if (success) {
             Optional<Task> test = tr.findById((t_id));
@@ -127,9 +151,13 @@ public class TaskController {
         }
         return success;
     }
+    /**
+    	This method changes completion status of a task for a user (by taking information such as; task_id, user_id and group_id).
+    	It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
 
+     */
     @PutMapping("/markAsCompleted/{u_id}/{t_id}")
-    String markAsCompleted(@PathVariable Integer u_id, @PathVariable Integer t_id){
+    public String markAsCompleted(@PathVariable Integer u_id, @PathVariable Integer t_id){
         Optional<Task> test = tr.findById(t_id);
         Task t = test.get();
         t.changeCompleteStatus(u_id, true);
@@ -137,8 +165,14 @@ public class TaskController {
         return t.getTimeCompleted();
     }
 
+    /**
+    This method changes the task status for a user (by taking information such as; task_id, user_id and group_id).
+    It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
+
+     */
+
     @PostMapping("/ChangeTaskStatus/{request}/{uid}/{tid}/{changeTo}")
-    String ChangeTaskStatus(@PathVariable String request, @PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String changeTo) throws JSONException {
+    public String ChangeTaskStatus(@PathVariable String request, @PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String changeTo) throws JSONException {
 
         List<Task> allTaskList;
         allTaskList = tr.findAll();
@@ -172,8 +206,14 @@ public class TaskController {
         return o.toString();
     }
 
+    /**
+    	This method allows a user to pick up a task that has been pushed to the pool by another user (whether or not they are in a group). Information that is sent to this method includes the user_id and task_id.
+    	It returns a status of ‘0’ if successful and ‘1’ if not (due to some error) along with the list of the task description in the correct JSON format pertaining to that user.
+
+     */
+
     @PostMapping("/pickup/{request}/{changeTo}/{u_id}/{t_id}")
-    String assignPickUpTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id) throws JSONException {
+    public String assignPickUpTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id) throws JSONException {
         Boolean success = tr.existsById(t_id);
         JSONObject o = new JSONObject();
         if (success) {
@@ -205,9 +245,14 @@ public class TaskController {
         return allUserIDs;
     }
 
+    /**
+    	This method randomly assigns users with tasks (whether or not they are in a group)
+    	This information is automatically updated in the database.
+
+     */
     @PostMapping("randomlyAssign/{t_id}")
     //get task's group id, find all users in group, randomly assign
-    String randomlyAssignTaskToUser(@PathVariable Integer t_id) throws JSONException {
+    public String randomlyAssignTaskToUser(@PathVariable Integer t_id) throws JSONException {
         Boolean success = tr.existsById(t_id);
         JSONObject o = new JSONObject();
         if (success) {
@@ -228,9 +273,14 @@ public class TaskController {
         return o.toString();
     }
 
+
+    /**
+    Gets all the tasks that have been pushed to the pool by the current tenant users. This method takes the user_id and the
+    group_id as well as a request
+     */
     @RequestMapping(value = "/getTaskPool/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    private String getTaskPool(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+    public String getTaskPool(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject toSend = new JSONObject();

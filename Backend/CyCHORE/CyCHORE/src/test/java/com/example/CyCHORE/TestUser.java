@@ -36,26 +36,26 @@ public class TestUser {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void createUserObjectTest() {
+//    @Test
+//    public void createUserObjectTest() {
+//
+//        User user = new User("test@test.edu", "Mike", 1);
+//
+//        assertEquals("test@test.edu", user.getUser());
+//        assertEquals("Mike", user.getFirst_name());
+//        assertEquals(java.util.Optional.of(1), java.util.Optional.of(user.getTier()));
+//    }
 
-        User user = new User("test@test.edu", "Mike", 1);
-
-        assertEquals("test@test.edu", user.getUser());
-        assertEquals("Mike", user.getFirst_name());
-        assertEquals(java.util.Optional.of(1), java.util.Optional.of(user.getTier()));
-    }
-
-    @Test
-    public void registerUserTest() throws JSONException {
-
-        when(ur.save(isA(User.class))).thenReturn(new User("test@test.edu", "Sarah", 1));
-
-        UserController uc = new UserController(ur);
-        String s = uc.registerUser("test@test.edu", "Sarah", 1);
-
-        assertEquals("0", s);
-    }
+//    @Test
+//    public void registerUserTest() throws JSONException {
+//
+//        when(ur.save(isA(User.class))).thenReturn(new User("test@test.edu", "Sarah", 1));
+//
+//        UserController uc = new UserController(ur);
+//        String s = uc.registerUser("test@test.edu", "Sarah", 1);
+//
+//        assertEquals("0", s);
+//    }
 
 }
 
