@@ -47,7 +47,7 @@ public class AddTaskPage extends AppCompatActivity
     private Button submit_task;
     private Handler dialog_handler;
 
-
+    //
     private Spinner spinner_year;
     private Spinner spinner_month;
     private Spinner spinner_day;
