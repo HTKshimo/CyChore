@@ -15,9 +15,7 @@ public class ProfileCollection {
         // Add some sample items.
         addItem(new ProfileSelection("My Account", "edit personal info"));
         addItem(new ProfileSelection("My Group", "view group info"));
-        addItem(new ProfileSelection("Score", "view current score"));
-        addItem(new ProfileSelection("Complain", "complain to admin for a task"));
-        addItem(new ProfileSelection("Delete Task", "Ask admin to delete a task"));
+        addItem(new ProfileSelection("My Complains", "view your complains"));
         addItem(new ProfileSelection("Log Out"));
 
     }

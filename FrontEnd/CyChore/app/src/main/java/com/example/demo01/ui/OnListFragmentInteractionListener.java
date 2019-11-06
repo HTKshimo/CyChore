@@ -15,5 +15,5 @@ import com.example.demo01.data.ProfileCollection;
  */
 public interface OnListFragmentInteractionListener {
     // TODO: Update argument type and name
-    void onListFragmentInteraction(ListItem item);
+    void onListFragmentInteraction(ListItem item, int listType);
 }

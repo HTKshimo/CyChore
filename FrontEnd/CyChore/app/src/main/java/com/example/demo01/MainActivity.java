@@ -36,9 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-
-    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
-
+    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
+//    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
 
     private Button login;
     private Button register;
@@ -68,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
         auto_log = findViewById(R.id.AutoLogin);
 
 
-
-        login_info = getSharedPreferences("accountInfo",Context.MODE_PRIVATE);
+        login_info = getSharedPreferences("accountInfo", Context.MODE_PRIVATE);
 
         dialog_handler = new Handler() {
             public void handleMessage(android.os.Message msg) {
@@ -89,15 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        if(login_info.getBoolean("save_info", false)){
+        if (login_info.getBoolean("save_info", false)) {
             save_pwd.setChecked(true);
-            email.setText(login_info.getString("uname",""));
-            password.setText(login_info.getString("pwd",""));
+            email.setText(login_info.getString("uname", ""));
+            password.setText(login_info.getString("pwd", ""));
         }
 
-        if(login_info.getBoolean("auto_login", false)){
+        if (login_info.getBoolean("auto_login", false)) {
             auto_log.setChecked(true);
-            login(email.getText().toString(),password.getText().toString());
+            login(email.getText().toString(), password.getText().toString());
         }
 
 
@@ -129,10 +127,9 @@ public class MainActivity extends AppCompatActivity {
 
         //check if admin
         //don't do it this way, change on server
-        if((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2")) )
-        {
+        if ((uname.toLowerCase().equals("admin@iastate.edu")) && (pwd.toLowerCase().equals("adminks_2"))) {
             Log.i("User:", "Admin");
-            checkAdmin =0;
+            checkAdmin = 0;
             //go to Admin Fragment
 
         }
@@ -144,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
             checkAdmin = 0;
         }*/
 
-        if(save_pwd.isChecked()){
-            login_info.edit().putString("uname",uname).commit();
-            login_info.edit().putString("pwd",pwd).commit();
+        if (save_pwd.isChecked()) {
+            login_info.edit().putString("uname", uname).commit();
+            login_info.edit().putString("pwd", pwd).commit();
         }
 
 
@@ -186,11 +183,11 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respond_json = new JSONObject(reply);
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
-                            loginJumpHome(respond_json.getString("uid"), respond_json.getBoolean("inGroup"));
-                        } else if (respond_json.getString("status").equals("1")){
+                            loginJumpHome(respond_json.getInt("uid"), respond_json.getInt("groupid"), respond_json.getString("uname"), respond_json.getInt("tier"));
+                        } else if (respond_json.getString("status").equals("1")) {
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(1);
-                        }else if (respond_json.getString("status").equals("2")){
+                        } else if (respond_json.getString("status").equals("2")) {
                             // TODO if fail pop up dialog with fail explained
                             dialog_handler.sendEmptyMessage(2);
                         }
@@ -235,13 +232,22 @@ public class MainActivity extends AppCompatActivity {
         normalDialog.show();
     }
 
-    private void loginJumpHome(String uid, Boolean inGroup) {
-        login_info.edit().putBoolean("Has Group", inGroup);
+    private void loginJumpHome(int uid, int groupid, String uname, int tier) {
+
         // if login success, jump to home
-        Intent intent = new Intent(this, UsrDefaultPage.class);
-        intent.putExtra(EXTRA_MESSAGE, uid);
-        Log.d("uid", uid);
-        startActivity(intent);
+        if (tier == 1) {
+            Intent intent = new Intent(this, UsrDefaultPage.class);
+            UsrDefaultPage.groupid = groupid;
+            UsrDefaultPage.uid = uid;
+            UsrDefaultPage.usrName = uname;
+            Log.d("login_uid", uid + "");
+            Log.d("login_groupid", groupid + "");
+            Log.d("login_uname: ", uname);
+            startActivity(intent);
+        }else if(tier ==0){
+            Intent intent = new Intent(this, AdminDefaultPage.class);
+            startActivity(intent);
+        }
     }
 
     public void register(View view) {
@@ -257,28 +263,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void checkSavePwd(View view){
+    public void checkSavePwd(View view) {
         boolean checked = save_pwd.isChecked();
         login_info.edit().putBoolean("save_info", checked).commit();
     }
 
-    public void checkAutoLogin(View view){
+    public void checkAutoLogin(View view) {
         boolean checked = save_pwd.isChecked();
         login_info.edit().putBoolean("auto_login", checked).commit();
     }
 
-        /*@Yamini
-        * */
-    public int getCheckAdmin(int checkAdmin)
-    {
+    /*@Yamini
+     * */
+    public int getCheckAdmin(int checkAdmin) {
         checkAdmin = this.checkAdmin;
-        if (checkAdmin == 0)
-        {
+        if (checkAdmin == 0) {
             //go to Admin Dashboard containing, user list, complaints and requests to sublisting
             return 0;
-        }
-        else
-        {
+        } else {
             //regular user
             return 1;
         }

@@ -80,7 +80,7 @@ public class JoinGroup extends AppCompatActivity
 
     public static void setJoinGroup(final int gID)
     {
-        Log.d("Join group func", "start");
+//        Log.d("Join group func", "start");
         final JSONObject param = new JSONObject();
         try
         {
