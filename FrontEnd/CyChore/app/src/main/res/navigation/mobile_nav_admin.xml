@@ -7,20 +7,20 @@
 
     <fragment
         android:id="@+id/navigation_issues"
-        android:name="com.example.demo01.ui.issueTab.fragement_issues"
+        android:name="com.example.CyChore.ui.issueTab.fragement_issues"
         android:label="@string/title_Issues"
         tools:layout="@layout/fragment_issues" />
 
 
     <fragment
         android:id="@+id/navigation_chats"
-        android:name="com.example.demo01.ui.chatTab.ChatTabFragment"
+        android:name="com.example.CyChore.ui.chatTab.ChatTabFragment"
         android:label="@string/title_chats"
         tools:layout="@layout/fragment_chat" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.demo01.ui.profile.ProfileFragment"
+        android:name="com.example.CyChore.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/profile_option" />
 </navigation>

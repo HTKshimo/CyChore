@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.demo01">
+    package="com.example.CyChore">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,19 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileEditPage"></activity>
+        <activity android:name="com.example.CyChore.ProfileEditPage"></activity>
         <activity
-            android:name=".AdminDefaultPage"
+            android:name="com.example.CyChore.AdminDefaultPage"
             android:label="@string/title_activity_admin_default_page" />
-        <activity android:name=".ChatRoom" />
-        <activity android:name=".AddTaskPage" />
-        <activity android:name=".TaskDetail" />
-        <activity android:name=".JoinGroup" />
+        <activity android:name="com.example.CyChore.ChatRoom" />
+        <activity android:name="com.example.CyChore.AddTaskPage" />
+        <activity android:name="com.example.CyChore.TaskDetail" />
+        <activity android:name="com.example.CyChore.JoinGroup" />
         <activity
-            android:name=".UsrDefaultPage"
+            android:name="com.example.CyChore.UsrDefaultPage"
             android:label="@string/title_activity_usr_default_page" />
-        <activity android:name=".RegistrationPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.CyChore.RegistrationPage" />
+        <activity android:name="com.example.CyChore.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
