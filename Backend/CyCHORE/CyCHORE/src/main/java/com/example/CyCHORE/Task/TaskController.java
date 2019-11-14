@@ -2,6 +2,7 @@ package com.example.CyCHORE.Task;
 
 import com.example.CyCHORE.Group.*;
 import com.example.CyCHORE.User.*;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +10,7 @@ import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +19,11 @@ import java.util.Random;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.example.CyCHORE.Group.GroupController;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -38,9 +43,14 @@ public class TaskController {
 
      */
 
-    @RequestMapping(value = "/getTaskList/{uid}", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getTaskList", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getTaskList(@PathVariable Integer uid) throws JSONException {
+    public String getTaskList(HttpServletRequest request) throws JSONException, IOException {
+//        @PathVariable Integer uid
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        //String password = (String) jsonObj.get("password");
         List<Task> allTaskList;
         allTaskList = tr.findAll();
 	List<String> taskList = new ArrayList<String>();
@@ -83,9 +93,14 @@ public class TaskController {
     It returns a status of ‘0’ if successful and ‘1’ if not (due to some error) along with the list of the completed tasks (history) in the correct JSON format pertaining to that user.
 
      */
-    @RequestMapping(value = "/getTaskListHistory/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getTaskListHistory", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getTaskListHistory(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+    public String getTaskListHistory(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer gid = Integer.valueOf((Integer) jsonObj.get("groupid"));
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject toSend = new JSONObject();
@@ -116,8 +131,16 @@ public class TaskController {
 
      */
 
-    @RequestMapping(value = "/createTask/{title}/{description}/{g_id}/{ddl}", method = POST, produces = "application/json;charset=UTF-8")
-    public String createTask(@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl) throws JSONException {
+    @RequestMapping(value = "/createTask", method = POST, produces = "application/json;charset=UTF-8")
+    public String createTask(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        String title = (String) jsonObj.get("title");
+        String description = (String) jsonObj.get("description");
+        Integer g_id = Integer.valueOf((Integer) jsonObj.get("groupid"));
+        Long ddl = Long.valueOf((Long) jsonObj.get("deadline"));
+
         JSONObject toReturn = new JSONObject();
         Task t = new Task();
         Timestamp timestamp = new Timestamp(ddl);
@@ -141,8 +164,13 @@ public class TaskController {
     	It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
 
      */
-    @DeleteMapping("/delete/{t_id}")
-    public Boolean deleteTask(@PathVariable Integer t_id){
+    @DeleteMapping("/delete")
+    public Boolean deleteTask(HttpServletRequest request) throws IOException, JSONException {
+        //@PathVariable Integer t_id
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
+        //String description = (String) jsonObj.get("description");
         Boolean success = tr.existsById(t_id);
         if (success) {
             Optional<Task> test = tr.findById((t_id));
@@ -156,8 +184,13 @@ public class TaskController {
     	It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
 
      */
-    @PutMapping("/markAsCompleted/{u_id}/{t_id}")
-    public String markAsCompleted(@PathVariable Integer u_id, @PathVariable Integer t_id){
+    @PutMapping("/markAsCompleted")
+    public String markAsCompleted(HttpServletRequest request) throws IOException, JSONException {
+        //@PathVariable Integer u_id, @PathVariable Integer t_id
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer u_id = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
         Optional<Task> test = tr.findById(t_id);
         Task t = test.get();
         t.changeCompleteStatus(u_id, true);
@@ -170,16 +203,22 @@ public class TaskController {
     It returns a status of ‘0’ if successful and ‘1’ if not (due to some error).
 
      */
+    //NEEDS THE UPDATED VERSION FOR HTTP REQUESTS!!!!!!!!!!!!!
 
-    @PostMapping("/ChangeTaskStatus/{request}/{uid}/{tid}/{changeTo}")
-    public String ChangeTaskStatus(@PathVariable String request, @PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String changeTo) throws JSONException {
-
+    @PostMapping("/ChangeTaskStatus")
+    public String ChangeTaskStatus(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable String request, @PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String changeTo
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer tid = Integer.valueOf((Integer) jsonObj.get("task id"));
+        String changeTo = (String) jsonObj.get("status");
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject o = new JSONObject();
         Task toUpdate=null;
         for (Task temp : allTaskList) {
-            if (temp.id == tid) {
+            if (temp.id == tid && temp.assigned_to == uid) {
                 toUpdate=temp;
                 if(changeTo.equals("0")){
                     toUpdate.completed = true;
@@ -201,8 +240,10 @@ public class TaskController {
                 o.put("status", "0");
                 return o.toString();
             }
+
         }
         o.put("status", "1");
+        //o.put("error", "Either the task id is incorrect or the user id does not match the task.")
         return o.toString();
     }
 
@@ -212,11 +253,19 @@ public class TaskController {
 
      */
 
-    @PostMapping("/pickup/{request}/{changeTo}/{u_id}/{t_id}")
-    public String assignPickUpTaskToUser(@PathVariable Integer u_id, @PathVariable Integer t_id) throws JSONException {
+    @PostMapping("/pickup")
+    public String assignPickUpTaskToUser(HttpServletRequest request) throws JSONException, IOException {
+        //"/pickup/{request}/{changeTo}/{u_id}/{t_id}"
+        //@PathVariable Integer u_id, @PathVariable Integer t_id
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        //String changeTo = (String) jsonObj.get("status");
+        Integer u_id = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
         Boolean success = tr.existsById(t_id);
+        Boolean success2 = tr.existsById(u_id);
         JSONObject o = new JSONObject();
-        if (success) {
+        if (success && success2) {
             Optional<Task> test = tr.findById((t_id));
             Task t = test.get();
             success = success && t.getIn_pool();
@@ -225,7 +274,7 @@ public class TaskController {
                 tr.save(t);
             }
         }
-        if(success){
+        if(success && success2){
             o.put("status","0");
             return o.toString();
         }
@@ -234,6 +283,7 @@ public class TaskController {
     }
 
     public List<Integer> getUsersInGroup(Integer g_id) {
+
         List<User> allUsers;
         allUsers = ur.findAll();
         List<Integer> allUserIDs = new ArrayList<Integer>();
@@ -252,7 +302,13 @@ public class TaskController {
      */
     @PostMapping("randomlyAssign/{t_id}")
     //get task's group id, find all users in group, randomly assign
-    public String randomlyAssignTaskToUser(@PathVariable Integer t_id) throws JSONException {
+    public String randomlyAssignTaskToUser(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable Integer t_id
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        //String changeTo = (String) jsonObj.get("status");
+        //Integer u_id = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
         Boolean success = tr.existsById(t_id);
         JSONObject o = new JSONObject();
         if (success) {
@@ -280,7 +336,13 @@ public class TaskController {
      */
     @RequestMapping(value = "/getTaskPool/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getTaskPool(@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid) throws JSONException {
+    public String getTaskPool(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        //String changeTo = (String) jsonObj.get("status");
+        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        Integer gid = Integer.valueOf((Integer) jsonObj.get("group id"));
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject toSend = new JSONObject();
