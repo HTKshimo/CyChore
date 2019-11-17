@@ -19,6 +19,10 @@ public class Complaint {
     @Column(name = "status")
     Integer status;
 
+    @Column(name = "filer_id")
+    Integer filer_id;
+
+
     public Integer getId() { return id; }
 
     public Integer getTask_id() { return task_id; }
@@ -26,5 +30,8 @@ public class Complaint {
     public String getDescription() { return description; }
 
     public Integer getStatus() { return status; }
+    public Integer getFiler_id() { return filer_id; }
+
+    //public Integer is_assigned_to() { return assigned_to; }
 
 }
