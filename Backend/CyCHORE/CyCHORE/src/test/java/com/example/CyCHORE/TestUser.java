@@ -54,7 +54,7 @@ public class TestUser {
         UserController uc = new UserController(ur);
         String s = uc.registerUser("test@test.edu", "Sarah", 1);
 
-        assertEquals("0", s);
+        assertEquals("{\"status\":\"0\"}", s);
     }
 
 }

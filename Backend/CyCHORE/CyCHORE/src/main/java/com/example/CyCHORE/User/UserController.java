@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class UserController {
 
     @Autowired
-    UserRepository ur;
+    static UserRepository ur;
 
 
     public UserController(UserRepository ur) {
@@ -60,5 +61,16 @@ public class UserController {
             toReturn.put("status","1");
         }
         return toReturn.toString();
+    }
+
+    public static String getUsername(int user_id) {
+        List<Integer> user_ids = new ArrayList<>();
+        Optional<User> u = ur.findById(user_id);
+        if(u.isPresent()) {
+            // value is present inside Optional
+            return u.get().toString();
+        }else{
+            return null;
+        }
     }
 }

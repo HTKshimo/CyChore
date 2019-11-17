@@ -7,12 +7,14 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.example.CyCHORE.MyDatabase;
 
 
 @SpringBootApplication
-public class CyChoreApplication{
+public class CyChoreApplication {
 
 //	@Autowired
 //	DataSource dataSource;
@@ -21,9 +23,17 @@ public class CyChoreApplication{
 //	@Autowired
 //    TaskRepository tr;
 
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(CyChoreApplication.class);
+//	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CyChoreApplication.class, args);
 	}
+
+//	public static void main(String[] args) {
+//		SpringApplication.run(CyChoreApplication.class, args);
+//	}
 
 //	@Override
 //	public void run(String... args) throws Exception {
