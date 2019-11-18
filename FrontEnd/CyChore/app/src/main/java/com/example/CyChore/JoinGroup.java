@@ -33,7 +33,7 @@ public class JoinGroup extends AppCompatActivity
     private Button joinGroupButton;
     private EditText gID;
     private static Handler dialog_handler;
-    private static int newgid=0;
+    public static int newgid=0;
 
 
     @Override
