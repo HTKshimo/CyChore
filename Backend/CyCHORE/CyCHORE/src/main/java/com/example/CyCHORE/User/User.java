@@ -28,6 +28,8 @@ public class User {
     @Column
     Integer tier;
 
+    Boolean online;
+
     public User() {
         this.email = "empty";
         this.first_name = "empty";
@@ -47,26 +49,19 @@ public class User {
         this.tier = tier;
     }
 
-//    public User(String email, String first_name, String user_name, String password, Integer tier) {
-//        this.email = email;
-//        this.first_name = first_name;
-//        this.user_name = user_name;
-//        this.password = password;
-//        this.tier = tier;
-//    }
-
     public Integer getId() { return id; }
 
     public String getUser() { return email; }
 
-    public String getFirst_name() {return first_name;}
+    public String getFirst_name() { return first_name; }
 
-    public String getUser_name() {return username;}
+    public String getUser_name() { return username; }
 
-    public String getPassword() {return password;}
+    public String getPassword() { return password; }
 
     public Integer getGroupId() { return group_id; }
-    public  String getEmail() { return email;}
+
+    public String getEmail() { return email; }
 
     public Integer getTier() { return tier; }
 
@@ -90,4 +85,11 @@ public class User {
         return getUser();
     }
 
+    public Boolean getOnline() {
+        return online;
+    }
+
+    public void setOnline(Boolean online) {
+        this.online = online;
+    }
 }
