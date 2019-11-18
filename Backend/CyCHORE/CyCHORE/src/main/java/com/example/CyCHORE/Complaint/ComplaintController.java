@@ -55,7 +55,7 @@ public class ComplaintController {
                 curComp.put("description", temp.getDescription().toString());
                 curComp.put("Task status:", temp.getStatus().toString());
                // Comp.put(temp.toString(), curComp);
-                Comp.put(temp.toString(), curComp);
+                Comp.put(String.valueOf(temp.id), curComp);
                 ComplaintCount++;
             }
         }

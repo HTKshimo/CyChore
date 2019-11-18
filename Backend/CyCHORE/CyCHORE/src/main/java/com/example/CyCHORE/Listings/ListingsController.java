@@ -55,7 +55,7 @@ public class ListingsController {
                 curList.put("User id",temp.getUser_id());
                 curList.put("Price", temp.getPrice());
                 curList.put("Description", temp.getDescription());
-                SubleaseReturn.put(temp.toString(), curList);
+                SubleaseReturn.put(String.valueOf(temp.list_id), curList);
                 ListCount++;
             }
         }
@@ -92,7 +92,8 @@ public class ListingsController {
                 //curList.put("User id",list.getUser_id().toString());
                 curList.put("Price", temp.getPrice());
                 curList.put("Description", temp.getDescription());
-                SubleaseReturn.put(temp.toString(), curList);
+                curList.put("List id", temp.getList_id());
+                SubleaseReturn.put(String.valueOf(temp.list_id), curList);
                 ListCount++;
             }
         }
