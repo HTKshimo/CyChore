@@ -46,4 +46,15 @@ android-build:
         paths:
         - Android_test/app/build/outputs
 
-
+unitTests:
+    image: javiersantos/android-ci:latest
+    stage: androidtest
+    before_script: 
+        - export GRADLE_USER_HOME=`pwd`/.gradle
+        - chmod +x ./FrontEnd/CyChore/gradlew
+    tags:
+        - Front-end
+    script:
+        - cd FrontEnd/CyChore
+        - ./gradlew test 
+   
