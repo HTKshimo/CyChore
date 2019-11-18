@@ -209,31 +209,6 @@ public class UserController {
         }
 
         JSONObject o = new JSONObject();
-        o.put("status", isValid);
-        o.put("uid", userID);
-        o.put("tier", tier);
-        o.put("groupid", group_id);
-
-        return o.toString();
-    }
-
-    //testing websocket, only for backend use
-    @RequestMapping(value = "/loginTest/{email}/{password}", method = POST, produces = "application/json;charset=UTF-8")
-    public String loginTest(@PathVariable String email, @PathVariable String password) throws JSONException {
-
-        List<User> allUsers = ur.findAll();
-        int isValid = -1, userID = -1;
-        for (int i = 0; i < allUsers.size(); i++) {
-            User user = allUsers.get(i);
-            if (user.getEmail().equals(email)) {
-                if (user.getPassword().equals(password)) {
-                    isValid = 1;
-                    userID = user.getId();
-                    user.setOnline(true); //TODO: when to set offline?
-                }
-            }
-        }
-        JSONObject o = new JSONObject();
         JSONObject messages = new JSONObject();
         HashMap<Integer, ArrayList<Message>> hm = getMessages(userID);
         for (int cr_id : hm.keySet()){
@@ -242,10 +217,42 @@ public class UserController {
             messages.put(String.valueOf(cr_id), temp);
         }
         o.put("status", isValid);
+        o.put("uid", userID);
+        o.put("tier", tier);
+        o.put("groupid", group_id);
         o.put("messages", messages);
 
         return o.toString();
     }
+
+    //testing websocket, only for backend use
+//    @RequestMapping(value = "/loginTest/{email}/{password}", method = POST, produces = "application/json;charset=UTF-8")
+//    public String loginTest(@PathVariable String email, @PathVariable String password) throws JSONException {
+//
+//        List<User> allUsers = ur.findAll();
+//        int isValid = -1, userID = -1;
+//        for (int i = 0; i < allUsers.size(); i++) {
+//            User user = allUsers.get(i);
+//            if (user.getEmail().equals(email)) {
+//                if (user.getPassword().equals(password)) {
+//                    isValid = 1;
+//                    userID = user.getId();
+//                }
+//            }
+//        }
+//        JSONObject o = new JSONObject();
+//        JSONObject messages = new JSONObject();
+//        HashMap<Integer, ArrayList<Message>> hm = getMessages(userID);
+//        for (int cr_id : hm.keySet()){
+//            ArrayList<String> temp = new ArrayList<>();
+//            hm.get(cr_id).forEach( (m) -> temp.add(m.getMessage()));
+//            messages.put(String.valueOf(cr_id), temp);
+//        }
+//        o.put("status", isValid);
+//        o.put("messages", messages);
+//
+//        return o.toString();
+//    }
 
     @RequestMapping(value = "/delete", method = DELETE, produces = "application/json;charset=UTF-8")
     @ResponseBody

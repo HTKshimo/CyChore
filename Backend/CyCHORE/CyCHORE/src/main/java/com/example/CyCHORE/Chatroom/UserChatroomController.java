@@ -30,9 +30,7 @@ public class UserChatroomController {
         this.ucr = ucr;
     }
 
-    @RequestMapping(value = "/addUserToChatroom/{user_id}/{chatroom_id}", method = POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public static void addUserToChatroom(@PathVariable int user_id, @PathVariable int chatroom_id) {
+    public static void addUserToChatroom(int user_id, int chatroom_id) {
         UserChatroom uch = new UserChatroom();
         uch.chatroom_id = chatroom_id;
         uch.user_id = user_id;

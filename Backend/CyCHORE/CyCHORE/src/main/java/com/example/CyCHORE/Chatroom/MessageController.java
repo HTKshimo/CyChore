@@ -24,9 +24,7 @@ public class MessageController {
         this.mr = mr;
     }
 
-    @RequestMapping(value = "/addMessage/{message}/{chatroom_id}/{sender_id}", method = POST, produces = "application/json;charset=UTF-8")
-    @ResponseBody
-    public static void addMessage(@PathVariable String message, @PathVariable int chatroom_id, @PathVariable int sender_id){
+    public static void addMessage(String message, int chatroom_id, int sender_id){
         Message m = new Message(message, chatroom_id, sender_id);
         mr.save(m);
         System.out.println(m.getMessage());
