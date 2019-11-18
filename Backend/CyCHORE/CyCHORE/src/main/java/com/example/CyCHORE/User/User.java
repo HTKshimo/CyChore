@@ -88,4 +88,8 @@ public class User {
     public Boolean getOnline(){
         return online;
     }
+
+    public void setOnline(Boolean online) {
+        this.online = online;
+    }
 }

@@ -125,10 +125,12 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import com.example.CyCHORE.Chatroom.Chatroom;
+import com.example.CyCHORE.Chatroom.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import static com.example.CyCHORE.Chatroom.MessageController.addMessage;
 import static com.example.CyCHORE.Chatroom.UserChatroomController.*;
 import static com.example.CyCHORE.User.UserController.*;
 
@@ -178,20 +180,11 @@ public class WebSocketServer {
     {
         // Handle new messages
         logger.info("Entered into Message: Got Message:"+message);
-        int user_id = sessionUsernameMap.get(session);
-        String username = getUsername(user_id);
+        int sender_id = sessionUsernameMap.get(session);
+        String username = getUsername(sender_id);
         int room_id = sessionRoomMap.get(session);
-
-//        if (message.startsWith("@")) // Direct message to a user using the format "@username <message>"
-//        {
-//            String destUsername = message.split(" ")[0].substring(1); // don't do this in your code!
-//            sendMessageToPArticularUser(destUsername, "[DM] " + username + ": " + message);
-//            sendMessageToPArticularUser(username, "[DM] " + username + ": " + message);
-//        }
-//        else // Message to whole chat
-//        {
         broadcastToRoom(room_id, username + ": " + message);
-//        }
+        addMessage(message, room_id, sender_id);
     }
 
     @OnClose
@@ -216,6 +209,7 @@ public class WebSocketServer {
     {
         // Do error handling here
         logger.info("Entered into Error");
+        logger.info(throwable.toString());
     }
 
 //    private void sendMessageToPArticularUser(String username, String message)
