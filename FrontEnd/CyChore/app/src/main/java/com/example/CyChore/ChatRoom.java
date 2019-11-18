@@ -42,6 +42,7 @@ public class ChatRoom extends AppCompatActivity {
     private Handler chatUpdateHandler;
     private EditText msgToSend;
     private WebSocket chatSocket;
+    private String wsurl = "wss://echo.websocket.org";
 
 
     @SuppressLint("HandlerLeak")
@@ -83,7 +84,7 @@ public class ChatRoom extends AppCompatActivity {
 
         client = new OkHttpClient();
 
-        Request request = new Request.Builder().url("wss://echo.websocket.org").build();
+        Request request = new Request.Builder().url(wsurl).build();
         WebSocketListener listener = new ChatWebSocketListener();
         chatSocket = client.newWebSocket(request, listener);
         client.dispatcher().executorService().shutdown();
@@ -102,8 +103,8 @@ public class ChatRoom extends AppCompatActivity {
             return;
 
         }
-        toSend = usrName+": " + toSend;
-        output(toSend);
+//        toSend = usrName+": " + toSend;
+//        output(toSend);
         chatSocket.send(toSend);
         msgToSend.setText("");
 
@@ -119,7 +120,7 @@ public class ChatRoom extends AppCompatActivity {
         @Override
         public void onMessage(WebSocket webSocket, String text) {
             Log.d("onMessage: ", text);
-            output("Receiving : " + text);
+            output( text);
         }
         @Override
         public void onMessage(WebSocket webSocket, ByteString bytes) {

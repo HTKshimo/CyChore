@@ -12,7 +12,7 @@ import java.util.Map;
 
 import com.example.CyChore.MainActivity;
 
-public class TaskCollection  extends MainActivity {
+public class TaskCollection {
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
 
     public static final Map<Integer, TaskItem> ITEM_MAP = new HashMap<Integer, TaskItem>();

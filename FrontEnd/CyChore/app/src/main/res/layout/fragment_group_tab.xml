@@ -20,14 +20,12 @@
 
     <Button
         android:id="@+id/AddTaskButton"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
-        android:background="#5973E42D"
-        android:foreground="@drawable/icons8addproperty_80"
+        android:foreground="@drawable/icons8addproperty26"
         android:onClick="jumpAddTask"
-        android:shadowColor="#3F51B5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +33,7 @@
         android:id="@+id/GroupTabMain"
         android:layout_width="409dp"
         android:layout_height="0dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +43,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
 
             <TextView

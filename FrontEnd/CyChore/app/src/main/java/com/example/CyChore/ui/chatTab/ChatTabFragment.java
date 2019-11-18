@@ -46,6 +46,7 @@ public class ChatTabFragment extends Fragment {
     }
 
     public static void chatlist_update() {
+
     }
 
     @Override

@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("login reply", reply);
                     try {
                         JSONObject respond_json = new JSONObject(reply);
+
                         // TODO check login status and decide jump or not
                         if ((int) respond_json.get("status") == 0) {
                             loginJumpHome(respond_json.getInt("uid"), respond_json.getInt("groupid"), respond_json.getString("uname"), respond_json.getInt("tier"));
@@ -273,16 +274,5 @@ public class MainActivity extends AppCompatActivity {
         login_info.edit().putBoolean("auto_login", checked).commit();
     }
 
-    /*@Yamini
-     * */
-    public int getCheckAdmin(int checkAdmin) {
-        checkAdmin = this.checkAdmin;
-        if (checkAdmin == 0) {
-            //go to Admin Dashboard containing, user list, complaints and requests to sublisting
-            return 0;
-        } else {
-            //regular user
-            return 1;
-        }
-    }
+
 }

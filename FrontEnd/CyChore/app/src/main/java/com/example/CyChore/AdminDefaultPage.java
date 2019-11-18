@@ -27,6 +27,8 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        getSupportActionBar().hide();
     }
 
     @Override
