@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_group_tab" />
 
     <fragment
+        android:id="@+id/navigation_listing"
+        android:name="com.example.CyChore.ui.listingTab.ListingFragement"
+        android:label="@string/title_listing"
+        tools:layout="@layout/fragment_listing" />
+
+    <fragment
         android:id="@+id/navigation_chats"
         android:name="com.example.CyChore.ui.chatTab.ChatTabFragment"
         android:label="@string/title_chats"

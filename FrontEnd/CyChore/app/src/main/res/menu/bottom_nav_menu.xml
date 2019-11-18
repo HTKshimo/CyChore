@@ -3,13 +3,18 @@
 
     <item
         android:id="@+id/navigation_tasks"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/icons8todolist"
         android:title="@string/title_tasks" />
 
     <item
         android:id="@+id/navigation_group"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/icons8group"
         android:title="@string/title_group" />
+
+    <item
+        android:id="@+id/navigation_listing"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_listing" />
 
     <item
         android:id="@+id/navigation_chats"
