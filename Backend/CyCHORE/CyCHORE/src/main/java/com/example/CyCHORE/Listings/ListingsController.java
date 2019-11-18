@@ -1,6 +1,5 @@
 package com.example.CyCHORE.Listings;
 
-import com.example.CyCHORE.Complaint.Complaint;
 import org.apache.tomcat.util.http.parser.HttpParser;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +30,6 @@ public class ListingsController {
     ListingsRepository lr;
 
 
-
     //This method returns sublease listings made by a particular user; FOR MY LISTINGS
     //This method needs uid of the user, that's all.
     @RequestMapping(value = "/getListingforUser", method = POST, produces ="application/json;charset=UTF-8")
@@ -40,30 +38,31 @@ public class ListingsController {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
-        List<Listings> allListing;
-        allListing = lr.findAll();
-        //List<String> complaintList = new ArrayList<String>();
+        List<Listings> SubleaseList;
+        SubleaseList = lr.findAll();
         JSONObject toSend = new JSONObject();
-        JSONObject ListB = new JSONObject();
+        JSONObject SubleaseReturn = new JSONObject();
+        String s = null;
         int ListCount = 0;
-        for (Listings list : allListing) {
-            if (list.user_id == uid){
+        for (Listings temp : SubleaseList) {
+
+            if (temp.user_id == uid){
 
                 JSONObject curList = new JSONObject();
                 //JSONObject curTask = new JSONArray();
-                curList.put("Address",list.getAddress());
-                curList.put("Group id", list.getGroup_id());
-                curList.put("User id",list.getUser_id());
-                curList.put("Price", list.getPrice());
-                curList.put("Description", list.getDescription());
-                // Comp.put(temp.toString(), curComp);
-                ListB.put(list.toString(), curList);
+                curList.put("Address",temp.getAddress());
+                //curList.put("Group id", list.getGroup_id().toString());
+                //curList.put("User id",list.getUser_id().toString());
+                curList.put("Price", temp.getPrice());
+                curList.put("Description", temp.getDescription());
+                SubleaseReturn.put(temp.toString(), curList);
                 ListCount++;
             }
         }
         toSend.put("status", "0");
         toSend.put("Number of Sublease Listings", ListCount);
-        toSend.put("List of Sublease Listings:", ListB );
+        toSend.put("List of Sublease Listings:", SubleaseReturn);
         return toSend.toString();
+        //return String.valueOf(lr.findAll().size());
     }
 }

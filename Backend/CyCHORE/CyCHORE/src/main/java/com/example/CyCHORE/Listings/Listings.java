@@ -3,7 +3,7 @@ package com.example.CyCHORE.Listings;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Listings")
+@Table(name="listings")
 public class Listings {
 
 
@@ -26,16 +26,13 @@ public class Listings {
     @Column(name = "description")
     String description;
 
-    @Column(name = "status")
-    Integer status;
-
     public  String getAddress() {return address;}
     public Integer getList_id() { return list_id; }
     public Integer getGroup_id() { return group_id; }
     public Integer getUser_id() { return user_id; }
     public String getDescription() { return description; }
     public Float getPrice() { return price; }
-    public Integer getStatus() { return status; }
+
 
 
 }

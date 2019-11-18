@@ -113,7 +113,6 @@ public class UserController {
     }
 
     //GroupInfo()
-    //UPDATE!!!!!!!!
     @RequestMapping(value = "/GroupInfo", method = POST, produces = "application/json;charset=UTF-8")
     public String GroupInfo (HttpServletRequest request) throws JSONException, IOException {
 
