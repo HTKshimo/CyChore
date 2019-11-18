@@ -51,7 +51,44 @@ public class ListingsController {
                 JSONObject curList = new JSONObject();
                 //JSONObject curTask = new JSONArray();
                 curList.put("Address",temp.getAddress());
-                //curList.put("Group id", list.getGroup_id().toString());
+                curList.put("Group id", temp.getGroup_id());
+                curList.put("User id",temp.getUser_id());
+                curList.put("Price", temp.getPrice());
+                curList.put("Description", temp.getDescription());
+                SubleaseReturn.put(temp.toString(), curList);
+                ListCount++;
+            }
+        }
+        toSend.put("status", "0");
+        toSend.put("Number of Sublease Listings for User", ListCount);
+        toSend.put("List of Sublease Listings for User:", SubleaseReturn.toString());
+        return toSend.toString();
+        //return String.valueOf(lr.findAll().size());
+    }
+
+
+    //This method returns sublease listings made by a particular user; FOR MY LISTINGS
+    //This method needs uid of the user, that's all.
+    @RequestMapping(value = "/getListingforGroup", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public String getListingforGroup(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer gid = Integer.valueOf((Integer) jsonObj.get("gid"));
+        List<Listings> SubleaseList;
+        SubleaseList = lr.findAll();
+        JSONObject toSend = new JSONObject();
+        JSONObject SubleaseReturn = new JSONObject();
+        String s = null;
+        int ListCount = 0;
+        for (Listings temp : SubleaseList) {
+
+            if (temp.group_id == gid){
+
+                JSONObject curList = new JSONObject();
+                //JSONObject curTask = new JSONArray();
+                curList.put("Address",temp.getAddress());
+                curList.put("Group id", temp.getGroup_id());
                 //curList.put("User id",list.getUser_id().toString());
                 curList.put("Price", temp.getPrice());
                 curList.put("Description", temp.getDescription());
@@ -60,8 +97,8 @@ public class ListingsController {
             }
         }
         toSend.put("status", "0");
-        toSend.put("Number of Sublease Listings", ListCount);
-        toSend.put("List of Sublease Listings:", SubleaseReturn);
+        toSend.put("Number of Sublease Listings for Group", ListCount);
+        toSend.put("List of Sublease Listings for this Group:", SubleaseReturn.toString());
         return toSend.toString();
         //return String.valueOf(lr.findAll().size());
     }

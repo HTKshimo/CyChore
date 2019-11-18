@@ -51,9 +51,9 @@ public class ComplaintController {
 
                 JSONObject curComp = new JSONObject();
                 //JSONObject curTask = new JSONArray();
-                curComp.put("tid",temp.getId());
-                curComp.put("description", temp.getDescription());
-                curComp.put("Task status:", temp.getStatus());
+                curComp.put("tid",temp.getId().toString());
+                curComp.put("description", temp.getDescription().toString());
+                curComp.put("Task status:", temp.getStatus().toString());
                // Comp.put(temp.toString(), curComp);
                 Comp.put(temp.toString(), curComp);
                 ComplaintCount++;
@@ -61,7 +61,7 @@ public class ComplaintController {
         }
         toSend.put("status", "0");
         toSend.put("Number of complaints", ComplaintCount);
-        toSend.put("List of complaints:", Comp );
+        toSend.put("List of complaints:", Comp.toString());
         return toSend.toString();
     }
 
