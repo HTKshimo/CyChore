@@ -66,7 +66,41 @@ public class ComplaintController {
     }
 
 
-    // Make a method for changing complaint submission by a user
+    //This method returns all complaints made all users; FOR ADMIN
+    //Task status indicates whether or not a task has been completed
+    //If Task status is '0', the task is not completed
+    //If Task status is '1', the task is completed
+    @RequestMapping(value = "/getAllComplaints", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public String getAllComplaints(HttpServletRequest request) throws JSONException, IOException {
+//        String data = request.getReader().lines().collect(Collectors.joining());
+//        JSONObject jsonObj = new JSONObject(data);
+//        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        List<Complaint> allComplaintList;
+        allComplaintList = cr.findAll();
+        List<String> complaintList = new ArrayList<String>();
+        JSONObject toSend = new JSONObject();
+        JSONObject Comp = new JSONObject();
+        int ComplaintCount = 0;
+        for (Complaint temp : allComplaintList) {
+            //if (temp.filer_id == uid){
+
+                JSONObject curComp = new JSONObject();
+                //JSONObject curTask = new JSONArray();
+                curComp.put("tid",temp.getId().toString());
+                curComp.put("description", temp.getDescription().toString());
+                curComp.put("Task status:", temp.getStatus().toString());
+                curComp.put("Filer id", temp.getFiler_id());
+                // Comp.put(temp.toString(), curComp);
+                Comp.put(String.valueOf(temp.id), curComp);
+                ComplaintCount++;
+            //}
+        }
+        toSend.put("status", "0");
+        toSend.put("Number of complaints", ComplaintCount);
+        toSend.put("List of complaints:", Comp.toString());
+        return toSend.toString();
+    }
 
 
 
