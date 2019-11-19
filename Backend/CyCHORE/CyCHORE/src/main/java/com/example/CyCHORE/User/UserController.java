@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static com.example.CyCHORE.Chatroom.MessageController.getMessages;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 import java.io.IOException;
@@ -209,18 +208,10 @@ public class UserController {
         }
 
         JSONObject o = new JSONObject();
-        JSONObject messages = new JSONObject();
-        HashMap<Integer, ArrayList<Message>> hm = getMessages(userID);
-        for (int cr_id : hm.keySet()){
-            ArrayList<String> temp = new ArrayList<>();
-            hm.get(cr_id).forEach( (m) -> temp.add(m.getMessage()));
-            messages.put(String.valueOf(cr_id), temp);
-        }
         o.put("status", isValid);
         o.put("uid", userID);
         o.put("tier", tier);
         o.put("groupid", group_id);
-        o.put("messages", messages);
 
         return o.toString();
     }

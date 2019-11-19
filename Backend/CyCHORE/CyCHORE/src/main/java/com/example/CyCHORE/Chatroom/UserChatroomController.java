@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.example.CyCHORE.Chatroom.MessageController.getChatroomMessages;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
@@ -38,7 +37,7 @@ public class UserChatroomController {
     }
 
     @RequestMapping(value = "/createChatroomWithUsers", method = POST, produces = "application/json;charset=UTF-8")
-    public static int createChatroomWithUsers(HttpServletRequest request) throws JSONException, IOException { //change this to HTTP method, addUserToChatroom should not be HTTP method
+    public String createChatroomWithUsers(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer[] user_ids = (Integer[]) jsonObj.get("user_ids");
@@ -48,7 +47,10 @@ public class UserChatroomController {
         for (int u_id : user_ids){
             addUserToChatroom(u_id, cr_id);
         }
-        return cr_id;
+        JSONObject toReturn = new JSONObject();
+        toReturn.put("status", 0);
+        toReturn.put("cr_id", cr_id);
+        return toReturn.toString();
     }
 
     public static ArrayList<Integer> getChatroomUsers(int chatroom_id) {
@@ -75,6 +77,34 @@ public class UserChatroomController {
         return cr_ids;
     }
 
+    @RequestMapping(value = "/getUserChatHistory", method = POST, produces = "application/json;charset=UTF-8")
+    public static String getUserChatHistory(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        int user_id = (int) jsonObj.get("user_id");
+        int cr_id;
+        TreeMap<Long, Integer> cr_ids = new TreeMap<>(Collections.reverseOrder()); //sorted chatroom_ids based on timestamp
+        List<UserChatroom> allUserChatroom;
+        allUserChatroom = ucr.findAll();
+        for (UserChatroom temp : allUserChatroom) {
+            if (temp.getUser_id() == user_id) {
+                cr_id = temp.getChatroom_id();
+                cr_ids.put(chr.findById(cr_id).get().getLastUpdatedTimestamp(), cr_id);
+            }
+        }
+        Collection<Integer> sortedCrIDs = cr_ids.values();
+        JSONObject toReturn = new JSONObject();
+        toReturn.put("status", 0);
+        toReturn.put("cr_ids", sortedCrIDs); //list of chatroom_ids belong to this user in order latest -> oldest
+        for (int cr : sortedCrIDs){
+            JSONObject crJson = new JSONObject();
+            crJson.put("Members", getChatroomUsers(cr));
+            crJson.put("chatlog", getChatroomMessages(cr));
+            toReturn.put(String.valueOf(cr), crJson);
+        }
+        return toReturn.toString();
+    }
+
     public static String getChatroomName(int chatroom_id) {
         List<Chatroom> allChatrooms;
         allChatrooms = chr.findAll();
@@ -84,6 +114,26 @@ public class UserChatroomController {
             }
         }
         return null;
+    }
+
+    /**
+     *
+     * @param chatroom_id: id of chatroom for which timestamp is updated
+     * @return
+     * 0: chatroom does not exist
+     * 1: success
+     */
+    public static int setLastUpdatedTimestamp(int chatroom_id){
+        Optional<Chatroom> chatroom = chr.findById(chatroom_id);
+        if (chatroom.isPresent()) {
+            Chatroom c =  chatroom.get();
+            Date date= new Date();
+            c.setLastUpdatedTimestamp(date.getTime());
+            chr.save(c);
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

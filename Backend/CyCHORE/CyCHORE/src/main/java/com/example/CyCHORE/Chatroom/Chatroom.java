@@ -13,6 +13,9 @@ public class Chatroom {
     @Column
     String group_name;
 
+    @Column
+    Long lastUpdatedTimestamp;
+
     public Integer getId() {
         return id;
     }
@@ -21,4 +24,11 @@ public class Chatroom {
         return group_name;
     }
 
+    public Long getLastUpdatedTimestamp() {
+        return lastUpdatedTimestamp;
+    }
+
+    public void setLastUpdatedTimestamp(Long lastUpdatedTimestamp) {
+        this.lastUpdatedTimestamp = lastUpdatedTimestamp;
+    }
 }
