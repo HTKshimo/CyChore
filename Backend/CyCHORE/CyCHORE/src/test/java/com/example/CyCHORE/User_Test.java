@@ -76,8 +76,8 @@ public class User_Test {
         request.addParameter("7");
         request.addParameter("DOOBEEDOO");
         try {
-            when(user_mock.ChangePassword(request)).thenReturn("0");
-            assertEquals("0", user_mock.ChangePassword(request));
+            when(user_mock.ChangePassword(request)).thenReturn("1");
+            assertEquals("1", user_mock.ChangePassword(request));
             MockHttpServletRequest request2 = new MockHttpServletRequest();
             assertEquals(null, user_mock.ChangePassword(request2));
         } catch (JSONException e) {

@@ -1,6 +1,7 @@
 package com.example.CyCHORE;
 
-import com.example.CyCHORE.*;
+
+import com.example.CyCHORE.User.UserController.*;
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.Assert.assertEquals;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+import com.example.CyCHORE.User.UserController;
 import org.json.JSONException;
 import org.junit.Test;
 //import org.junit.jupiter.api.Test;
@@ -28,8 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 //import org.springframework.test.context.junit4.SpringRunner;
 
-//public class Login_Test {
-//}
 
 
 @RunWith(SpringRunner.class)
@@ -37,7 +37,7 @@ import java.io.IOException;
 public class Login_Test{
     @MockBean
     //DataService dataServiceMock;
-    Login loginmock;
+            UserController loginmock;
     @Mock
     HttpServletRequest request;
 
