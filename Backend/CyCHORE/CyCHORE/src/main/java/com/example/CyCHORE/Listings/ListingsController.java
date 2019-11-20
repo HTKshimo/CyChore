@@ -61,7 +61,7 @@ public class ListingsController {
         }
         toSend.put("status", "0");
         toSend.put("Number of Sublease Listings for User", ListCount);
-        toSend.put("List of Sublease Listings for User:", SubleaseReturn.toString());
+        toSend.put("List of Sublease Listings for User:", SubleaseReturn);
         return toSend.toString();
         //return String.valueOf(lr.findAll().size());
     }
@@ -99,7 +99,7 @@ public class ListingsController {
         }
         toSend.put("status", "0");
         toSend.put("Number of Sublease Listings for Group", ListCount);
-        toSend.put("List of Sublease Listings for this Group:", SubleaseReturn.toString());
+        toSend.put("List of Sublease Listings for this Group:", SubleaseReturn);
         return toSend.toString();
         //return String.valueOf(lr.findAll().size());
     }

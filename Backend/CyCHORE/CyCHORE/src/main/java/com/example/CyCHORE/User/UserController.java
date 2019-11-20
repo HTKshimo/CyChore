@@ -111,7 +111,7 @@ public class UserController {
             }
         if(count >=1){
             toReturn.put("status","0");
-            toReturn.put("Names of users in the group", jsonArray.toString());
+            toReturn.put("Names of users in the group", jsonArray);
 
         }
        else{

@@ -83,8 +83,8 @@ public class TaskController {
         
         toSend.put("todo_count",todoCount);
         toSend.put("finish_count",finishCount);
-        toSend.put("todo_json",toDo.toString());
-        toSend.put("finish_json",finished.toString());
+        toSend.put("todo_json",toDo);
+        toSend.put("finish_json",finished);
         return toSend.toString();
     }
 
@@ -120,7 +120,7 @@ public class TaskController {
             }
         }
         toSend.put("status", "0");
-        toSend.put("history",jsonArray.toString());
+        toSend.put("history",jsonArray);
         return toSend.toString();
     }
 
@@ -354,7 +354,7 @@ public class TaskController {
     Gets all the tasks that have been pushed to the pool by the current tenant users. This method takes the user_id and the
     group_id as well as a request
      */
-    @RequestMapping(value = "/getTaskPool/{request}/{uid}/{gid}", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getTaskPool", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String getTaskPool(HttpServletRequest request) throws JSONException, IOException {
         //@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid
@@ -362,7 +362,7 @@ public class TaskController {
         JSONObject jsonObj = new JSONObject(data);
         //String changeTo = (String) jsonObj.get("status");
         Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
-        Integer gid = Integer.valueOf((Integer) jsonObj.get("group id"));
+        Integer gid = Integer.valueOf((Integer) jsonObj.get("groupid"));
         List<Task> allTaskList;
         allTaskList = tr.findAll();
         JSONObject toSend = new JSONObject();
@@ -371,7 +371,7 @@ public class TaskController {
             JSONObject curTask = new JSONObject();
             if(temp.in_pool != null){
             if(temp.in_pool == true) {
-                if (temp.is_assigned_to() == uid || temp.group_id == gid) {
+                if (temp.is_assigned_to() == uid && temp.group_id == gid) {
                     curTask.put("title", temp.toString());
                     curTask.put("tid", temp.getId());
                     curTask.put("ddl", temp.getDdl());
@@ -383,7 +383,7 @@ public class TaskController {
             }
         }
         toSend.put("status", "0");
-        toSend.put("pool_list",jsonArray.toString());
+        toSend.put("pool_list",jsonArray);
         return toSend.toString();
     }
 

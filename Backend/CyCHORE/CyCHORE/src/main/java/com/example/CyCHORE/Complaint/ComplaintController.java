@@ -61,7 +61,7 @@ public class ComplaintController {
         }
         toSend.put("status", "0");
         toSend.put("Number of complaints", ComplaintCount);
-        toSend.put("List of complaints:", Comp.toString());
+        toSend.put("List of complaints:", Comp);
         return toSend.toString();
     }
 
@@ -101,7 +101,7 @@ public class ComplaintController {
         toSend.put("status", "0");
         toSend.put("Number of complaints", ComplaintCount);
         //toSend.put("List of complaints:", Comp.toString());
-        toSend.put("List of complaints:", jsonArray.toString());
+        toSend.put("List of complaints:", jsonArray);
         return toSend.toString();
     }
 
