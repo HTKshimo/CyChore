@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.CyChore.data.ChatCollection;
+import com.example.CyChore.data.IssueCollection;
 import com.example.CyChore.data.ListItem;
 import com.example.CyChore.data.TaskCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
@@ -54,17 +55,15 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
             ChatRoom.chatPosition = listType;
 
             startActivity(intent);
-        } else if (item.title.equals("task")) {
-            TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
+        } else if (item.title.equals("issue")) {
+            IssueCollection.IssueItem issue = (IssueCollection.IssueItem) item;
             Intent intent = new Intent(this, IssueDetail.class);
 
 
-            IssueDetail.tid = task.tid;
+            IssueDetail.tid = issue.tid;
             IssueDetail.uid = uid;
-            IssueDetail.tstatus = task.tstatus;
-            IssueDetail.ddl = task.ddl.getTime();
-            IssueDetail.name = task.detail;
-            IssueDetail.Complain = "N/A";
+            IssueDetail.Complain = issue.complain;
+            IssueDetail.fid = issue.fid;
 
 
             startActivity(intent);

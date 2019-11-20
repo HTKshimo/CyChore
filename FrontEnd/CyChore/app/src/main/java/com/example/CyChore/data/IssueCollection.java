@@ -35,56 +35,26 @@ public class IssueCollection {
         ITEM_MAP.remove(item.tid, item);
     }
 
+    public static void clear(){
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
+
     public static class IssueItem extends ListItem {
         public int tid;
-        public int tstatus = 1;
-        public Time ddl = new Time(System.currentTimeMillis());
-        public String dueTime = "";
+        public int fid;
         public String complain = "";
 
-        public IssueItem(int givenTid, String name, long givenTime, int status, String complainContent) {
-            super("task", name);
+        public IssueItem(int givenTid, String name, String complainContent, int filerid) {
+            super("issue", name);
             tid = givenTid;
-            ddl.setTime(givenTime);
-            tstatus = status;
             complain = complainContent;
+            fid = filerid;
 
-            long time_delta = givenTime - System.currentTimeMillis();
-            if (time_delta < 0) {
-                dueTime = "Overdue!";
-            } else if (time_delta / (1000 * 60 * 60 * 24) > 7) {
-                dueTime = "More than a week";
-            } else if (time_delta / (1000 * 60 * 60 * 24) > 1) {
-                dueTime = time_delta / (1000 * 60 * 60 * 24) + "days";
-            } else if (time_delta / (1000 * 60 * 60) > 0) {
-                dueTime = time_delta / (1000 * 60 * 60) + "hours";
-            } else if (time_delta / (1000 * 60) > 30) {
-                dueTime = "More than 30 min";
-            } else if (time_delta / (1000 * 60) > 0) {
-                dueTime = time_delta / (1000 * 60) + "minutes";
-            } else {
-                dueTime = "less than a minutes";
-            }
 
         }
 
-        @Override
-        public String toString() {
-            return title + ": " + detail;
-        }
 
-        public String toJSON() {
-            JSONObject Issue = new JSONObject();
-            try {
-                Issue.put("title", detail);
-                Issue.put("tid", tid);
-                Issue.put("ddl", ddl.getTime());
-                Issue.put("status", tstatus);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return Issue.toString();
-        }
     }
 }
 

@@ -23,6 +23,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -139,7 +140,7 @@ public class ChatTabFragment extends Fragment {
             for (int j = 0; j < givenChatlog.length(); j++) {
                 chatlog.add(givenChatlog.get(j).toString());
             }
-            chatItems.addItem(new ChatCollection.ChatSelection(chatlog.get(chatlog.size() - 1), chatlog));
+            chatItems.addItem(new ChatCollection.ChatSelection("Issue #"+(new Random().nextInt(200)), chatlog));
         }
 
         chatsLogUpdateHandler.sendEmptyMessage(0);

@@ -39,6 +39,8 @@ public class SubleaseCollection {
         int lid;
         public subleaseItem(String name,String addr,String description,int lid){
             super("sublease",name);
+
+            //TODO
         }
     }
 }
