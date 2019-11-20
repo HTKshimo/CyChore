@@ -376,6 +376,7 @@ public class TaskController {
                     curTask.put("tid", temp.getId());
                     curTask.put("ddl", temp.getDdl());
                     curTask.put("complete", temp.is_completed());
+                    //JObject.Parse(curTask);
                     jsonArray.put(curTask);
                 }
             }

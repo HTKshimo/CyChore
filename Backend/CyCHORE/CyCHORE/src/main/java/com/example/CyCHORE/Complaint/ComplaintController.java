@@ -81,6 +81,7 @@ public class ComplaintController {
         List<String> complaintList = new ArrayList<String>();
         JSONObject toSend = new JSONObject();
         JSONObject Comp = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
         int ComplaintCount = 0;
         for (Complaint temp : allComplaintList) {
             //if (temp.filer_id == uid){
@@ -92,13 +93,15 @@ public class ComplaintController {
                 curComp.put("Task status:", temp.getStatus().toString());
                 curComp.put("Filer id", temp.getFiler_id());
                 // Comp.put(temp.toString(), curComp);
-                Comp.put(String.valueOf(temp.id), curComp);
+                //Comp.put(String.valueOf(temp.id), curComp);
+            jsonArray.put(curComp);
                 ComplaintCount++;
             //}
         }
         toSend.put("status", "0");
         toSend.put("Number of complaints", ComplaintCount);
-        toSend.put("List of complaints:", Comp.toString());
+        //toSend.put("List of complaints:", Comp.toString());
+        toSend.put("List of complaints:", jsonArray.toString());
         return toSend.toString();
     }
 
