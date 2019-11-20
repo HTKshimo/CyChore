@@ -140,21 +140,41 @@ public class TaskController {
         String description = (String) jsonObj.get("description");
         Integer g_id = Integer.valueOf((Integer) jsonObj.get("groupid"));
         Long ddl = Long.valueOf((Long) jsonObj.get("deadline"));
-
+        List<Task> allTasks = tr.findAll();
         JSONObject toReturn = new JSONObject();
         Task t = new Task();
+        int isDuplicate = 0;
         Timestamp timestamp = new Timestamp(ddl);
-        t.deadline = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(timestamp);
-        t.group_id = g_id;
-        t.description = description;
-        t.title = title;
-        tr.save(t);
-        toReturn.put("status","0");
-        toReturn.put("title",t.title);
-        toReturn.put("tid",t.id);
-        toReturn.put("description",t.description);
-        toReturn.put("ddl",t.deadline);
-        toReturn.put("complete","1");
+        for (int i = 0; i < allTasks.size(); i++) {
+            Task task = allTasks.get(i);
+            if (!task.title.equals(title)) {
+                if (!task.description.equals(description)) {
+                    if(!task.group_id.equals(g_id)){
+                        if (!task.deadline.equals(ddl)) {
+                            t.deadline = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(timestamp);
+                            t.group_id = g_id;
+                            t.description = description;
+                            t.title = title;
+                            tr.save(t);
+                            toReturn.put("status","0");
+                            toReturn.put("title",t.title);
+                            toReturn.put("tid",t.id);
+                            toReturn.put("description",t.description);
+                            toReturn.put("ddl",t.deadline);
+                            toReturn.put("complete","1");
+
+                        }
+                    }
+                }
+            }
+            else{
+                isDuplicate = 1;
+                toReturn.put("status", "1");
+            }
+        }
+//        userID = user.getId();
+//        tier = user.getTier();
+//        group_id = user.getGroupId();
 
         return toReturn.toString();
     }
