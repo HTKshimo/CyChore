@@ -103,8 +103,6 @@ public class ChatRoom extends AppCompatActivity {
             return;
 
         }
-//        toSend = usrName+": " + toSend;
-//        output(toSend);
         chatSocket.send(toSend);
         msgToSend.setText("");
 

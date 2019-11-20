@@ -12,28 +12,34 @@ public class ChatCollection {
     public static final Map<String, ChatSelection> ITEM_MAP = new HashMap<String, ChatSelection>();
 
     static {
-        // Add some sample items.
-        ArrayList<String> MrHouseChatLog = new ArrayList<>();
-
-        MrHouseChatLog.add("JohnSmith: I'll take care of it.");
-        MrHouseChatLog.add("MrHouse: With this accomplished, all preparations will have been made. ");
-
-        MrHouseChatLog.add("JohnSmith: Before I leave, I have a question. What the hell are you?");
-        MrHouseChatLog.add("MrHouse: A crude question, crudely asked.");
-
-        MrHouseChatLog.add("JohnSmith: Goodbye.");
-        MrHouseChatLog.add("MrHouse: Well enough. Be on your way.");
-        addItem(new ChatSelection("MrHouse",MrHouseChatLog));
-
-        ArrayList<String> echoLog = new ArrayList<>();
-        echoLog.add("echo: start");
-        addItem(new ChatSelection("Echo",echoLog));
+//        // Add some sample items.
+//        ArrayList<String> MrHouseChatLog = new ArrayList<>();
+//
+//        MrHouseChatLog.add("JohnSmith: I'll take care of it.");
+//        MrHouseChatLog.add("MrHouse: With this accomplished, all preparations will have been made. ");
+//
+//        MrHouseChatLog.add("JohnSmith: Before I leave, I have a question. What the hell are you?");
+//        MrHouseChatLog.add("MrHouse: A crude question, crudely asked.");
+//
+//        MrHouseChatLog.add("JohnSmith: Goodbye.");
+//        MrHouseChatLog.add("MrHouse: Well enough. Be on your way.");
+//        addItem(new ChatSelection("MrHouse",MrHouseChatLog));
+//
+//        ArrayList<String> echoLog = new ArrayList<>();
+//        echoLog.add("echo test start");
+//        addItem(new ChatSelection("Echo",echoLog));
     }
 
-    private static void addItem(ChatSelection item) {
+    public static void addItem(ChatSelection item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
+
+    public static void clear(){
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
+
 
     public static class ChatSelection extends ListItem {
 

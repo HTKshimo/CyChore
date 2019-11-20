@@ -12,19 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.CyChore.ProfileEditPage"></activity>
+        <activity android:name=".IssueDetail"></activity>
+        <activity android:name=".ProfileEditPage" />
         <activity
-            android:name="com.example.CyChore.AdminDefaultPage"
+            android:name=".AdminDefaultPage"
             android:label="@string/title_activity_admin_default_page" />
-        <activity android:name="com.example.CyChore.ChatRoom" />
-        <activity android:name="com.example.CyChore.AddTaskPage" />
-        <activity android:name="com.example.CyChore.TaskDetail" />
-        <activity android:name="com.example.CyChore.JoinGroup" />
+        <activity android:name=".ChatRoom" />
+        <activity android:name=".AddTaskPage" />
+        <activity android:name=".TaskDetail" />
+        <activity android:name=".JoinGroup" />
         <activity
-            android:name="com.example.CyChore.UsrDefaultPage"
+            android:name=".UsrDefaultPage"
             android:label="@string/title_activity_usr_default_page" />
-        <activity android:name="com.example.CyChore.RegistrationPage" />
-        <activity android:name="com.example.CyChore.MainActivity">
+        <activity android:name=".RegistrationPage" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

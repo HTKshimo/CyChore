@@ -1,9 +1,15 @@
 package com.example.CyChore;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.example.CyChore.data.ChatCollection;
 import com.example.CyChore.data.ListItem;
+import com.example.CyChore.data.TaskCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
+import com.example.CyChore.ui.chatTab.ChatTabFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +19,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class AdminDefaultPage extends AppCompatActivity implements OnListFragmentInteractionListener {
+
+    public static String usrName;
+    public static int uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +36,55 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_admin);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
+        ChatTabFragment.uid = uid;
         getSupportActionBar().hide();
     }
 
     @Override
     public void onListFragmentInteraction(ListItem item, int listType) {
+        if (item.title.equals("Log Out")) {
+            logout();
+        }else if (item.title.equals("chat")) {
 
+            ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
+            Intent intent = new Intent(this, ChatRoom.class);
+
+            ChatRoom.chatRoomName = ((ChatCollection.ChatSelection) item).ChatTitle;
+            ChatRoom.chatlog = ((ChatCollection.ChatSelection) item).ChatContent;
+            ChatRoom.chatPosition = listType;
+
+            startActivity(intent);
+        } else if (item.title.equals("task")) {
+            TaskCollection.TaskItem task = (TaskCollection.TaskItem) item;
+            Intent intent = new Intent(this, IssueDetail.class);
+
+
+            IssueDetail.tid = task.tid;
+            IssueDetail.uid = uid;
+            IssueDetail.tstatus = task.tstatus;
+            IssueDetail.ddl = task.ddl.getTime();
+            IssueDetail.name = task.detail;
+            IssueDetail.Complain = "N/A";
+
+
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
+
+
+    public void logout() {
+        getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void jumpProfileEdit() {
+        Intent intent = new Intent(this, ProfileEditPage.class);
+        startActivity(intent);
     }
 }

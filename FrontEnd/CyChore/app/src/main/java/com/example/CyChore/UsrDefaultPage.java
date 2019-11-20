@@ -10,6 +10,7 @@ import com.example.CyChore.data.ChatCollection;
 import com.example.CyChore.data.ListItem;
 import com.example.CyChore.data.TaskCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
+import com.example.CyChore.ui.chatTab.ChatTabFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +46,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
         NavigationUI.setupWithNavController(navView, navController);
 
         getSupportActionBar().hide();
-
-        Intent intent = getIntent();
+        ChatTabFragment.uid = uid;
 
         Log.d("pass_uid:", uid + "");
     }
