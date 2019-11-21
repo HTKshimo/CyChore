@@ -21,7 +21,8 @@ public class ProfileCollection
 
     }
 
-    public ProfileCollection() {
+    public ProfileCollection()
+    {
 
     }
     private static void addItem(ProfileSelection item)

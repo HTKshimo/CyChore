@@ -83,6 +83,21 @@ public class MockitoTest {
         assertEquals("Smitha", mockedSublease.ITEMS.get(1).detail);
 
     }
+
+    //Testing Chat Collection
+    @Test
+    public void testChat()
+    {
+        List<String> chatContent = new ArrayList<String>();
+        chatContent.add("Hello");
+        ChatCollection mockedChat = mock(ChatCollection.class);
+        mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
+        verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
+        assertEquals("Shuang", mockedChat.ITEMS.get(0).ChatTitle);
+        assertEquals("Mohan", mockedChat.ITEMS.get(1).ChatTitle);
+
+    }
+
     //Testing Profile Collection
    /* @Test
     public void testProfile()

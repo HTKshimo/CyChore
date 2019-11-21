@@ -29,6 +29,10 @@ public class ChatCollection {
 //        echoLog.add("echo test start");
 //        addItem(new ChatSelection("Echo",echoLog));
     }
+    public ChatCollection()
+    {
+
+    }
 
     public static void addItem(ChatSelection item)
     {
@@ -43,7 +47,8 @@ public class ChatCollection {
     }
 
 
-    public static class ChatSelection extends ListItem {
+    public static class ChatSelection extends ListItem
+    {
 
         public String ChatTitle;
         public ArrayList<String> ChatContent;
