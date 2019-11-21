@@ -31,11 +31,6 @@ public class SubleaseCollection {
         ITEM_MAP.remove(item.lid, item);
     }
 
-
-
-
-
-
     public static class subleaseItem extends ListItem {
         int lid;
         public subleaseItem(String name,String addr,String description,int lid){
