@@ -15,7 +15,8 @@ public class SubleaseCollection {
         // Add some sample items.
     }
 
-    public SubleaseCollection() {
+    public SubleaseCollection()
+    {
 
     }
 

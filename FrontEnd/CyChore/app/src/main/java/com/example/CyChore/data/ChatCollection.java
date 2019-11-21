@@ -30,12 +30,14 @@ public class ChatCollection {
 //        addItem(new ChatSelection("Echo",echoLog));
     }
 
-    public static void addItem(ChatSelection item) {
+    public static void addItem(ChatSelection item)
+    {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
 
-    public static void clear(){
+    public static void clear()
+    {
         ITEMS.clear();
         ITEM_MAP.clear();
     }
@@ -47,14 +49,13 @@ public class ChatCollection {
         public ArrayList<String> ChatContent;
         public String lastestLine;
 
-        public ChatSelection(String givenTitle, List<String> givenChatContent) {
+        public ChatSelection(String givenTitle, List<String> givenChatContent)
+        {
             super("chat",givenTitle);
 
             ChatTitle = givenTitle;
             ChatContent = new ArrayList<>(givenChatContent);
             lastestLine = givenChatContent.get(givenChatContent.size()-1);
-
-
 
         }
 

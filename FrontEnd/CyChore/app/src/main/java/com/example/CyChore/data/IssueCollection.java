@@ -45,13 +45,12 @@ public class IssueCollection {
         public int fid;
         public String complain = "";
 
-        public IssueItem(int givenTid, String name, String complainContent, int filerid) {
+        public IssueItem(int givenTid, String name, String complainContent, int filerid)
+        {
             super("issue", name);
             tid = givenTid;
             complain = complainContent;
             fid = filerid;
-
-
         }
 
 
