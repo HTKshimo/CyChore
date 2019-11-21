@@ -34,6 +34,7 @@ import okhttp3.Response;
 public class ChatTabFragment extends Fragment {
 
     public static int uid;
+    public static String uname;
     private RecyclerView chatlist;
     public static ChatCollection chatItems;
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
@@ -41,7 +42,8 @@ public class ChatTabFragment extends Fragment {
     public static chatsRecyclerViewAdapter chatlist_adaptor;
     private OnListFragmentInteractionListener mListener;
     private static Handler chatsLogUpdateHandler;
-    private static String chatlist_url = "https://us-central1-login-demo-309.cloudfunctions.net/chatlogs";
+    private static String chatlist_url = "http://10.31.5.195:8080/getUserChatHistory";
+    public boolean init = false;
 
 
     public ChatTabFragment() {
@@ -75,17 +77,21 @@ public class ChatTabFragment extends Fragment {
         chatlist_adaptor = new chatsRecyclerViewAdapter(chatItems.ITEMS, mListener);
 
         chatlist.setAdapter(chatlist_adaptor);
-        chatlist_update();
+        if (!init) {
+            chatlist_init();
+            init = !init;
+        }
+
         return view;
     }
 
 
-    public static void chatlist_update() {
+    public static void chatlist_init() {
         final JSONObject param = new JSONObject();
 
         try {
             param.put("request", "chats_retrieve");
-            param.put("uid", uid);
+            param.put("user_id", 1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -140,7 +146,7 @@ public class ChatTabFragment extends Fragment {
             for (int j = 0; j < givenChatlog.length(); j++) {
                 chatlog.add(givenChatlog.get(j).toString());
             }
-            chatItems.addItem(new ChatCollection.ChatSelection("Issue #"+(new Random().nextInt(200)), chatlog));
+            chatItems.addItem(new ChatCollection.ChatSelection("Issue #" + 11+2*i, chatlog));
         }
 
         chatsLogUpdateHandler.sendEmptyMessage(0);

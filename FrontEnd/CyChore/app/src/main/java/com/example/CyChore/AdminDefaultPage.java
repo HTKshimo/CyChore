@@ -38,6 +38,7 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         ChatTabFragment.uid = uid;
+        ChatTabFragment.uname = usrName;
         getSupportActionBar().hide();
     }
 
@@ -53,6 +54,7 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
             ChatRoom.chatRoomName = ((ChatCollection.ChatSelection) item).ChatTitle;
             ChatRoom.chatlog = ((ChatCollection.ChatSelection) item).ChatContent;
             ChatRoom.chatPosition = listType;
+            ChatRoom.uname = usrName;
 
             startActivity(intent);
         } else if (item.title.equals("issue")) {

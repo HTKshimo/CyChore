@@ -1,5 +1,6 @@
 package com.example.CyChore.ui.issueTab;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -16,17 +17,15 @@ import android.view.ViewGroup;
 
 import com.example.CyChore.IssueDetail;
 import com.example.CyChore.R;
-import com.example.CyChore.data.ChatCollection;
 import com.example.CyChore.data.IssueCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Random;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -35,11 +34,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static com.example.CyChore.AdminDefaultPage.uid;
-import static com.example.CyChore.ui.chatTab.ChatTabFragment.chatlist_adaptor;
 
 public class fragement_issues extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private OnListFragmentInteractionListener mListener;
     private static Handler IssueUpdateHandler;
     private RecyclerView issuelist;
     public static IssueCollection issueItems;
@@ -78,7 +76,7 @@ public class fragement_issues extends Fragment {
         issuelist = view.findViewById(R.id.IssueListRV);
         issueItems = new IssueCollection();
         issuelist.setLayoutManager(new LinearLayoutManager(issuelist.getContext()));
-        issuelist_adaptor = new IssuesRecyclerViewAdaptor(issueItems.ITEMS, (OnListFragmentInteractionListener) mListener);
+        issuelist_adaptor = new IssuesRecyclerViewAdaptor(issueItems.ITEMS, mListener);
         issuelist.setAdapter(issuelist_adaptor);
         issuelist_update();
 
@@ -147,8 +145,14 @@ public class fragement_issues extends Fragment {
 
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnListFragmentInteractionListener) {
+            mListener = (OnListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
+        }
     }
 }

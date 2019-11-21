@@ -33,6 +33,7 @@ public class ChatRoom extends AppCompatActivity {
     public static ArrayList<String> chatlog;
     public static String chatRoomName;
     public static int chatPosition;
+    public static String uname;
 
 
     public RecyclerView chatContents;
@@ -42,7 +43,7 @@ public class ChatRoom extends AppCompatActivity {
     private Handler chatUpdateHandler;
     private EditText msgToSend;
     private WebSocket chatSocket;
-    private String wsurl = "wss://echo.websocket.org";
+    private String wsurl = "ws://10.31.5.195:8080/websocket/1/1";
 
 
     @SuppressLint("HandlerLeak")
@@ -97,7 +98,7 @@ public class ChatRoom extends AppCompatActivity {
     }
 
     public void onClickSend(View view){
-        String toSend = msgToSend.getText().toString();
+        String toSend = uname+": "+msgToSend.getText().toString();
         if(toSend.length()==0 || toSend.replace(" ", "").length()==0){
             Toast.makeText(view.getContext(), R.string.msg_send_null, Toast.LENGTH_SHORT).show();
             return;

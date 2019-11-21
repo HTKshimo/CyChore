@@ -194,7 +194,7 @@ public class JoinGroup extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
-
+                        UsrDefaultPage.groupid = 90;
                     }
                 });
 

@@ -48,7 +48,7 @@ public class IssuesRecyclerViewAdaptor extends RecyclerView.Adapter<IssuesRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem,position);
+                    mListener.onListFragmentInteraction(holder.mItem,0);
                     // TODO: set onclick listener for buttons in holder
                 }
             }

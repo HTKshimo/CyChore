@@ -92,6 +92,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             ChatRoom.chatRoomName = ((ChatCollection.ChatSelection) item).ChatTitle;
             ChatRoom.chatlog = ((ChatCollection.ChatSelection) item).ChatContent;
             ChatRoom.chatPosition = listType;
+            ChatRoom.uname = usrName;
 
             startActivity(intent);
         } else if (item.title.equals("task")) {
