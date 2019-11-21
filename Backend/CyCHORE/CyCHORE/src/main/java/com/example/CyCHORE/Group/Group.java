@@ -1,10 +1,6 @@
 package com.example.CyCHORE.Group;
 
-import antlr.LexerSharedInputState;
-import org.apache.catalina.User;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name="group")

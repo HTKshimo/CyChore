@@ -1,11 +1,19 @@
 package com.example.CyCHORE;
-
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.json.JSONException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.IOException;
+
+import static com.example.CyCHORE.Chatroom.MessageController.getChatroomMessages;
+import static com.example.CyCHORE.Chatroom.UserChatroomController.getUserChatHistory;
+
+
 
 @SpringBootApplication
-public class CyChoreApplication{
+public class CyChoreApplication {
 
 //	@Autowired
 //	DataSource dataSource;
@@ -13,9 +21,17 @@ public class CyChoreApplication{
 //	@Autowired
 //    TaskRepository tr;
 
-	public static void main(String[] args) {
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(CyChoreApplication.class);
+//	}
+
+	public static void main(String[] args){
 		SpringApplication.run(CyChoreApplication.class, args);
 	}
+
+//	public static void main(String[] args) {
+//		SpringApplication.run(CyChoreApplication.class, args);
+//	}
 
 //	@Override
 //	public void run(String... args) throws Exception {

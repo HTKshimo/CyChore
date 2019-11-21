@@ -59,6 +59,10 @@ public class User {
 
     public String getPassword() { return password; }
 
+    public String getUser_name() {return username;}
+
+    public String getPassword() {return password;}
+
     public Integer getGroupId() { return group_id; }
 
     public String getEmail() { return email; }
@@ -85,7 +89,7 @@ public class User {
         return getUser();
     }
 
-    public Boolean getOnline() {
+    public Boolean getOnline(){
         return online;
     }
 

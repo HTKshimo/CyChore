@@ -1,0 +1,109 @@
+1.  request for tasklist of one user
+    url: to be determined
+{
+    "request" : "usrtasklist",
+    "uid" : 1001
+}
+    response for tasklist of one user
+{
+    "status" : 0,                     // 1 for user without a group
+    "todo_list" :[    {   "title" : "mop floor", 
+                        "tid" : 10001,
+                        "ddl" :1569623441258, 
+                        "complete" : 1,
+                    },
+                    {   "title" : "mop window", 
+                        "tid" : 10002,
+                        "ddl" :1569623441258, 
+                        "complete" : 1
+                    }
+                ]   
+}
+2.  request for task pool
+    url: to be determined
+{
+    "request" : "pooltasklist",
+    "uid" : 1001,
+    "groupID" : 101
+}
+    response for tasklist of one user
+{
+    "status" : 0,                     // 1 for user without a group
+    "pool_list" :[    {   "title" : "mop floor", 
+                        "tid" : 10001,
+                        "ddl" :1569623441258, 
+                        "complete" : 1,
+                    },
+                    {   "title" : "mop window", 
+                        "tid" : 10002,
+                        "ddl" :1569623441258, 
+                        "complete" : 1
+                    }
+                ]   
+}
+3.  request for task history
+    url: to be determined
+{
+    "request" : "historytasklist",
+    "uid" : 1001,
+    "groupID" : 101
+}
+    response for tasklist of one user
+{
+    "status" : 0,                     // 1 for user without a group
+    "history_list" :[ {   "title" : "mop floor", 
+                        "tid" : 10001,
+                        "ddl" :1569623441258, 
+                        "complete" : 1,
+                    },
+                    {   "title" : "mop window", 
+                        "tid" : 10002,
+                        "ddl" :1569623441258, 
+                        "complete" : 1
+                    }
+                ]   
+}
+4.  request for change task status
+    url: to be determined
+{
+    "request" : "task_update",
+    "uid" : 1001,
+    "tid" : 10001,
+    "changeto" : "0"        // 0 for finish, 1 for unfinish, 2 for pool, 3 for                                  complain, 4 for pick up 
+    "complain" : "describe your complain of the task"
+}
+   response for change task status
+{
+    "status" : "0"                      // 0 for successful change
+}
+5. add new task
+    url:
+{
+    "request" : "addtask",
+    "uid" : 1001,
+    "groupid" : 10001,
+    "name" : "blablabla",
+    "ddl" :1569623441258, 
+    "descreption" : "blablablablabla bla bla bla bla blabla bla"
+}
+  response for add new task
+{
+    "status" : 0,
+    "tid": 10001,
+    "title" : "mop window", 
+    "ddl" :1569623441258, 
+    "complete" : 1,
+    "description" : "mop left most living room window"
+}
+6. request for register
+    url: to be determined
+{
+    "request" : "register",
+    "email" : "aabbcc@abc.com",
+    "password" : "abc123",
+    "tier": 1
+}
+   response for register
+{
+    "status" : 0      // 0 for good, 1 for email has been registered
+}

@@ -1,6 +1,7 @@
 package com.example.CyCHORE.User;
 
-//import com.example.CyCHORE.Chatroom.Message;
+
+import com.example.CyCHORE.Chatroom.Message;
 import com.example.CyCHORE.Task.Task;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,12 +43,12 @@ public class UserController {
         Integer tier = (Integer) jsonObj.get("tier");
         User u = new User();
         JSONObject toReturn = new JSONObject();
-        List<User> users= ur.findAll();
-        for(int i =0;i<users.size();i++) {
+        List<User> users = ur.findAll();
+        for (int i = 0; i < users.size(); i++) {
             User p = users.get(i);
             if (p.getEmail().equals(email)) {
-                    toReturn.put("status", "1");
-                    return toReturn.toString();
+                toReturn.put("status", "1");
+                return toReturn.toString();
             }
         }
         u.email = email;
@@ -59,11 +57,11 @@ public class UserController {
         ur.save(u);
         toReturn.put("status", "0");
         return toReturn.toString();
-        }
+    }
 
-    // DEMO 4 USE CASES CONTINUED (For the MyGroup Page; JoinGroup() and GroupInfo()
+    // Below functions are for DEMO 4 USE CASES (For the MyGroup Page; JoinGroup() and GroupInfo())
     @RequestMapping(value = "/JoinGroup", method = POST, produces = "application/json;charset=UTF-8")
-    public String JoinGroup (HttpServletRequest request) throws JSONException, IOException {
+    public String JoinGroup(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer u_id = (Integer) jsonObj.get("uid");
@@ -76,16 +74,16 @@ public class UserController {
             u.setGroup_id(g_id);
             ur.save(u);
         }
-        if(success){
-            toReturn.put("status","0");
+        if (success) {
+            toReturn.put("status", "0");
             toReturn.put("uid", u_id);
             toReturn.put("groupid", g_id);
-        }
-        else{
-            toReturn.put("status","1");
+        } else {
+            toReturn.put("status", "1");
         }
         return toReturn.toString();
     }
+
     @RequestMapping(value = "/GroupInfo", method = POST, produces = "application/json;charset=UTF-8")
     public String GroupInfo (HttpServletRequest request) throws JSONException, IOException {
 
@@ -165,9 +163,8 @@ public class UserController {
             toReturn.put("status","0");
             toReturn.put("uid", u_id);
             toReturn.put("password", password);
-        }
-        else{
-            toReturn.put("status","1");
+        } else {
+            toReturn.put("status", "1");
         }
         return toReturn.toString();
     }
