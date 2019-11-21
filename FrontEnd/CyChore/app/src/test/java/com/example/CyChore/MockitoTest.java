@@ -94,8 +94,32 @@ public class MockitoTest {
         mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
         verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
         assertEquals("Shuang", mockedChat.ITEMS.get(0).ChatTitle);
-        assertEquals("Mohan", mockedChat.ITEMS.get(1).ChatTitle);
+    }
 
+    //Testing Chat Collection
+    @Test
+    public void testChat2()
+    {
+        List<String> chatContent = new ArrayList<String>();
+        chatContent.add("Hello");
+        ChatCollection mockedChat = mock(ChatCollection.class);
+        mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
+        verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
+        assertEquals("Mohan", mockedChat.ITEMS.get(1).ChatTitle);
+    }
+
+    //Testing Chat Collection
+    @Test
+    public void testChat3()
+    {
+        List<String> chatContent = new ArrayList<String>();
+        chatContent.add("Bye");
+        List<String> getChatContent = new ArrayList<String>();
+        getChatContent.add("Bye");
+        ChatCollection mockedChat = mock(ChatCollection.class);
+        mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
+        verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
+        assertEquals(getChatContent, mockedChat.ITEMS.get(1).ChatContent);
     }
 
     //Testing Profile Collection
