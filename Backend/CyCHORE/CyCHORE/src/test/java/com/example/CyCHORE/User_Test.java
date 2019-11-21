@@ -57,8 +57,8 @@ public class User_Test {
         try {
             when(user_mock.ChangeUsername(request)).thenReturn("0");
             assertEquals("0", user_mock.ChangeUsername(request));
-            MockHttpServletRequest request2 = new MockHttpServletRequest();
-            assertEquals(null, user_mock.ChangeUsername(request2));
+//            MockHttpServletRequest request = new MockHttpServletRequest();
+//            assertEquals("0", user_mock.ChangeUsername(request));
         } catch (JSONException e) {
             e.printStackTrace();
         }
