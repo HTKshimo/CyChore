@@ -73,7 +73,7 @@ public class MockitoTest {
     }
 
     //Testing Sublease Collection
-    @Test
+   /* @Test
     public void testSublease2()
     {
         SubleaseCollection mockedSublease = mock(SubleaseCollection.class);
@@ -82,7 +82,7 @@ public class MockitoTest {
         assertEquals("Mohan", mockedSublease.ITEMS.get(0).detail);
         assertEquals("Smitha", mockedSublease.ITEMS.get(1).detail);
 
-    }
+    }*/
 
     //Testing Chat Collection
   /*  @Test
@@ -109,7 +109,7 @@ public class MockitoTest {
     }*/
 
     //Testing Chat Collection
-    @Test
+   /* @Test
     public void testChat3()
     {
         List<String> chatContent = new ArrayList<String>();
@@ -120,7 +120,7 @@ public class MockitoTest {
         mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
         verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
         assertEquals(getChatContent, mockedChat.ITEMS.get(1).ChatContent);
-    }
+    }*/
 
     //Testing Profile Collection
    /* @Test
