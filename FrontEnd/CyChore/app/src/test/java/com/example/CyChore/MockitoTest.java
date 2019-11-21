@@ -73,16 +73,16 @@ public class MockitoTest {
     }
 
     //Testing Sublease Collection
-   /* @Test
+   @Test
     public void testSublease2()
     {
         SubleaseCollection mockedSublease = mock(SubleaseCollection.class);
         mockedSublease.addItem(new SubleaseCollection.subleaseItem("Mohan", "North Hyland", "Very clean and close to campus apartment", 1));
         verify(mockedSublease).addItem(new SubleaseCollection.subleaseItem("Smitha", "Freddy", "Looking for female roommates", 2));
-        assertEquals("Mohan", mockedSublease.ITEMS.get(0).detail);
+        //assertEquals("Mohan", mockedSublease.ITEMS.get(0).detail);
         assertEquals("Smitha", mockedSublease.ITEMS.get(1).detail);
 
-    }*/
+    }
 
     //Testing Chat Collection
   /*  @Test
