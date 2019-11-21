@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
-//    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
+    private static final String login_url0 = "https://us-central1-login-demo-309.cloudfunctions.net/log_2";
+    private static final String login_url1 = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
+    private static final String login_url2 = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
 
     private Button login;
     private Button register;
@@ -152,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String name, final String pwd) {
+        final String url = login_url1;
+
         // create json to be send
         final JSONObject param = new JSONObject();
 
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 RequestBody body = RequestBody.create(json, JSON);
                 Log.d("json", json);
-                Request request = new Request.Builder().url(login_url)
+                Request request = new Request.Builder().url(url)
                         .post(body)
                         .build();
                 try {
@@ -245,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("login_groupid", groupid + "");
             Log.d("login_uname: ", uname);
             startActivity(intent);
-        }else if(tier ==0){
+        } else if (tier == 0) {
             Intent intent = new Intent(this, AdminDefaultPage.class);
             AdminDefaultPage.uid = uid;
             AdminDefaultPage.usrName = uname;
