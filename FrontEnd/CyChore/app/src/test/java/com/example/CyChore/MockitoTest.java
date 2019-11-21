@@ -154,25 +154,25 @@ public class MockitoTest {
     }*/
 
     //Testing Chat Collection
-  @Test
+ /* @Test
     public void testChat()
     {
         List<String> givenChatContent=new ArrayList<String>();
         givenChatContent.add("Hello");
 
-       /* ChatCollection mockedChats = mock(ChatCollection.class);
+        ChatCollection mockedChats = mock(ChatCollection.class);
         mockedChats.addItem(new ChatCollection.ChatSelection("chat",  givenChatContent));
                 //.ChatSelection("chat", new ArrayList<>(givenChatContent));
        // List<String> givenChatContent = null;
         mockedChats.addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
         verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat",givenChatContent));
-        assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);*/
+        assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);
         ChatCollection mockedChats = mock(ChatCollection.class);
         mockedChats.addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
                 //subleaseItem("Mohan", "North Hyland", "Very clean and close to campus apartment", 1));
         verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
         assertEquals("chat", mockedChats.ITEMS.get(0).title);
-    }
+    }*/
 
   /*  @After
     public void validate()
