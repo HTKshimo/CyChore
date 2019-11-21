@@ -39,11 +39,11 @@ public class MessageController {
         for (Message m : allMessages) {
             if ((m.getRoom_id()) == chatroom_id) {
                 t = new Timestamp(m.getTimestamp());
-                formattedMsg = getUsername(m.getSender_id()) + "[" + t.toString() + "]: " + m.getMessage();
+                formattedMsg = "[" + t.toString() + "]: " + m.getMessage();
                 temp.put(m.getTimestamp(), formattedMsg);
             }
         }
-        Map<Long, String> treeMap = new TreeMap<>(Collections.reverseOrder());
+        Map<Long, String> treeMap = new TreeMap<>();
         treeMap.putAll(temp);
         return treeMap.values();
     }

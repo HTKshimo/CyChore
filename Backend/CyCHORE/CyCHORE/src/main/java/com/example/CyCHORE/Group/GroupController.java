@@ -22,6 +22,7 @@ public class GroupController {
         allTasks = tr.findAll();
         List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
         for (Task t : allTasks){
+            System.out.println(t.getGroup_id() + " " + t.is_completed());
             if (t.getGroup_id() == g_id && t.is_completed()){
                 allFinishedTasksInGroup.add(t);
             }

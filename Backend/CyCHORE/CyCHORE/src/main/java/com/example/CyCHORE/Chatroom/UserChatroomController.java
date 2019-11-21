@@ -58,6 +58,7 @@ public class UserChatroomController {
         List<UserChatroom> allUserChatroom;
         allUserChatroom = ucr.findAll();
         for (UserChatroom temp : allUserChatroom) {
+            System.out.println(temp.getChatroom_id() + " " + temp.getUser_id() + temp.getId());
             if (temp.getChatroom_id() == chatroom_id) {
                 user_ids.add(temp.getUser_id());
             }

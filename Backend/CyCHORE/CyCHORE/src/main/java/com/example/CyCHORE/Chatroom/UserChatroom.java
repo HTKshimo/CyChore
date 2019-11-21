@@ -16,6 +16,18 @@ public class UserChatroom {
     @Column(name = "user_id")
     Integer user_id;
 
+    public void setChatroom_id(Integer chatroom_id) {
+        this.chatroom_id = chatroom_id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
     public Integer getId() {
         return id;
     }

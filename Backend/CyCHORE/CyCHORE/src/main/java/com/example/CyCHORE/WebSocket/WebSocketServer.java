@@ -168,10 +168,6 @@ public class WebSocketServer {
             roomSessionMap.put(room_id, new ArrayList<>());
         }
         sessionRoomMap.put(session, room_id);
-        String username = getUsername(user_id);
-        String roomname = getChatroomName(room_id);
-        String message="User: " + username + " has Joined room " + roomname;
-        broadcastToRoom(room_id, message);
 
     }
 
@@ -183,7 +179,7 @@ public class WebSocketServer {
         int sender_id = sessionUsernameMap.get(session);
         String username = getUsername(sender_id);
         int room_id = sessionRoomMap.get(session);
-        broadcastToRoom(room_id, username + ": " + message);
+        broadcastToRoom(room_id, message);
         addMessage(message, room_id, sender_id);
     }
 
