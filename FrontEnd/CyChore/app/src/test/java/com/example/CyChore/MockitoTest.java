@@ -127,7 +127,7 @@ public class MockitoTest {
     }*/
 
     //Testing Chat Collection
-    @Test
+   /* @Test
     public void testChat3()
     {
         List<String> chatContent = new ArrayList<String>();
@@ -138,7 +138,7 @@ public class MockitoTest {
         mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
         verify(mockedChat).addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
         assertEquals(chatContent, mockedChat.ITEMS.get(1).ChatContent);
-    }
+    }*/
 
     //Testing Profile Collection
   /*  @Test
@@ -160,19 +160,24 @@ public class MockitoTest {
         List<String> givenChatContent=new ArrayList<String>();
         givenChatContent.add("Hello");
 
-        ChatCollection mockedChats = mock(ChatCollection.class);
-        mockedChats.addItem(new ChatCollection.ChatSelection("chat", new ArrayList<String>(Arrays.asList("Hello") )));
+       /* ChatCollection mockedChats = mock(ChatCollection.class);
+        mockedChats.addItem(new ChatCollection.ChatSelection("chat",  givenChatContent));
                 //.ChatSelection("chat", new ArrayList<>(givenChatContent));
        // List<String> givenChatContent = null;
-        //mockedChats.addItem(new ChatCollection.ChatSelection(1, givenChatContent,mockedChats.ChatSelection("chat", new ArrayList<>(givenChatContent))));
-        verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat",new ArrayList<String>(Arrays.asList("Hello") )));
-        assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);
+        mockedChats.addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
+        verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat",givenChatContent));
+        assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);*/
+        ChatCollection mockedChats = mock(ChatCollection.class);
+        mockedChats.addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
+                //subleaseItem("Mohan", "North Hyland", "Very clean and close to campus apartment", 1));
+        verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
+        assertEquals("chat", mockedChats.ITEMS.get(0).title);
     }
 
-    @After
+  /*  @After
     public void validate()
     {
         validateMockitoUsage();
-    }
+    }*/
 
 }
