@@ -73,7 +73,7 @@ public class MockitoTest {
     }
 
     //Testing Sublease Collection
-   @Test
+  /* @Test
     public void testSublease2()
     {
         SubleaseCollection mockedSublease = mock(SubleaseCollection.class);
@@ -81,7 +81,7 @@ public class MockitoTest {
         verify(mockedSublease).addItem(new SubleaseCollection.subleaseItem("Smitha", "Freddy", "Looking for female roommates", 2));
         assertEquals("Smitha", mockedSublease.ITEMS.get(1).detail);
 
-    }
+    }*/
 
     //Testing Chat Collection
   /*  @Test
