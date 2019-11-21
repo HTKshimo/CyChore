@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestWebSocket {
+public class GroupTest {
 
     @Mock
     TaskRepository tr;
@@ -45,15 +45,18 @@ public class TestWebSocket {
         MockitoAnnotations.initMocks(this);
     }
 
-//    @Test
-//    public void notgetFinishedTasksInGroupGroupControllerTest() {
-//
-//        Chatroom c = new Chatroom();
-//        when(chr.save(c)).thenReturn(c);
-//        int i = setLastUpdatedTimestamp(1);
-//
-//        assertEquals(1, i);
-//    }
+    @Test
+    public void getGroupTaskPoolGroupControllerTest() {
+
+        Task mock[] = new Task[3];
+        for (int i = 0; i < 3; i++){
+            mock[i] = new Task(i, "String description", i, false, "deadline", "time_completed", false, i, i, "title");
+        }
+        when(tr.findAll()).thenReturn(Arrays.asList(mock));
+        List<Task> i = gc.getFinishedTasksInGroup(1);
+        ArrayList<Task> expected = new ArrayList<>();
+        assertEquals(expected, i);
+    }
 
     @Test
     public void getFinishedTasksInGroupGroupControllerTest() {
@@ -64,7 +67,6 @@ public class TestWebSocket {
         when(tr.findAll()).thenReturn(Arrays.asList(mock));
         List<Task> i = gc.getFinishedTasksInGroup(1);
         ArrayList<Task> expected = new ArrayList<>();
-        //expected.add(new Task(1, "String description", 1, true, "deadline", "time_completed", false, 1, 1, "title"));
         assertEquals(expected, i);
     }
 
