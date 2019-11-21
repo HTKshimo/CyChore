@@ -83,7 +83,7 @@ public class ListingFragement extends Fragment
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case 0:
-                        sublist_adaptor.notifyDataSetChanged();
+                      //  sublist_adaptor.notifyDataSetChanged();
                         break;
                 }
             }
