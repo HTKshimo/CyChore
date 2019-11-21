@@ -30,13 +30,13 @@ public class MockitoTest {
         assertEquals(1, 1);
     }
 
-    @Test
+  /*  @Test
     public void testTasks() {
         TaskCollection mockedTasks = mock(TaskCollection.class);
         mockedTasks.addItem(new TaskCollection.TaskItem(10002,"kill bug",1569623441258L,1));
         verify(mockedTasks).addItem(new TaskCollection.TaskItem(10002,"kill bug",1569623441258L,1));
         assertEquals("Overdue!", mockedTasks.ITEMS.get(0).dueTime);
-    }
+    }*/
 
     //Testing Issue Collection
    /* @Test
