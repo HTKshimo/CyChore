@@ -10,6 +10,7 @@ import com.example.CyChore.data.TaskCollection;
 //import  org.mockito.Mockito.*;
 //import org.mockitousage.IMethods;
 
+import org.junit.After;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
@@ -168,6 +169,10 @@ public class MockitoTest {
         assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);
     }
 
-
+    @After
+    public void validate()
+    {
+        validateMockitoUsage();
+    }
 
 }
