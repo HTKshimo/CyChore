@@ -1,16 +1,29 @@
 package com.example.CyChore;
 
+
 import com.example.CyChore.data.ChatCollection;
 import com.example.CyChore.data.IssueCollection;
 import com.example.CyChore.data.ProfileCollection;
 import com.example.CyChore.data.SubleaseCollection;
 import com.example.CyChore.data.TaskCollection;
 
+//import  org.mockito.Mockito.*;
+//import org.mockitousage.IMethods;
+
+import org.junit.Test;
+import org.mockito.InOrder;
+import org.mockito.Mock;
+import org.mockito.exceptions.misusing.UnfinishedVerificationException;
+import org.mockito.exceptions.verification.VerificationInOrderFailure;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.exceptions.misusing.UnfinishedVerificationException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -18,8 +31,13 @@ import static org.mockito.Mockito.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+//import org.mockito.mock.*;
+        //mockitousage.IMethods;
+//import org.mockitoutil.TestBase;
 
 public class MockitoTest {
+    //@Mock private IMethods mock;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -108,7 +126,7 @@ public class MockitoTest {
     }*/
 
     //Testing Chat Collection
-   /* @Test
+    @Test
     public void testChat3()
     {
         List<String> chatContent = new ArrayList<String>();
@@ -117,12 +135,12 @@ public class MockitoTest {
         getChatContent.add("Bye");
         ChatCollection mockedChat = mock(ChatCollection.class);
         mockedChat.addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
-        verify(mockedChat).addItem(new ChatCollection.ChatSelection("Mohan", chatContent));
-        assertEquals(getChatContent, mockedChat.ITEMS.get(1).ChatContent);
-    }*/
+        verify(mockedChat).addItem(new ChatCollection.ChatSelection("Shuang", chatContent));
+        assertEquals(chatContent, mockedChat.ITEMS.get(1).ChatContent);
+    }
 
     //Testing Profile Collection
-   /* @Test
+  /*  @Test
     public void testProfile()
     {
         ProfileCollection mockedProfile = mock(ProfileCollection.class);
@@ -142,13 +160,14 @@ public class MockitoTest {
         givenChatContent.add("Hello");
 
         ChatCollection mockedChats = mock(ChatCollection.class);
-        mockedChats.addItem(new ChatCollection.ChatSelection("chat", givenChatContent));
+        mockedChats.addItem(new ChatCollection.ChatSelection("chat", new ArrayList<String>(Arrays.asList("Hello") )));
                 //.ChatSelection("chat", new ArrayList<>(givenChatContent));
        // List<String> givenChatContent = null;
         //mockedChats.addItem(new ChatCollection.ChatSelection(1, givenChatContent,mockedChats.ChatSelection("chat", new ArrayList<>(givenChatContent))));
-        verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat",givenChatContent));
+        verify(mockedChats).addItem(new ChatCollection.ChatSelection("chat",new ArrayList<String>(Arrays.asList("Hello") )));
         assertEquals("chat", mockedChats.ITEMS.get(0).ChatTitle);
     }
+
 
 
 }
