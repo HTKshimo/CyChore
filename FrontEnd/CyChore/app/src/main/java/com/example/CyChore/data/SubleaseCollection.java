@@ -15,7 +15,8 @@ public class SubleaseCollection {
         // Add some sample items.
     }
 
-    public SubleaseCollection() {
+    public SubleaseCollection()
+    {
 
     }
 
@@ -30,16 +31,17 @@ public class SubleaseCollection {
         ITEM_MAP.remove(item.lid, item);
     }
 
+    public static void clear()
+    {
+        ITEMS.clear();
+        ITEM_MAP.clear();
+    }
 
-
-
-
-
-    public static class subleaseItem extends ListItem {
+    public static class subleaseItem extends ListItem
+    {
         int lid;
         public subleaseItem(String name,String addr,String description,int lid){
             super("sublease",name);
-
             //TODO
         }
     }

@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProfileCollection {
+public class ProfileCollection
+{
 
     public static final List<ProfileSelection> ITEMS = new ArrayList<ProfileSelection>();
 
@@ -20,18 +21,25 @@ public class ProfileCollection {
 
     }
 
-    private static void addItem(ProfileSelection item) {
+    public ProfileCollection()
+    {
+
+    }
+    private static void addItem(ProfileSelection item)
+    {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
     }
 
-    public static class ProfileSelection extends ListItem {
+    public static class ProfileSelection extends ListItem
+    {
 
         public ProfileSelection(String givenTitle, String description) {
             super(givenTitle,description);
         }
 
-        public ProfileSelection(String givenTitle) {
+        public ProfileSelection(String givenTitle)
+        {
             super(givenTitle,"");
         }
 
