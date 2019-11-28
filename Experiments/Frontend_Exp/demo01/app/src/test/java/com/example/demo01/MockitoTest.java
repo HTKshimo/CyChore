@@ -30,4 +30,12 @@ public class MockitoTest {
         assertEquals("Overdue!", mockedTasks.ITEMS.get(0).dueTime);
     }
 
+    @Test
+    public void testJoinGroup()
+    {
+        JoinGroup mockedGroup = mock(JoinGroup.class);
+        mockedGroup.setJoinGroup(10);
+        verify(mockedGroup).setJoinGroup(10);
+        //assertEquals("10", mockedGroup.newID);
+    }
 }

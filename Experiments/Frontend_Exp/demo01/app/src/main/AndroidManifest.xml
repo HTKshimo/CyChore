@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.demo01">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddTaskPage"></activity>
+        <activity android:name=".ProfileEditPage"></activity>
+        <activity
+            android:name=".AdminDefaultPage"
+            android:label="@string/title_activity_admin_default_page" />
+        <activity android:name=".ChatRoom" />
+        <activity android:name=".AddTaskPage" />
         <activity android:name=".TaskDetail" />
         <activity android:name=".JoinGroup" />
         <activity
@@ -18,7 +25,6 @@
             android:label="@string/title_activity_usr_default_page" />
         <activity android:name=".RegistrationPage" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
