@@ -29,8 +29,6 @@ public class IssueDetail extends AppCompatActivity {
         complain_detail.setText(Complain);
 
 
-
-
-        getActionBar().hide();
+        getSupportActionBar().hide();
     }
 }

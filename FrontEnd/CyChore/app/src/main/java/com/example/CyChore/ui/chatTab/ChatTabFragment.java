@@ -42,7 +42,7 @@ public class ChatTabFragment extends Fragment {
     public static chatsRecyclerViewAdapter chatlist_adaptor;
     private OnListFragmentInteractionListener mListener;
     private static Handler chatsLogUpdateHandler;
-    private static String chatlist_url = "http://10.31.5.195:8080/getUserChatHistory";
+    private static String chatlist_url = "http://coms-309-ks-2.misc.iastate.edu:8080/getUserChatHistory";
     public boolean init = false;
 
 

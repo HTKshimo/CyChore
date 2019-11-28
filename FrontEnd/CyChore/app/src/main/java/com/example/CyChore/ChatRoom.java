@@ -43,7 +43,7 @@ public class ChatRoom extends AppCompatActivity {
     private Handler chatUpdateHandler;
     private EditText msgToSend;
     private WebSocket chatSocket;
-    private String wsurl = "ws://10.31.5.195:8080/websocket/1/1";
+    private String wsurl = "ws://coms-309-ks-2.misc.iastate.edu:8080//websocket/1/1";
 
 
     @SuppressLint("HandlerLeak")
