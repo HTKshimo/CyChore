@@ -180,3 +180,38 @@ B. Admin
 	}
     }
 }
+3. request for approve/reject complaints
+{
+    "request" : "approve_complaints"/"reject_complaint"
+    "cid" : 1 
+}
+4. response for approve/reject complaints
+{
+    "status" : 0 //success 0, failure 1
+}
+5. request for retrieve complaint
+{
+    "request" : "retrieve_complaint"
+    "cid" : 1
+}
+6. response for retrieve complaint
+{
+    "status" : 0 //success 0, failure 1 with no other entry
+    "tid" : 10001,
+    "cid" : 1,
+    "ctitle" : "mop window", 
+    "cstatus" : 1
+    "cfiler" : 1,
+    "desc" : "mop left most living room window" 
+    "adminid" : 25 //this entry exists only when cstatus != 0
+}
+7. request for processing complaints
+{
+    "request" : "processing_complaint"
+    "cid" : 1
+    "uid" : 1 //admin ID
+}
+8. response for processing complaints
+{
+    "status" : 0 //success 0, failure 1
+}
