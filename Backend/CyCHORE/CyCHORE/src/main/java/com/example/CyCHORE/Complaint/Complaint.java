@@ -34,6 +34,13 @@ public class Complaint {
     @Column(name = "admin_id")
     Integer admin_id;
 
+    public Complaint(int task_id, String title, String description, int filer_id){
+        this.task_id = task_id;
+        this.filer_id = filer_id;
+        this.title = title;
+        this.description = description;
+        this.status = 0;
+    }
 
     public Integer getId() { return id; }
     public Integer getTask_id() { return task_id; }

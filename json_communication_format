@@ -154,15 +154,39 @@ A. Tenants
     "complete" : 1,
     "description" : "mop left most living room window"
 }
+19. request to file complaint
+   url: /fileNewComplaint
+{
+    "request" : "fileComplaint",
+    "uid" : 1001,
+    "tid" : 10,
+    "title" : "not clean after completion of task",
+    "descreption" : "blablablablabla bla bla bla bla blabla bla"
+}
+20. response for file complaint
+{
+    "status" : 0 //success 0, failure 1
+}
+21. request to file a request
+url: /fileNewRequest
+{
+    "request" : "fileRequest",
+    "uid" : 1001,
+    "type" : 1, //0: view sublease listing; 1: cleaning service advertising request
+}
+22. response for file a request
+{
+    "status" : 0 //success 0, failure 1
+}
 
 B. Admin
-1. request for complaints
+1. request for getting list of complaints
 {
     "request" : "get_complaints"
     "uid" : 0 //0 if requesting all records of complaints, non-zero if requesting complaints assigned to current admin
     "complaint_status" : 0 // 0: new(no admin assigned); 1: currently processing(assigned admin); 2: approved; 3: rejected; 4: resolved(approved or rejected); 5: all
 }
-2. response for complaints
+2. response for getting list of complaints
 {
     "status" : 0
     "num_complaints" : 2
@@ -212,6 +236,43 @@ B. Admin
     "uid" : 1 //admin ID
 }
 8. response for processing complaints
+{
+    "status" : 0 //success 0, failure 1
+}
+9. request for get requests
+{
+    "request" : "get_requests"
+    "uid" : 0 //0 if requesting all records of complaints, non-zero if requesting complaints assigned to current admin
+    "type" : 0 //0: view sublease listing; 1: cleaning service join app
+    "request_status" : 0 // 0: new(no admin assigned); 1: currently processing(assigned admin); 2: approved; 3: rejected; 4: resolved(approved or rejected); 5: all
+}
+10. response for get requests
+{
+    "status" : 0
+    "num_requests" : 2
+    "requests" : 
+    [
+	{
+	    "rid" : 1,
+	    "title" : "mop floor",
+	    "ststus" : 0
+	    "lastUpdated" : [timestamp]
+	},
+	{
+	    "rid" : 2,
+	    "title" : "wipe counter",
+	    "ststus" : 1
+	    "lastUpdated" : [timestamp]
+	}
+    ] //list will be sorted from new -> old
+}
+11. request to change request status
+{
+    "request" : "changeRequestStatus"
+    "rid" : 1 
+    "toStatus" : 2 //2: approve request; 3: reject request
+}
+12. response to change request status
 {
     "status" : 0 //success 0, failure 1
 }
