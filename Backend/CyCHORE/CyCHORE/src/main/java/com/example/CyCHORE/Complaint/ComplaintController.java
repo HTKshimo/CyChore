@@ -26,6 +26,29 @@ public class ComplaintController {
     @Autowired
     UserRepository ur;
 
+    @RequestMapping(value = "/fileNewComplaint", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public String fileNewComplaint(HttpServletRequest request) throws JSONException, IOException {
+//    @RequestMapping("fileNewComplaint/{uid}/{tid}/{title}/{description}")
+//    public String fileNewComplaint(@PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String title, @PathVariable String description) throws JSONException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        JSONObject toSend = new JSONObject();
+        try {
+            Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+            Integer tid = Integer.valueOf((Integer) jsonObj.get("tid"));
+            String title = String.valueOf(jsonObj.get("title"));
+            String description = String.valueOf(jsonObj.get("description"));
+            Complaint c = new Complaint(tid, title, description, uid);
+            cr.save(c);
+            toSend.put("status", "0");
+        } catch (JSONException e){
+            e.printStackTrace();
+            toSend.put("status", "1");
+        }
+        return toSend.toString();
+    }
+
     /**
      * This method takes user id and status requested and return list of complaints that have given status and are assigned to admin with given user id.
      * @param request
