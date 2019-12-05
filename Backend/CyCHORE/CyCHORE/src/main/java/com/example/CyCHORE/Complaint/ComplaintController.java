@@ -34,7 +34,7 @@ public class ComplaintController {
     //Task status indicates whether or not a task has been completed
     //If Task status is '0', the task is not completed
     //If Task status is '1', the task is completed
-    @RequestMapping(value = "/getComplaintListforUser", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getComplaintListforUser", method = POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getComplaintListforUser(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
@@ -47,14 +47,14 @@ public class ComplaintController {
         JSONObject Comp = new JSONObject();
         int ComplaintCount = 0;
         for (Complaint temp : allComplaintList) {
-            if (temp.filer_id == uid){
+            if (temp.filer_id == uid) {
 
                 JSONObject curComp = new JSONObject();
                 //JSONObject curTask = new JSONArray();
-                curComp.put("tid",temp.getId().toString());
+                curComp.put("tid", temp.getId().toString());
                 curComp.put("description", temp.getDescription().toString());
                 curComp.put("Task status:", temp.getStatus().toString());
-               // Comp.put(temp.toString(), curComp);
+                // Comp.put(temp.toString(), curComp);
                 Comp.put(String.valueOf(temp.id), curComp);
                 ComplaintCount++;
             }
@@ -70,7 +70,7 @@ public class ComplaintController {
     //Task status indicates whether or not a task has been completed
     //If Task status is '0', the task is not completed
     //If Task status is '1', the task is completed
-    @RequestMapping(value = "/getAllComplaints", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getAllComplaints", method = POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String getAllComplaints(HttpServletRequest request) throws JSONException, IOException {
 //        String data = request.getReader().lines().collect(Collectors.joining());
@@ -86,16 +86,16 @@ public class ComplaintController {
         for (Complaint temp : allComplaintList) {
             //if (temp.filer_id == uid){
 
-                JSONObject curComp = new JSONObject();
-                //JSONObject curTask = new JSONArray();
-                curComp.put("tid",temp.getId().toString());
-                curComp.put("description", temp.getDescription().toString());
-                curComp.put("Task status:", temp.getStatus().toString());
-                curComp.put("Filer id", temp.getFiler_id());
-                // Comp.put(temp.toString(), curComp);
-                //Comp.put(String.valueOf(temp.id), curComp);
+            JSONObject curComp = new JSONObject();
+            //JSONObject curTask = new JSONArray();
+            curComp.put("tid", temp.getId().toString());
+            curComp.put("description", temp.getDescription().toString());
+            curComp.put("Task status:", temp.getStatus().toString());
+            curComp.put("Filer id", temp.getFiler_id());
+            // Comp.put(temp.toString(), curComp);
+            //Comp.put(String.valueOf(temp.id), curComp);
             jsonArray.put(curComp);
-                ComplaintCount++;
+            ComplaintCount++;
             //}
         }
         toSend.put("status", "0");
