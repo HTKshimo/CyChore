@@ -28,7 +28,8 @@ public class User {
     @Column
     Integer tier;
 
-    Boolean online;
+    @Column
+    Integer score;
 
     public User() {
         this.email = "empty";
@@ -65,9 +66,9 @@ public class User {
 
     public Integer getTier() { return tier; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public Integer getScore() { return score; }
+
+    public void setUsername(String username) { this.username = username; }
 
     public void setPassword(String password) {
         this.password = password;
@@ -85,11 +86,5 @@ public class User {
         return getUser();
     }
 
-    public Boolean getOnline(){
-        return online;
-    }
-
-    public void setOnline(Boolean online) {
-        this.online = online;
-    }
+    public void addToScore(Integer score) { this.score += score; }
 }

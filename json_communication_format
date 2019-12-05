@@ -1,10 +1,40 @@
-1.  request for tasklist of one user
+Communication json format
+ver 1.0 11/28/19
+
+A. Tenants
+1.  request for login
+    url:    to be determined
+{
+    "request" : "login",
+    "email" : "aabbcc@abc.com",
+    "password" : "abc123"
+}
+2.  response for login success
+{
+    "status" : 0, 
+    "uid" : 1001,
+    "tier" : 1,       // 0 for admin, 1 for tenant, 2 for co.
+    "groupid" : 101
+}
+3.  response for login fail
+{
+    "status" : "1"
+}
+4.  single task json
+{
+    "title" : "mop floor", 
+    "tid" : 10001,                        // task unique id
+    "ddl" :1569623441258,             // deadline: System.currentTimeMillis()
+    "complete" : 1                        // 0 for complete, 1 for not complete, 2 
+                                        // for being complained
+}
+5.  request for tasklist of one user
     url: to be determined
 {
     "request" : "usrtasklist",
     "uid" : 1001
 }
-    response for tasklist of one user
+6.  response for tasklist of one user
 {
     "status" : 0,                     // 1 for user without a group
     "todo_list" :[    {   "title" : "mop floor", 
@@ -19,74 +49,103 @@
                     }
                 ]   
 }
-2.  request for task pool
-    url: to be determined
-{
-    "request" : "pooltasklist",
-    "uid" : 1001,
-    "groupID" : 101
-}
-    response for tasklist of one user
-{
-    "status" : 0,                     // 1 for user without a group
-    "pool_list" :[    {   "title" : "mop floor", 
-                        "tid" : 10001,
-                        "ddl" :1569623441258, 
-                        "complete" : 1,
-                    },
-                    {   "title" : "mop window", 
-                        "tid" : 10002,
-                        "ddl" :1569623441258, 
-                        "complete" : 1
-                    }
-                ]   
-}
-3.  request for task history
-    url: to be determined
-{
-    "request" : "historytasklist",
-    "uid" : 1001,
-    "groupID" : 101
-}
-    response for tasklist of one user
-{
-    "status" : 0,                     // 1 for user without a group
-    "history_list" :[ {   "title" : "mop floor", 
-                        "tid" : 10001,
-                        "ddl" :1569623441258, 
-                        "complete" : 1,
-                    },
-                    {   "title" : "mop window", 
-                        "tid" : 10002,
-                        "ddl" :1569623441258, 
-                        "complete" : 1
-                    }
-                ]   
-}
-4.  request for change task status
+7.  request for change task status
     url: to be determined
 {
     "request" : "task_update",
     "uid" : 1001,
     "tid" : 10001,
     "changeto" : "0"        // 0 for finish, 1 for unfinish, 2 for pool, 3 for                                  complain, 4 for pick up 
-    "complain" : "describe your complain of the task"
 }
-   response for change task status
+8. response for change task status
 {
     "status" : "0"                      // 0 for successful change
 }
-5. add new task
+9. request for register
+    url: to be determined
+{
+    "request" : "register",
+    "email" : "aabbcc@abc.com",
+    "password" : "abc123",
+    "tier": 1
+}
+10. response for register
+{
+    "status" : 0      // 0 for good, 1 for email has been registered
+}
+11. request for pick up task
+    server need change the task status to 1 if request pass
+    url: to be determined
+{
+    "request" : "task_update",
+    "changeto": 5,
+    "uid" : 1001,
+    "tid" : 10001
+}
+12. response for pick up task
+{
+    "status" = 0;     // 1 for illegal pick up
+}
+13. request for group info
+{
+    "request" : "groupinfo",
+    "uid": 1001,
+    "groupid" : 101
+}
+14. response for group info
+{
+    "status" : 0,
+    "members" : [
+    {   
+        "email" : "aabbcc@abc.com",
+        "colorcode" : "green"
+    },
+    {   
+        "email" : "aabbcc@abc.com",
+        "colorcode" : "red"
+    }
+    ]
+}
+15. request for task detail
+    url:
+{
+    "request" : "taskdetail",
+    "uid": 1001,
+    "tid": 10001
+}
+16. response for task detail
+{
+    "status":0,
+    "tid": 10001,
+    "title" : "mop window", 
+    "ddl" :1569623441258, 
+    "complete" : 0,
+    "cpltime": 1569623441258,
+    "description" : "mop left most living room window"
+}
+17. complain request
+    url:
+{
+    "request" : "task_update",
+    "changeto": 2,
+    "uid" : 1001,
+    "tid" : 10001,
+    "complain" : "bla bla bla bla blabla bla"
+}
+18. response for complain
+{
+    "status" : 0
+}
+17. add new task
     url:
 {
     "request" : "addtask",
     "uid" : 1001,
     "groupid" : 10001,
     "name" : "blablabla",
-    "ddl" :1569623441258, 
     "descreption" : "blablablablabla bla bla bla bla blabla bla"
 }
-  response for add new task
+18. response for add new task
 {
     "status" : 0,
     "tid": 10001,
@@ -95,15 +154,125 @@
     "complete" : 1,
     "description" : "mop left most living room window"
 }
-6. request for register
-    url: to be determined
+19. request to file complaint
+   url: /fileNewComplaint
 {
-    "request" : "register",
-    "email" : "aabbcc@abc.com",
-    "password" : "abc123",
-    "tier": 1
+    "request" : "fileComplaint",
+    "uid" : 1001,
+    "tid" : 10,
+    "title" : "not clean after completion of task",
+    "descreption" : "blablablablabla bla bla bla bla blabla bla"
 }
-   response for register
+20. response for file complaint
 {
-    "status" : 0      // 0 for good, 1 for email has been registered
+    "status" : 0 //success 0, failure 1
+}
+21. request to file a request
+url: /fileNewRequest
+{
+    "request" : "fileRequest",
+    "uid" : 1001,
+    "type" : 1, //0: view sublease listing; 1: cleaning service advertising request
+}
+22. response for file a request
+{
+    "status" : 0 //success 0, failure 1
+}
+
+B. Admin
+1. request for getting list of complaints
+{
+    "request" : "get_complaints"
+    "uid" : 0 //0 if requesting all records of complaints, non-zero if requesting complaints assigned to current admin
+    "complaint_status" : 0 // 0: new(no admin assigned); 1: currently processing(assigned admin); 2: approved; 3: rejected; 4: resolved(approved or rejected); 5: all
+}
+2. response for getting list of complaints
+{
+    "status" : 0
+    "num_complaints" : 2
+    "complaints" : 
+    {
+	1 : // complaint ID
+	{
+	    "title" : "mop floor",
+	    "ststus" : 0
+	}
+	2 :
+	{
+	    "title" : "wipe counter",
+	    "ststus" : 1
+	}
+    }
+}
+3. request for approve/reject complaints
+{
+    "request" : "approve_complaints"/"reject_complaint"
+    "cid" : 1 
+}
+4. response for approve/reject complaints
+{
+    "status" : 0 //success 0, failure 1
+}
+5. request for retrieve complaint
+{
+    "request" : "retrieve_complaint"
+    "cid" : 1
+}
+6. response for retrieve complaint
+{
+    "status" : 0 //success 0, failure 1 with no other entry
+    "tid" : 10001,
+    "cid" : 1,
+    "ctitle" : "mop window", 
+    "cstatus" : 1
+    "cfiler" : 1,
+    "desc" : "mop left most living room window" 
+    "adminid" : 25 //this entry exists only when cstatus != 0
+}
+7. request for processing complaints
+{
+    "request" : "processing_complaint"
+    "cid" : 1
+    "uid" : 1 //admin ID
+}
+8. response for processing complaints
+{
+    "status" : 0 //success 0, failure 1
+}
+9. request for get requests
+{
+    "request" : "get_requests"
+    "uid" : 0 //0 if requesting all records of complaints, non-zero if requesting complaints assigned to current admin
+    "type" : 0 //0: view sublease listing; 1: cleaning service join app
+    "request_status" : 0 // 0: new(no admin assigned); 1: currently processing(assigned admin); 2: approved; 3: rejected; 4: resolved(approved or rejected); 5: all
+}
+10. response for get requests
+{
+    "status" : 0
+    "num_requests" : 2
+    "requests" : 
+    [
+	{
+	    "rid" : 1,
+	    "title" : "mop floor",
+	    "ststus" : 0
+	    "lastUpdated" : [timestamp]
+	},
+	{
+	    "rid" : 2,
+	    "title" : "wipe counter",
+	    "ststus" : 1
+	    "lastUpdated" : [timestamp]
+	}
+    ] //list will be sorted from new -> old
+}
+11. request to change request status
+{
+    "request" : "changeRequestStatus"
+    "rid" : 1 
+    "toStatus" : 2 //2: approve request; 3: reject request
+}
+12. response to change request status
+{
+    "status" : 0 //success 0, failure 1
 }

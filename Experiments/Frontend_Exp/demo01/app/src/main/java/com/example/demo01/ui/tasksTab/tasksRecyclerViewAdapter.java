@@ -23,7 +23,6 @@ import com.example.demo01.util.TaskStatusUpadateUtil;
 
 import java.util.List;
 
-import static androidx.core.content.ContextCompat.startActivity;
 import static com.example.demo01.UsrDefaultPage.uid;
 
 public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecyclerViewAdapter.ViewHolder> {
@@ -126,7 +125,7 @@ public class tasksRecyclerViewAdapter extends RecyclerView.Adapter<tasksRecycler
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    public class ViewHolder extends RecyclerView.ViewHolder
     {
         public final View mView;
         public final TextView mIdView;
