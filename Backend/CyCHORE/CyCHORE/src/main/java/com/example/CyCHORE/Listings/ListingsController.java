@@ -1,5 +1,6 @@
 package com.example.CyCHORE.Listings;
 
+import com.example.CyCHORE.Task.Task;
 import org.apache.tomcat.util.http.parser.HttpParser;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -103,4 +105,103 @@ public class ListingsController {
         return toSend.toString();
         //return String.valueOf(lr.findAll().size());
     }
+
+
+    //This method returns all listings made all users; FOR EVERYBODY
+    //Task status indicates whether or not a task has been completed
+    //If Task status is '0', the task is not completed
+    //If Task status is '1', the task is completed
+    @RequestMapping(value = "/getAllListings", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public String getAllComplaints(HttpServletRequest request) throws JSONException, IOException {
+//        String data = request.getReader().lines().collect(Collectors.joining());
+//        JSONObject jsonObj = new JSONObject(data);
+//        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+        List<Listings> allListings;
+        allListings = lr.findAll();
+        //List<String> Listings = new ArrayList<String>();
+        JSONObject toSend = new JSONObject();
+        JSONObject Comp = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        int ListingCount = 0;
+        for (Listings temp : allListings) {
+            //if (temp.filer_id == uid){
+
+            JSONObject curComp = new JSONObject();
+            //JSONObject curTask = new JSONArray();
+            curComp.put("List id",temp.getList_id().toString());
+            curComp.put("Address", temp.getAddress().toString());
+            curComp.put("Group id", temp.getGroup_id().toString());
+            curComp.put("User id", temp.getUser_id());
+            curComp.put("Price", temp.getPrice());
+            curComp.put("Description", temp.getDescription());
+            // Comp.put(temp.toString(), curComp);
+            //Comp.put(String.valueOf(temp.id), curComp);
+            jsonArray.put(curComp);
+            ListingCount++;
+            //}
+        }
+        toSend.put("status", "0");
+        toSend.put("Number of Sublease Listings", ListingCount);
+        //toSend.put("List of complaints:", Comp.toString());
+        toSend.put("List of Sublease Listings:", jsonArray);
+        return toSend.toString();
+    }
+
+
+    /**
+
+     This method takes input from the frontend to create a sub lease listing using information such as; address, group id, user id, price, description.
+     Returns a status of ‘0’ if successful and ‘1’ if not.
+
+     */
+
+    @RequestMapping(value = "/createListing", method = POST, produces = "application/json;charset=UTF-8")
+    public String createList(HttpServletRequest request) throws JSONException, IOException {
+        //@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        String address = (String) jsonObj.get("address");
+        Integer group_id = Integer.valueOf((Integer) jsonObj.get("group_id"));
+        Integer user_id = Integer.valueOf((Integer) jsonObj.get("user_id"));
+        //Float price = Float.valueOf((Float) jsonObj.get("price"));
+        float price = BigDecimal.valueOf((Double) jsonObj.get("price")).floatValue();
+        String description = (String) jsonObj.get("description");
+        List<Listings> allListings = lr.findAll();
+        JSONObject toReturn = new JSONObject();
+        Listings l = new Listings();
+        int isDuplicate = 0;
+        //Timestamp timestamp = new Timestamp(ddl);
+        for (int i = 0; i < allListings.size(); i++) {
+            Listings list = allListings.get(i);
+            if (!list.address.equals(address)) {
+                if (!list.group_id.equals(group_id)) {
+                    if (!list.user_id.equals(user_id)) {
+                        if (!list.price.equals(price)) {
+                            if (!list.description.equals(description)) {
+                                l.address = address;
+                                l.group_id = group_id;
+                                l.user_id = user_id;
+                                l.price = price;
+                                l.description =description;
+                                lr.save(l);
+                                toReturn.put("status", "0");
+                                toReturn.put("address", l.address);
+                                toReturn.put("group_id", l.group_id);
+                                toReturn.put("user_id", l.user_id);
+                                toReturn.put("price", l.price);
+                                toReturn.put("description", l.description);
+                            }
+                        }
+                    }
+                }
+            } else {
+                isDuplicate = 1;
+                toReturn.put("status", "1");
+            }
+        }
+        return toReturn.toString();
+
+    }
 }
+
