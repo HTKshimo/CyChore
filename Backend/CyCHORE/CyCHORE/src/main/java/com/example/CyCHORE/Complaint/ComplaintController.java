@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +51,7 @@ public class ComplaintController {
 
     /**
      * This method takes user id and status requested and return list of complaints that have given status and are assigned to admin with given user id.
+     * Sorted from new -> old
      * @param request
      * @return
      * @throws JSONException
@@ -66,23 +67,27 @@ public class ComplaintController {
         JSONObject toSend = new JSONObject();
         List<Complaint> allComplaintList;
         allComplaintList = cr.findAll();
-        JSONObject Comp = new JSONObject();
-        System.out.println(uid);
-        System.out.println(complaint_status);
+        HashMap<Long, JSONObject> timeRequestHashMap = new HashMap<>();
+        Timestamp t;
+
         int ComplaintCount = 0;
         for (Complaint temp : allComplaintList) {
-            if ((temp.getFiler_id() == uid || uid == 0) && (complaint_status == 5 || temp.getStatus() == complaint_status || ((temp.getStatus() == 2 || temp.getStatus() == 3) && complaint_status == 4))) {
-                System.out.println("found a complaint\n");
+            if ((temp.getAdmin_id() == uid || uid == 0 || temp.getFiler_id() == uid) && (complaint_status == 5 || temp.getStatus() == complaint_status || ((temp.getStatus() == 2 || temp.getStatus() == 3) && complaint_status == 4))) {
                 JSONObject curComp = new JSONObject();
+                t = new Timestamp(temp.getLastUpdated());
                 curComp.put("title", temp.getTitle());
                 curComp.put("status", temp.getStatus().toString());
-                Comp.put(String.valueOf(temp.getId()), curComp);
+                curComp.put("lastUpdated", t);
+                timeRequestHashMap.put(temp.getLastUpdated(), curComp);
                 ComplaintCount++;
             }
         }
+        Map<Long, JSONObject> treeMap = new TreeMap<>(Collections.reverseOrder());
+        treeMap.putAll(timeRequestHashMap);
+
         toSend.put("status", "0");
         toSend.put("num_complaints", ComplaintCount);
-        toSend.put("complaints", Comp);
+        toSend.put("complaints", treeMap.values());
 
         return toSend.toString();
     }
@@ -100,6 +105,7 @@ public class ComplaintController {
             Optional<Complaint> test = cr.findById(cid);
             Complaint c = test.get();
             c.setStatus(2);
+            c.setLastUpdated();
             cr.save(c);
             toSend.put("status", "0");
             int tid = c.getTask_id();
@@ -116,7 +122,6 @@ public class ComplaintController {
             }
         }else{
             toSend.put("status", "1");
-
         }
 
         return toSend.toString();
@@ -133,6 +138,7 @@ public class ComplaintController {
         if (success) {
             Complaint c = cr.findById(cid).get();
             c.setStatus(3);
+            c.setLastUpdated();
             cr.save(c);
             toSend.put("status", "0");
         }else{
@@ -153,6 +159,7 @@ public class ComplaintController {
         if (success) {
             Complaint c = cr.findById(cid).get();
             c.setStatus(1);
+            c.setLastUpdated();
             c.setAdmin_id(uid);
             cr.save(c);
             toSend.put("status", "0");
@@ -179,6 +186,7 @@ public class ComplaintController {
             toSend.put("cfiler", c.getFiler_id());
             toSend.put("tid", c.getTask_id());
             toSend.put("desc", c.getDescription());
+            toSend.put("lastUpdated", c.getLastUpdated());
             if (c.getStatus() != 0){
                 toSend.put("adminid", c.getAdmin_id());
             }
