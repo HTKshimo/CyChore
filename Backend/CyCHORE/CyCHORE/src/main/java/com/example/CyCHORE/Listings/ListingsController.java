@@ -113,10 +113,7 @@ public class ListingsController {
     //If Task status is '1', the task is completed
     @RequestMapping(value = "/getAllListings", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getAllComplaints(HttpServletRequest request) throws JSONException, IOException {
-//        String data = request.getReader().lines().collect(Collectors.joining());
-//        JSONObject jsonObj = new JSONObject(data);
-//        Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
+    public String getAllListings(HttpServletRequest request) throws JSONException, IOException {
         List<Listings> allListings;
         allListings = lr.findAll();
         //List<String> Listings = new ArrayList<String>();
@@ -158,7 +155,6 @@ public class ListingsController {
 
     @RequestMapping(value = "/createListing", method = POST, produces = "application/json;charset=UTF-8")
     public String createList(HttpServletRequest request) throws JSONException, IOException {
-        //@PathVariable String title, @PathVariable String description, @PathVariable Integer g_id, @PathVariable long ddl
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         String address = (String) jsonObj.get("address");
@@ -171,7 +167,6 @@ public class ListingsController {
         JSONObject toReturn = new JSONObject();
         Listings l = new Listings();
         int isDuplicate = 0;
-        //Timestamp timestamp = new Timestamp(ddl);
         for (int i = 0; i < allListings.size(); i++) {
             Listings list = allListings.get(i);
             if (!list.address.equals(address)) {
@@ -195,7 +190,8 @@ public class ListingsController {
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 isDuplicate = 1;
                 toReturn.put("status", "1");
             }
