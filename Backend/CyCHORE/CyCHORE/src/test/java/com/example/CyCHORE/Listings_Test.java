@@ -47,7 +47,7 @@ public class Listings_Test {
     @Test
     @RequestMapping(value = "/getListingforUser", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public void ValidateListingsTest() throws IOException, IllegalStateException {
+    public void ValidateListingsTest() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         //uid
