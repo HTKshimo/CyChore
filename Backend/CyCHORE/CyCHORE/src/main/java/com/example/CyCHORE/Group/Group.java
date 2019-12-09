@@ -17,6 +17,11 @@ public class Group {
     @Column(name = "num_of_tenants")
     Integer num_of_tenants;
 
+    public Group(String addr, int num_of_tenants){
+        this.address = addr;
+        this.num_of_tenants = num_of_tenants;
+    }
+
     public Integer getId() { return id; }
 
     public String getAddress() { return address; }

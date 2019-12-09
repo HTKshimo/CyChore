@@ -24,8 +24,6 @@ public class RequestController {
 
     @Autowired
     RequestRepository rr;
-    @Autowired
-    UserRepository ur;
 
     @RequestMapping(value = "/fileNewRequest", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody

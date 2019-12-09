@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.util.*;
 
 import static com.example.CyCHORE.Chatroom.UserChatroomController.setLastUpdatedTimestamp;
-import static com.example.CyCHORE.User.UserController.getUsername;
 
 @RestController
 public class MessageController {

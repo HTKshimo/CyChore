@@ -2,11 +2,18 @@ package com.example.CyCHORE.Group;
 
 import com.example.CyCHORE.Task.*;
 import com.example.CyCHORE.User.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class GroupController {
@@ -41,6 +48,20 @@ public class GroupController {
             }
         }
         return allTaskInPool;
+    }
+
+    @RequestMapping(value = "/createGroup", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public String createGroup(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        String address = String.valueOf(jsonObj.get("address"));
+        Integer numOfTenants = Integer.valueOf((Integer) jsonObj.get("numOfTenants"));
+        JSONObject toSend = new JSONObject();
+        Group g = new Group(address, numOfTenants);
+        gr.save(g);
+        toSend.put("status", "0");
+        return toSend.toString();
     }
 
 }
