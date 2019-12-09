@@ -83,4 +83,76 @@ public class TaskTest {
         }
 
     }
+
+    @Test
+    @RequestMapping(value = "/pickup", method = POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void pickTaskTest() throws IOException {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        //uid
+        request.addParameter(String.valueOf(6));
+        //task_id
+        request.addParameter(String.valueOf(3));
+        try {
+            when(tc.assignPickUpTaskToUser(request)).thenReturn("0");
+            assertEquals("0", tc.assignPickUpTaskToUser(request));
+            MockHttpServletRequest request2 = new MockHttpServletRequest();
+            //uid
+            request2.addParameter(String.valueOf(12));
+            //task_id
+            request2.addParameter(String.valueOf(5));
+            assertEquals("0", tc.assignPickUpTaskToUser(request2));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    @RequestMapping(value = "/getTaskPool", method = POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void getTaskPoolTest() throws IOException {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        //uid
+        request.addParameter(String.valueOf(10));
+        //group_id
+        request.addParameter(String.valueOf(4));
+        try {
+            when(tc.getTaskPool(request)).thenReturn("0");
+            assertEquals("0", tc.getTaskPool(request));
+            MockHttpServletRequest request2 = new MockHttpServletRequest();
+            //uid
+            request2.addParameter(String.valueOf(7));
+            //group_id
+            request2.addParameter(String.valueOf(2));
+            assertEquals("0", tc.getTaskPool(request2));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Test
+    @RequestMapping(value = "/ChangeTaskStatus", method = POST, produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public void ChangeTaskStatusTest() throws IOException {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        //uid
+        request.addParameter(String.valueOf(15));
+        //task_id
+        request.addParameter(String.valueOf(3));
+        try {
+            when(tc.ChangeTaskStatus(request)).thenReturn("0");
+            assertEquals("0", tc.ChangeTaskStatus(request));
+            MockHttpServletRequest request2 = new MockHttpServletRequest();
+            //uid
+            request.addParameter(String.valueOf(8));
+            //task_id
+            request.addParameter(String.valueOf(3));
+            assertEquals("0", tc.ChangeTaskStatus(request2));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

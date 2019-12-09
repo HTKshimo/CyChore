@@ -1,5 +1,6 @@
 package com.example.CyCHORE;
 
+import com.example.CyCHORE.Group.GroupController;
 import com.example.CyCHORE.Listings.ListingsController;
 import com.example.CyCHORE.Listings.ListingsController.*;
 //import static org.junit.Assert.assertEquals;
@@ -36,7 +37,7 @@ public class Group_Test {
 
     @MockBean
     //DataService dataServiceMock;
-            ListingsController list_mock;
+            GroupController group_mock;
     @Mock
     HttpServletRequest request;
 
@@ -44,52 +45,71 @@ public class Group_Test {
     //BusinessService businessImpl;
     //MADE MODIFICATIONS!!!!!
     @Test
-    @RequestMapping(value = "/getAllGroups", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/addTenant", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public void ValidateListingsTest() throws IOException {
+    public void ValidateaddTenant() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addParameter("5");
         try {
-            when(list_mock.getListingforUser(request)).thenReturn("0");
-            assertEquals("0", list_mock.getListingforUser(request));
+            when(group_mock.addTenant(request)).thenReturn("0");
+            assertEquals("0", group_mock.addTenant(request));
             MockHttpServletRequest request2 = new MockHttpServletRequest();
-            assertEquals(null, list_mock.getListingforUser(request2));
+            assertEquals(null, group_mock.addTenant(request2));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
     @Test
-    @RequestMapping(value = "/getListingforUser", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/createGroup", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public void ValidateListingsTest2() throws IOException {
+    public void ValidatecreateGroup() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
 
         request.addParameter("7");
         try {
-            when(list_mock.getListingforUser(request)).thenReturn("1");
-            assertEquals("1", list_mock.getListingforUser(request));
+            when(group_mock.createGroup(request)).thenReturn("1");
+            assertEquals("1", group_mock.createGroup(request));
             MockHttpServletRequest request2 = new MockHttpServletRequest();
-            assertEquals(null, list_mock.getListingforUser(request2));
+            assertEquals(null, group_mock.createGroup(request2));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
     @Test
-    @RequestMapping(value = "/getListingforUser", method = POST, produces ="application/json;charset=UTF-8")
+    @RequestMapping(value = "/getAllGroups", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public void ValidateListingsTest3() throws IOException {
+    public void ValidategetAllGroups() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
 
         request.addParameter("8");
         try {
-            when(list_mock.getListingforUser(request)).thenReturn("0");
-            assertEquals("0", list_mock.getListingforUser(request));
+            when(group_mock.getAllGroups(request)).thenReturn("0");
+            assertEquals("0", group_mock.getAllGroups(request));
             MockHttpServletRequest request2 = new MockHttpServletRequest();
-            assertEquals(null, list_mock.getListingforUser(request2));
+            assertEquals(null, group_mock.getAllGroups(request2));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @Test
+    @RequestMapping(value = "/RemoveTenant", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public void ValidateRemoveTenant() throws IOException {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+
+        request.addParameter("8");
+        try {
+            when(group_mock.RemoveTenantFromGroup(request)).thenReturn("0");
+            assertEquals("0", group_mock.RemoveTenantFromGroup(request));
+            MockHttpServletRequest request2 = new MockHttpServletRequest();
+            assertEquals(null, group_mock.RemoveTenantFromGroup(request2));
         } catch (JSONException e) {
             e.printStackTrace();
         }

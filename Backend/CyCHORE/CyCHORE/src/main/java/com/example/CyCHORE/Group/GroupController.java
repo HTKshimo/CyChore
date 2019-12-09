@@ -29,9 +29,70 @@ public class GroupController {
     @Autowired
     GroupRepository gr;
     @Autowired
+    TaskRepository tr;
+    @Autowired
     UserRepository ur;
 
-//removed above two
+    @RequestMapping(value = "/getFinishedTasksInGroup", method = POST, produces = "application/json;charset=UTF-8")
+    public String getFinishedTasksInGroup(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        int gid = (int) jsonObj.get("group_id");
+        JSONObject toSend = new JSONObject();
+        TaskController taskc = new TaskController();
+        //List<Task> allTasks =  taskc.getAllTasks();
+        //allTasks = taskc.getAllTasks();
+        List<Task> allTasks;
+        allTasks = tr.findAll();
+        JSONArray jsonArray = new JSONArray();
+        List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
+        for (Task t : allTasks) {
+            if (t.getGroup_id() == gid && t.is_completed()) {
+                JSONObject curTask = new JSONObject();
+                curTask.put("title", t.getTitle());
+                curTask.put("description", t.getDescription());
+                curTask.put("ddl", t.getDdl());
+                curTask.put("time completed", t.getTimeCompleted());
+                curTask.put("assigned to", t.getAssigned_to());
+                jsonArray.put(curTask);
+            }
+        }
+        toSend.put("status", "0");
+        toSend.put("Finished Tasks",jsonArray);
+        return toSend.toString();
+    }
+
+    @RequestMapping(value = "/getGroupTaskPool", method = POST, produces = "application/json;charset=UTF-8")
+    public String getGroupTaskPool(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        int gid =  Integer.valueOf((int) jsonObj.get("group_id"));
+        List<Task> allTasks;
+        JSONObject toSend = new JSONObject();
+        TaskController taskc = new TaskController();
+        allTasks = tr.findAll();
+        JSONArray jsonArray = new JSONArray();
+        List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
+        for (Task t : allTasks) {
+            if(t.getIn_pool() != null) {
+                if (t.getIn_pool() == true) {
+                    if (t.getGroup_id() == gid && t.getIn_pool()) {
+                        JSONObject curTask = new JSONObject();
+                        curTask.put("title", t.getTitle());
+                        curTask.put("description", t.getDescription());
+                        curTask.put("ddl", t.getDdl());
+                        curTask.put("time completed", t.getTimeCompleted());
+                        curTask.put("assigned to", t.getAssigned_to());
+                        jsonArray.put(curTask);
+                    }
+                }
+            }
+        }
+        toSend.put("status", "0");
+        toSend.put("Group Task Pool",jsonArray);
+        return toSend.toString();
+    }
+
     //Group Management Methods
     //Delete Group
     @RequestMapping(value = "/DeleteGroup", method = DELETE, produces = "application/json;charset=UTF-8")
