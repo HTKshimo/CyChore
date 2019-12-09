@@ -52,7 +52,9 @@ public class User_Test {
         MockHttpServletRequest request = new MockHttpServletRequest();
         //change the parameters!!!!!!!!!
         //request.addParameter(String.valueOf(1));
+        //uid
         request.addParameter("5");
+        //name
         request.addParameter("CLOWNFISH");
         try {
             when(user_mock.ChangeUsername(request)).thenReturn("0");
@@ -73,7 +75,9 @@ public class User_Test {
     public void ValidateChangePassword() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
+        //uid
         request.addParameter("7");
+        //password
         request.addParameter("DOOBEEDOO");
         try {
             when(user_mock.ChangePassword(request)).thenReturn("1");
@@ -93,7 +97,9 @@ public class User_Test {
     public void ValidateChangePassword2() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
+        //uid
         request.addParameter("10");
+        //password
         request.addParameter("LOLOLOLOL");
         try {
             when(user_mock.ChangePassword(request)).thenReturn("0");

@@ -36,7 +36,8 @@ public class TaskTest {
     public void getTaskListTest() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addParameter("5");
+        //uid
+        request.addParameter(String.valueOf(4));
         try {
             when(tc.getTaskList(request)).thenReturn("0");
             assertEquals("0", tc.getTaskList(request));
@@ -54,7 +55,10 @@ public class TaskTest {
     public void getTaskListHistoryTest() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addParameter("7");
+        //uid
+        request.addParameter(String.valueOf(7));
+        //gid
+        request.addParameter(String.valueOf(1));
         try {
             when(tc.getTaskListHistory(request)).thenReturn("1");
             assertEquals("1", tc.getTaskListHistory(request));
@@ -72,7 +76,15 @@ public class TaskTest {
     public void createTaskTest() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addParameter("8");
+        //title
+        request.addParameter("Title_test");
+        //description
+        request.addParameter("Description_test");
+        //groupid
+        request.addParameter(String.valueOf(3));
+        //deadline
+        request.addParameter("1569623441258");
+
         try {
             when(tc.createTask(request)).thenReturn("0");
             assertEquals("0", tc.createTask(request));
