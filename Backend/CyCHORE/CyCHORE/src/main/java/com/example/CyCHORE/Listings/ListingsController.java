@@ -51,7 +51,6 @@ public class ListingsController {
             if (temp.user_id == uid){
 
                 JSONObject curList = new JSONObject();
-                //JSONObject curTask = new JSONArray();
                 curList.put("Address",temp.getAddress());
                 curList.put("Group id", temp.getGroup_id());
                 curList.put("User id",temp.getUser_id());
@@ -65,7 +64,6 @@ public class ListingsController {
         toSend.put("Number of Sublease Listings for User", ListCount);
         toSend.put("List of Sublease Listings for User:", SubleaseReturn);
         return toSend.toString();
-        //return String.valueOf(lr.findAll().size());
     }
 
 
@@ -88,10 +86,8 @@ public class ListingsController {
             if (temp.group_id == gid){
 
                 JSONObject curList = new JSONObject();
-                //JSONObject curTask = new JSONArray();
                 curList.put("Address",temp.getAddress());
                 curList.put("Group id", temp.getGroup_id());
-                //curList.put("User id",list.getUser_id().toString());
                 curList.put("Price", temp.getPrice());
                 curList.put("Description", temp.getDescription());
                 curList.put("List id", temp.getList_id());
@@ -103,44 +99,32 @@ public class ListingsController {
         toSend.put("Number of Sublease Listings for Group", ListCount);
         toSend.put("List of Sublease Listings for this Group:", SubleaseReturn);
         return toSend.toString();
-        //return String.valueOf(lr.findAll().size());
     }
 
 
     //This method returns all listings made all users; FOR EVERYBODY
-    //Task status indicates whether or not a task has been completed
-    //If Task status is '0', the task is not completed
-    //If Task status is '1', the task is completed
     @RequestMapping(value = "/getAllListings", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String getAllListings(HttpServletRequest request) throws JSONException, IOException {
         List<Listings> allListings;
         allListings = lr.findAll();
-        //List<String> Listings = new ArrayList<String>();
         JSONObject toSend = new JSONObject();
         JSONObject Comp = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         int ListingCount = 0;
         for (Listings temp : allListings) {
-            //if (temp.filer_id == uid){
-
             JSONObject curComp = new JSONObject();
-            //JSONObject curTask = new JSONArray();
             curComp.put("List id",temp.getList_id().toString());
             curComp.put("Address", temp.getAddress().toString());
             curComp.put("Group id", temp.getGroup_id().toString());
             curComp.put("User id", temp.getUser_id());
             curComp.put("Price", temp.getPrice());
             curComp.put("Description", temp.getDescription());
-            // Comp.put(temp.toString(), curComp);
-            //Comp.put(String.valueOf(temp.id), curComp);
             jsonArray.put(curComp);
             ListingCount++;
-            //}
         }
         toSend.put("status", "0");
         toSend.put("Number of Sublease Listings", ListingCount);
-        //toSend.put("List of complaints:", Comp.toString());
         toSend.put("List of Sublease Listings:", jsonArray);
         return toSend.toString();
     }
@@ -160,7 +144,6 @@ public class ListingsController {
         String address = (String) jsonObj.get("address");
         Integer group_id = Integer.valueOf((Integer) jsonObj.get("group_id"));
         Integer user_id = Integer.valueOf((Integer) jsonObj.get("user_id"));
-        //Float price = Float.valueOf((Float) jsonObj.get("price"));
         float price = BigDecimal.valueOf((Double) jsonObj.get("price")).floatValue();
         String description = (String) jsonObj.get("description");
         List<Listings> allListings = lr.findAll();

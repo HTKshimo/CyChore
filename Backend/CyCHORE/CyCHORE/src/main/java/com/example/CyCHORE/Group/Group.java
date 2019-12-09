@@ -35,14 +35,13 @@ public class Group {
 
     public Integer getNum_of_tenants() { return num_of_tenants; }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(Integer id_num) { this.id = id_num; }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String add) {
+        this.address = add;
     }
 
-    public void setNum_of_tenants(Integer num_of_tenants) {
-        this.num_of_tenants = num_of_tenants;
-    }
+    public void setNum_of_tenants(Integer num_ten){this.num_of_tenants = num_ten; }
+
 
 }

@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,37 +29,9 @@ public class GroupController {
     @Autowired
     GroupRepository gr;
     @Autowired
-    TaskRepository tr;
-    @Autowired
     UserRepository ur;
 
-    @RequestMapping("getFinishedTasksInGroup/{g_id}")
-    public List<Task> getFinishedTasksInGroup(@PathVariable Integer g_id) {
-        List<Task> allTasks;
-        allTasks = tr.findAll();
-        List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
-        for (Task t : allTasks) {
-            System.out.println(t.getGroup_id() + " " + t.is_completed());
-            if (t.getGroup_id() == g_id && t.is_completed()) {
-                allFinishedTasksInGroup.add(t);
-            }
-        }
-        return allFinishedTasksInGroup;
-    }
-
-    @RequestMapping("getGroupTaskPool/{g_id}")
-    public List<Task> getGroupTaskPool(@PathVariable Integer g_id) {
-        List<Task> allTasks;
-        allTasks = tr.findAll();
-        List<Task> allTaskInPool = new ArrayList<Task>();
-        for (Task t : allTasks) {
-            if (t.getGroup_id() == g_id && t.getIn_pool()) {
-                allTaskInPool.add(t);
-            }
-        }
-        return allTaskInPool;
-    }
-
+//removed above two
     //Group Management Methods
     //Delete Group
     @RequestMapping(value = "/DeleteGroup", method = DELETE, produces = "application/json;charset=UTF-8")
@@ -66,18 +39,19 @@ public class GroupController {
     public String DeleteGroup(HttpServletRequest request) throws JSONException, IOException {
         int isValid = -1;
         String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject o = new JSONObject();
         JSONObject jsonObj = new JSONObject(data);
         int id = (int) jsonObj.get("group_id");
         //String password = (String) jsonObj.get("password");
         Optional<Group> u = gr.findById(id);
         if (u.isPresent()) {
-            isValid = 1;
+            isValid = 0;
             gr.deleteById(id);
         } else {
-            return null;
+            isValid=1;
+            o.put("status", isValid);
         }
 
-        JSONObject o = new JSONObject();
         o.put("status", isValid);
         o.put("group_id", id);
         return o.toString();
@@ -90,115 +64,38 @@ public class GroupController {
     //FOREIGN KEY ERROR, NEEDS CHECKING!!! FOR NEW GROUPS!!!!!
     @RequestMapping(value = "/addTenant", method = POST, produces = "application/json;charset=UTF-8")
     public String addTenant(HttpServletRequest request) throws JSONException, IOException, NullPointerException{
-//        String data = request.getReader().lines().collect(Collectors.joining());
-//        JSONObject jsonObj = new JSONObject(data);
-//        Integer num_of_ten=0;
-//        Integer group_id = Integer.valueOf((Integer) jsonObj.get("group_id"));
-//        Integer user_id = Integer.valueOf((Integer) jsonObj.get("user_id"));
-//        //Float price = Float.valueOf((Float) jsonObj.get("price"));
-//       // float price = BigDecimal.valueOf((Double) jsonObj.get("price")).floatValue();
-//        //String description = (String) jsonObj.get("description");
-//        List<User> allUsers = ur.findAll();
-//        List<Group> allGroups = gr.findAll();
-//        JSONObject toReturn = new JSONObject();
-//        Group g = new Group();
-//        User u = new User();
-//        int isDuplicate = 0;
-//        for (int i = 0; i < allUsers.size(); i++) {
-//            User tenant = allUsers.get(i);
-//            Boolean success = ur.existsById(user_id);
-//            Boolean success1 = gr.existsById(group_id);
-//                if (success) {
-//                    Optional<User> test = ur.findById((user_id));
-//                    User u1 = test.get();
-//                    u1.setGroup_id(group_id);
-//                    //tenant.setGroup_id(group_id);
-//                    ur.save(u);
-//                    toReturn.put("status", "0");
-//                    toReturn.put("group_id", tenant.getGroupId());
-//                    toReturn.put("user_id", tenant.getId());
-////                    for (int j = 0; j < allGroups.size(); j++) {
-////                        Group group = allGroups.get(j);
-////                        if (success1) {
-////                                num_of_ten ++;
-////                                group.setId(num_of_ten);
-////                                gr.save(g);
-////                            }
-////                    }
-//            }
-//            else {
-//                isDuplicate = 1;
-//                toReturn.put("status", "1");
-//            }
-//        }
-//        return toReturn.toString();
-//
-//    }
-
-        //SECOND TRY
-//        String data = request.getReader().lines().collect(Collectors.joining());
-//        JSONObject jsonObj = new JSONObject(data);
-//        Integer u_id = (Integer) jsonObj.get("uid");
-//        Integer g_id = (Integer) jsonObj.get("groupid");
-//        Boolean success = ur.existsById(u_id);
-//        JSONObject toReturn = new JSONObject();
-//        if (success) {
-//            Optional<User> test = ur.findById((u_id));
-//            User u = test.get();
-//            u.setGroup_id(g_id);
-//            ur.save(u);
-//        }
-//        if (success) {
-//            toReturn.put("status", "0");
-//            toReturn.put("uid", u_id);
-//            toReturn.put("groupid", g_id);
-//        } else {
-//            toReturn.put("status", "1");
-//        }
-//        return toReturn.toString();
-//        String data = request.getReader().lines().collect(Collectors.joining());
-//        JSONObject jsonObj = new JSONObject(data);
-//        JSONObject toSend = new JSONObject();
-//        try {
-//            Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
-//            Integer gid = Integer.valueOf((Integer) jsonObj.get("gid"));
-//            Optional<User> test= ur.findById(uid);
-//            User u = test.get();
-//            u.setGroup_id(gid);
-//            //String title = String.valueOf(jsonObj.get("title"));
-//            //String description = String.valueOf(jsonObj.get("description"));
-//            //Complaint c = new Complaint(tid, title, description, uid);
-//            ur.save(u);
-//            toSend.put("status", "0");
-//        } catch (JSONException e){
-//            e.printStackTrace();
-//            toSend.put("status", "1");
-//        }
-//        return toSend.toString();
         int isValid = -1;
+        JSONObject o = new JSONObject();
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         int id = (int) jsonObj.get("uid");
         int gid = (int) jsonObj.get("groupid");
-        //String password = (String) jsonObj.get("password");
+        List<Group> allGroups = gr.findAllById(Collections.singleton(gid));
+        Boolean success1 = gr.existsById(gid);
+        Integer num_of_ten = allGroups.size();
         Optional<User> u = ur.findById(id);
+        Optional<Group> g = gr.findById(gid);
         if (u.isPresent()) {
-            isValid = 1;
+            isValid = 0;
             User u1 =u.get();
             u1.setGroup_id(gid);
             ur.save(u1);
-        } else {
-            return null;
-        }
+            if (success1) {
+                    Group u2 =g.get();
+                    num_of_ten ++;
+                    u2.num_of_tenants = num_of_ten;
+                    gr.save(u2);
+                }
 
-        JSONObject o = new JSONObject();
+        } else {
+            isValid = 1;
+            o.put("status", isValid);
+        }
         o.put("status", isValid);
         o.put("groupid", id);
         return o.toString();
     }
-//    Remove tenant from group
-
-    //Delete Group
+    //Remove tenant from group
     //WORKS!!!!
     @RequestMapping(value = "/RemoveTenant", method = DELETE, produces = "application/json;charset=UTF-8")
     @ResponseBody
@@ -206,20 +103,30 @@ public class GroupController {
         int isValid = -1;
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
+        JSONObject o = new JSONObject();
         int id = (int) jsonObj.get("uid");
         int gid = (int) jsonObj.get("groupid");
-        //String password = (String) jsonObj.get("password");
+        List<Group> allGroups = gr.findAllById(Collections.singleton(gid));
+        Boolean success1 = gr.existsById(gid);
+        Integer num_of_ten = allGroups.size();
         Optional<User> u = ur.findById(id);
-        if (u.isPresent()) {
-            isValid = 1;
+        Optional<Group> g = gr.findById(gid);
+        if (u.isPresent() &&g.isPresent()) {
+            isValid = 0;
             User u1 =u.get();
             u1.setGroup_id(null);
             ur.save(u1);
+            if (success1) {
+                Group u2 =g.get();
+                num_of_ten = num_of_ten-1;
+                u2.num_of_tenants = num_of_ten;
+                gr.save(u2);
+            }
         } else {
-            return null;
+            isValid=1;
+            o.put("status", isValid);
         }
 
-        JSONObject o = new JSONObject();
         o.put("status", isValid);
         o.put("groupid", id);
         return o.toString();
@@ -228,12 +135,9 @@ public class GroupController {
     //
 //    View Details of Group, "/getAllGroups" method"
 //    This method returns all listings made all users; FOR EVERYBODY
-//    Task status indicates whether or not a task has been completed
-//    If Task status is '0', the task is not completed
-//    If Task status is '1', the task is completed
     @RequestMapping(value = "/getAllGroups", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getAllGroups(HttpServletRequest request) throws JSONException, IOException {
+    public String getAllGroups(HttpServletRequest request) throws JSONException, IOException, NullPointerException {
         List<Group> allGroups;
         allGroups = gr.findAll();
         JSONObject toSend = new JSONObject();
@@ -241,21 +145,47 @@ public class GroupController {
         JSONArray jsonArray = new JSONArray();
         int GroupCount = 0;
         for (Group temp : allGroups) {
-            //if (temp.filer_id == uid){
-
             JSONObject curComp = new JSONObject();
-            //JSONObject curTask = new JSONArray();
             curComp.put("id",temp.getId().toString());
             curComp.put("address", temp.getAddress().toString());
             curComp.put("num_of_tenants", temp.getNum_of_tenants().toString());
             jsonArray.put(curComp);
             GroupCount++;
-            //}
         }
         toSend.put("status", "0");
         toSend.put("Number Groups", GroupCount);
-        //toSend.put("List of complaints:", Comp.toString());
         toSend.put("List of Groups:", jsonArray);
         return toSend.toString();
+    }
+
+    //Make a new group
+    @RequestMapping(value = "/createGroup", method = POST, produces = "application/json;charset=UTF-8")
+    public String createGroup(HttpServletRequest request) throws JSONException, IOException {
+        String data = request.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObj = new JSONObject(data);
+        Integer group_id = Integer.valueOf((Integer) jsonObj.get("group_id"));
+        String address = (String) jsonObj.get("address");
+        List<Group> allGroup = gr.findAll();
+        JSONObject toReturn = new JSONObject();
+        Group g = new Group();
+        int isDuplicate = 0;
+        for (int i = 0; i < allGroup.size(); i++) {
+            Group list = allGroup.get(i);
+            if (!list.address.equals(address)) {
+                if (!list.id.equals(group_id)) {
+                                g.address = address;
+                                g.id = group_id;
+                                gr.save(g);
+                                toReturn.put("status", "0");
+                                toReturn.put("address", g.address);
+                                toReturn.put("group_id", g.id);
+                }
+            }
+            else {
+                isDuplicate = 1;
+                toReturn.put("status", "1");
+            }
+        }
+        return toReturn.toString();
     }
 }
