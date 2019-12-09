@@ -23,7 +23,7 @@ import java.util.List;
 import static com.example.CyCHORE.Chatroom.MessageController.addMessage;
 import static com.example.CyCHORE.Chatroom.MessageController.getChatroomMessages;
 import static com.example.CyCHORE.Chatroom.UserChatroomController.getChatroomUsers;
-import static com.example.CyCHORE.Chatroom.UserChatroomController.setLastUpdatedTimestamp;
+import static com.example.CyCHORE.Chatroom.ChatroomController.setLastUpdatedTimestamp;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 

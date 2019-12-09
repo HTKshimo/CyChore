@@ -29,8 +29,6 @@ public class ComplaintController {
     @RequestMapping(value = "/fileNewComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String fileNewComplaint(HttpServletRequest request) throws JSONException, IOException {
-//    @RequestMapping("fileNewComplaint/{uid}/{tid}/{title}/{description}")
-//    public String fileNewComplaint(@PathVariable Integer uid, @PathVariable Integer tid, @PathVariable String title, @PathVariable String description) throws JSONException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         JSONObject toSend = new JSONObject();

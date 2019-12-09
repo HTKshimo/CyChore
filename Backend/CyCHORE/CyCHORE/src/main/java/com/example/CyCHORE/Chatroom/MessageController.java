@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Timestamp;
 import java.util.*;
 
-import static com.example.CyCHORE.Chatroom.UserChatroomController.setLastUpdatedTimestamp;
-import static com.example.CyCHORE.User.UserController.getUsername;
+import static com.example.CyCHORE.Chatroom.ChatroomController.setLastUpdatedTimestamp;
 
 @RestController
 public class MessageController {
