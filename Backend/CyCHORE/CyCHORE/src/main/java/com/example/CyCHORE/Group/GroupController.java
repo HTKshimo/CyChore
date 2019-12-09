@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,11 +41,10 @@ public class GroupController {
         JSONObject jsonObj = new JSONObject(data);
         int gid = (int) jsonObj.get("group_id");
         JSONObject toSend = new JSONObject();
-        TaskController taskc = new TaskController();
+       // TaskController taskc = new TaskController();
         //List<Task> allTasks =  taskc.getAllTasks();
         //allTasks = taskc.getAllTasks();
-        List<Task> allTasks;
-        allTasks = tr.findAll();
+        List<Task> allTasks = tr.findAll();
         JSONArray jsonArray = new JSONArray();
         List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
         for (Task t : allTasks) {
@@ -69,7 +70,7 @@ public class GroupController {
         int gid =  Integer.valueOf((int) jsonObj.get("group_id"));
         List<Task> allTasks;
         JSONObject toSend = new JSONObject();
-        TaskController taskc = new TaskController();
+        //TaskController taskc = new TaskController();
         allTasks = tr.findAll();
         JSONArray jsonArray = new JSONArray();
         List<Task> allFinishedTasksInGroup = new ArrayList<Task>();
@@ -133,17 +134,16 @@ public class GroupController {
         int gid = (int) jsonObj.get("groupid");
         List<Group> allGroups = gr.findAllById(Collections.singleton(gid));
         Boolean success1 = gr.existsById(gid);
-        Integer num_of_ten = allGroups.size();
         Optional<User> u = ur.findById(id);
         Optional<Group> g = gr.findById(gid);
-        if (u.isPresent()) {
+        if (u.isPresent()&&g.isPresent()) {
             isValid = 0;
             User u1 =u.get();
             u1.setGroup_id(gid);
             ur.save(u1);
             if (success1) {
                     Group u2 =g.get();
-                    num_of_ten ++;
+                    Integer num_of_ten  = u2.num_of_tenants +1;
                     u2.num_of_tenants = num_of_ten;
                     gr.save(u2);
                 }
@@ -169,7 +169,7 @@ public class GroupController {
         int gid = (int) jsonObj.get("groupid");
         List<Group> allGroups = gr.findAllById(Collections.singleton(gid));
         Boolean success1 = gr.existsById(gid);
-        Integer num_of_ten = allGroups.size();
+        Integer new_num=0;
         Optional<User> u = ur.findById(id);
         Optional<Group> g = gr.findById(gid);
         if (u.isPresent() &&g.isPresent()) {
@@ -177,9 +177,9 @@ public class GroupController {
             User u1 =u.get();
             u1.setGroup_id(null);
             ur.save(u1);
-            if (success1) {
+            if (success1){
                 Group u2 =g.get();
-                num_of_ten = num_of_ten-1;
+               Integer num_of_ten = u2.num_of_tenants -1;
                 u2.num_of_tenants = num_of_ten;
                 gr.save(u2);
             }
