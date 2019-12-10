@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GroupManagementPage"></activity>
+        <activity android:name=".GroupDetail"></activity>
+        <activity android:name=".GroupManagementPage" />
         <activity android:name=".MyComplainsPage" />
         <activity android:name=".IssueDetail" />
         <activity android:name=".ProfileEditPage" />
@@ -34,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBsGkc9JD5-c-Uqfun24nAPYo_7SXezAV0" />
     </application>
 
 </manifest>

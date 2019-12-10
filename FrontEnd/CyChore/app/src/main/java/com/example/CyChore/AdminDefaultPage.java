@@ -47,6 +47,10 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
     public void onListFragmentInteraction(ListItem item, int listType) {
         if (item.title.equals("Log Out")) {
             logout();
+        }else if (item.title.equals("My Account")) {
+            jumpProfileEdit();
+        }else if (item.title.equals("Group Management")) {
+            jumpGroupManagement();
         }else if (item.title.equals("chat")) {
 
             ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
@@ -72,6 +76,11 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
 
             startActivity(intent);
         }
+    }
+
+    private void jumpGroupManagement() {
+        Intent intent = new Intent(this, GroupManagementPage.class);
+        startActivity(intent);
     }
 
     @Override

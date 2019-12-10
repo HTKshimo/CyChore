@@ -40,7 +40,6 @@ public class fragement_issues extends Fragment {
     private OnListFragmentInteractionListener mListener;
     private static Handler IssueUpdateHandler;
     private RecyclerView issuelist;
-    private RecyclerView requestlist;
     public static IssueCollection issueItems;
     public static IssuesRecyclerViewAdaptor issuelist_adaptor;
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");

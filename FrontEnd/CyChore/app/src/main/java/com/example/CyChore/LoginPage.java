@@ -36,8 +36,8 @@ public class LoginPage extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-//    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_2";
-    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
+    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_0";
+//    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
 //    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
 
     private Button login;

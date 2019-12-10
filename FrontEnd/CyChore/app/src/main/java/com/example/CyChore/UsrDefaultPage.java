@@ -20,6 +20,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
+
 import okhttp3.MediaType;
 
 
@@ -87,6 +89,17 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             jumpProfileEdit();
         } else if (item.title.equals("My Complains")) {
             jumpMyComplains();
+        } else if (item.title.equals("My Group")) {
+            Intent intent = new Intent(this, GroupDetail.class);
+
+            GroupDetail.gid = groupid;
+            ArrayList<String> mem = new ArrayList<>();
+            mem.add("AdamSavage");
+            mem.add("JoneSmith");
+            GroupDetail.members = mem;
+            GroupDetail.address = "2329 Storm St, Ames, IA 50014";
+
+            startActivity(intent);
         } else if (item.title.equals("chat")) {
 
             ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
@@ -115,7 +128,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             startActivity(intent);
         } else if (item.title.equals("sublease")) {
 
-        }else if (item.title.equals("issue")) {
+        } else if (item.title.equals("issue")) {
             IssueCollection.IssueItem issue = (IssueCollection.IssueItem) item;
             Intent intent = new Intent(this, IssueDetail.class);
 
