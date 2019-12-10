@@ -28,6 +28,10 @@ public class UserController {
     public UserController(UserRepository ur) {
         this.ur = ur;
     }
+    public UserController() {
+
+    }
+
 
     /**
      *This method will register a new user to the application by taking in values such as; username, email and the type of user that is being registered (for example; current tenant, potential tenant, admin).
@@ -214,35 +218,6 @@ public class UserController {
         return o.toString();
     }
 
-    //testing websocket, only for backend use
-//    @RequestMapping(value = "/loginTest/{email}/{password}", method = POST, produces = "application/json;charset=UTF-8")
-//    public String loginTest(@PathVariable String email, @PathVariable String password) throws JSONException {
-//
-//        List<User> allUsers = ur.findAll();
-//        int isValid = -1, userID = -1;
-//        for (int i = 0; i < allUsers.size(); i++) {
-//            User user = allUsers.get(i);
-//            if (user.getEmail().equals(email)) {
-//                if (user.getPassword().equals(password)) {
-//                    isValid = 1;
-//                    userID = user.getId();
-//                }
-//            }
-//        }
-//        JSONObject o = new JSONObject();
-//        JSONObject messages = new JSONObject();
-//        HashMap<Integer, ArrayList<Message>> hm = getMessages(userID);
-//        for (int cr_id : hm.keySet()){
-//            ArrayList<String> temp = new ArrayList<>();
-//            hm.get(cr_id).forEach( (m) -> temp.add(m.getMessage()));
-//            messages.put(String.valueOf(cr_id), temp);
-//        }
-//        o.put("status", isValid);
-//        o.put("messages", messages);
-//
-//        return o.toString();
-//    }
-
     @RequestMapping(value = "/delete", method = DELETE, produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String deleteUser(HttpServletRequest request) throws JSONException, IOException{
@@ -264,6 +239,11 @@ public class UserController {
         o.put("status", isValid);
         o.put("uid", id);
         return o.toString();
+    }
+    public List<User>getAllUsers(){
+        List<User> allUsers;
+        allUsers = ur.findAll();
+        return allUsers;
     }
 
 }

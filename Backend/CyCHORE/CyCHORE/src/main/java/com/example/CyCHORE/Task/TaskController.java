@@ -31,11 +31,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class TaskController {
 
     @Autowired
-    TaskRepository tr;
-    @Autowired
-    GroupRepository gr;
-    @Autowired
-    UserRepository ur;
+    static TaskRepository tr;
 
     /**
     This method returns a list of task assigned to a user (whether or not they are in a group). Information that is sent to this method includes the user_id and group_id.
@@ -172,9 +168,6 @@ public class TaskController {
                 toReturn.put("status", "1");
             }
         }
-//        userID = user.getId();
-//        tier = user.getTier();
-//        group_id = user.getGroupId();
 
         return toReturn.toString();
     }
@@ -187,11 +180,9 @@ public class TaskController {
      */
     @DeleteMapping("/delete")
     public Boolean deleteTask(HttpServletRequest request) throws IOException, JSONException {
-        //@PathVariable Integer t_id
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
-        //String description = (String) jsonObj.get("description");
         Boolean success = tr.existsById(t_id);
         if (success) {
             Optional<Task> test = tr.findById((t_id));
@@ -207,7 +198,6 @@ public class TaskController {
      */
     @PutMapping("/markAsCompleted")
     public String markAsCompleted(HttpServletRequest request) throws IOException, JSONException {
-        //@PathVariable Integer u_id, @PathVariable Integer t_id
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer u_id = Integer.valueOf((Integer) jsonObj.get("uid"));
@@ -303,19 +293,6 @@ public class TaskController {
         return o.toString();
     }
 
-    public List<Integer> getUsersInGroup(Integer g_id) {
-
-        List<User> allUsers;
-        allUsers = ur.findAll();
-        List<Integer> allUserIDs = new ArrayList<Integer>();
-        for (User u : allUsers){
-            if (u.getGroupId() == g_id){
-                allUserIDs.add(u.getId());
-            }
-        }
-        return allUserIDs;
-    }
-
     /**
     	This method randomly assigns users with tasks (whether or not they are in a group)
     	This information is automatically updated in the database.
@@ -324,11 +301,8 @@ public class TaskController {
     @PostMapping("randomlyAssign/{t_id}")
     //get task's group id, find all users in group, randomly assign
     public String randomlyAssignTaskToUser(HttpServletRequest request) throws JSONException, IOException {
-        //@PathVariable Integer t_id
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
-        //String changeTo = (String) jsonObj.get("status");
-        //Integer u_id = Integer.valueOf((Integer) jsonObj.get("uid"));
         Integer t_id = Integer.valueOf((Integer) jsonObj.get("task id"));
         Boolean success = tr.existsById(t_id);
         JSONObject o = new JSONObject();
@@ -350,6 +324,18 @@ public class TaskController {
         return o.toString();
     }
 
+    public List<Integer> getUsersInGroup(Integer g_id) {
+        UserController user = new UserController();
+        List<User> allUsers;
+        allUsers = user.getAllUsers();
+        List<Integer> allUserIDs = new ArrayList<Integer>();
+        for (User u : allUsers){
+            if (u.getGroupId() == g_id){
+                allUserIDs.add(u.getId());
+            }
+        }
+        return allUserIDs;
+    }
 
     /**
     Gets all the tasks that have been pushed to the pool by the current tenant users. This method takes the user_id and the
@@ -358,10 +344,8 @@ public class TaskController {
     @RequestMapping(value = "/getTaskPool", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String getTaskPool(HttpServletRequest request) throws JSONException, IOException {
-        //@PathVariable String request, @PathVariable Integer uid,@PathVariable Integer gid
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
-        //String changeTo = (String) jsonObj.get("status");
         Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
         Integer gid = Integer.valueOf((Integer) jsonObj.get("groupid"));
         List<Task> allTaskList;
@@ -387,5 +371,12 @@ public class TaskController {
         toSend.put("pool_list",jsonArray);
         return toSend.toString();
     }
+
+    public List<Task>getAllTasks(){
+
+        List<Task> TaskList = tr.findAll();
+        return TaskList;
+    }
+
 
 }

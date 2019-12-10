@@ -64,8 +64,11 @@ public class Task {
     public String toString() { return description; }
 
     public String getDdl() { return deadline; }
+    public String getDescription() { return description; }
 
     public String getTimeCompleted() { return time_completed; }
+
+    public Integer getAssigned_to() { return assigned_to; }
 
     public String getTitle() { return title; }
 

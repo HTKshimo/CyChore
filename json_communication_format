@@ -179,6 +179,205 @@ url: /fileNewRequest
     "status" : 0 //success 0, failure 1
 }
 
+23. request for /getListingforUser
+{
+    "uid" : 5
+}
+
+24. response for /getListingforUser
+
+{
+    SUCCESS
+
+    {
+    "List of Sublease Listings for User:": {values},
+    "Number of Sublease Listings for User": value,
+    "status": "0"
+    }
+    FAIL (all empty sets)
+    {
+    "List of Sublease Listings for User:": {},
+    "Number of Sublease Listings for User": 0,
+    "status": "0"
+    }
+}
+25. request for /getListingforGroup
+{
+    "gid" : 1
+}
+
+26. response for /getListingforGroup
+
+{
+    SUCCESS
+
+    {
+    "Number of Sublease Listings for Group": values,
+    "List of Sublease Listings for this Group:": {values},
+    "status": "0"
+}
+    FAIL (all empty sets)
+   {
+    "Number of Sublease Listings for Group": 0,
+    "List of Sublease Listings for this Group:": {},
+    "status": "0"
+    }
+}
+
+26. request for /getAllListings
+{
+    no input
+}
+
+27. response for /getAllListings
+
+{
+    SUCCESS
+
+    {
+    "Number of Sublease Listings": values,
+    "List of Sublease Listings :": {values},
+    "status": "0"
+}
+    FAIL (all empty sets)
+   {
+    "Number of Sublease Listings": 0,
+    "List of Sublease Listings:": {},
+    "status": "0"
+    }
+}
+
+31. request for /RemoveTenant
+{
+    "uid": NUMBER,
+    "groupid": NUMBER
+}
+
+32. response for /RemoveTenant
+
+{
+    SUCCESS
+
+    {
+    "groupid": NUMBER,
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+
+34. request for /ChangeUsername
+{
+    "uid": NUMBER,
+    "username": "NAME"
+}
+
+35. response for /ChangeUsername
+
+{
+    SUCCESS
+
+    {
+    "uid": NUMBER,
+    "username": "NAME",
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+36. request for /ChangePassword
+{
+    "uid": NUMBER,
+    "password": "PASSWORD"
+}
+
+37. response for /ChangePassword
+
+{
+    SUCCESS
+
+    {
+    "uid": NUMBER,
+    "password": "PASSWORD",
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+38. request for /GroupInfo
+{
+    "uid": NUMBER
+}
+
+39. response for /GroupInfo
+
+{
+    SUCCESS
+
+    {
+    returns usernames of groups
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+40. request for /JoinGroup
+{
+    "uid": NUMBER,
+    "groupid": NUMBER
+}
+
+41. response for /JoinGroup
+
+{
+    SUCCESS
+
+    {
+    "uid": NUMBER,
+    "groupid": NUMBER,
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+
+44. request for /getTaskListHistory
+{
+    "uid": 11,
+    "groupid": 1
+}
+
+45. response for /getTaskListHistory
+
+{
+    SUCCESS gets all the tasks completed by this user
+
+    {
+    "uid": 11,
+    "groupid": 1,
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+
 B. Admin
 1. request for getting list of complaints
 {
@@ -275,4 +474,111 @@ B. Admin
 12. response to change request status
 {
     "status" : 0 //success 0, failure 1
+}
+13. request for /DeleteGroup
+{
+    "groupid": NUMBER
+}
+
+14. response for /DeleteGroup
+
+{
+    SUCCESS
+
+    {
+    "groupid": NUMBER,
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+15. request for /createGroup
+{
+    "group_id" : NEWNUMBER
+    "address" : "ADDRESS"
+}
+
+16. response for /createGroup
+
+{
+    SUCCESS
+
+    {
+    "address": "ADDRESS",
+    "group_id": NEWNUMBER,
+    "status": "0"
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+
+17. request for /getAllListings
+{
+    no input
+}
+
+18. response for /getAllListings
+
+{
+    SUCCESS
+
+    {
+    "Number of Sublease Listings": values,
+    "List of Sublease Listings :": {values},
+    "status": "0"
+}
+    FAIL (all empty sets)
+   {
+    "Number of Sublease Listings": 0,
+    "List of Sublease Listings:": {},
+    "status": "0"
+    }
+}
+19. request for /addTenant
+{
+    "uid": NUMBER,
+    "groupid": NUMBER
+}
+
+20. response for /addTenant
+
+{
+    SUCCESS
+
+    {
+    "groupid": NUMBER,
+    "status": 0
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
+}
+21. request for /getAllGroups
+{
+    no input
+}
+
+22. response for /getAllGroups
+
+{
+    SUCCESS
+
+    {
+    "address": "ADDRESS",
+    "group_id": NEWNUMBER,
+    "status": "0"
+    }
+    FAIL (all empty sets)
+   {
+ 
+    "status": "1"
+    }
 }

@@ -14,7 +14,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +29,7 @@ import static com.example.CyCHORE.Chatroom.UserChatroomController.getChatroomUse
 import static com.example.CyCHORE.Chatroom.ChatroomController.setLastUpdatedTimestamp;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,6 +40,8 @@ public class GroupTest {
 
     @MockBean
     GroupController gc;
+    @Mock
+    HttpServletRequest request;
 
     @Mock
     UserChatroomRepository ucr;
@@ -45,29 +51,38 @@ public class GroupTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void getGroupTaskPoolGroupControllerTest() {
+        @Test
+        @RequestMapping(value = "/getFinishedTasksInGroup", method = POST, produces ="application/json;charset=UTF-8")
+        @ResponseBody
+        public void ValidategetFinishedTasksInGroup() throws IOException {
 
-        Task mock[] = new Task[3];
-        for (int i = 0; i < 3; i++){
-            mock[i] = new Task(i, "String description", i, false, "deadline", "time_completed", false, i, i, "title");
+            MockHttpServletRequest request = new MockHttpServletRequest();
+            request.addParameter("5");
+            try {
+                when(gc.getFinishedTasksInGroup(request)).thenReturn("0");
+                assertEquals("0", gc.getFinishedTasksInGroup(request));
+                MockHttpServletRequest request2 = new MockHttpServletRequest();
+                assertEquals(null, gc.getFinishedTasksInGroup(request2));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-        when(tr.findAll()).thenReturn(Arrays.asList(mock));
-        List<Task> i = gc.getFinishedTasksInGroup(1);
-        ArrayList<Task> expected = new ArrayList<>();
-        assertEquals(expected, i);
-    }
 
     @Test
-    public void getFinishedTasksInGroupGroupControllerTest() {
-        Task mock[] = new Task[3];
-        for (int i = 0; i < 3; i++){
-            mock[i] = new Task(i, "String description", i, false, "deadline", "time_completed", false, i, i, "title");
+    @RequestMapping(value = "/getGroupTaskPool", method = POST, produces ="application/json;charset=UTF-8")
+    @ResponseBody
+    public void ValidategetGroupTaskPool() throws IOException {
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        request.addParameter("5");
+        try {
+            when(gc.getGroupTaskPool(request)).thenReturn("0");
+            assertEquals("0", gc.getGroupTaskPool(request));
+            MockHttpServletRequest request2 = new MockHttpServletRequest();
+            assertEquals(null, gc.getGroupTaskPool(request2));
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        when(tr.findAll()).thenReturn(Arrays.asList(mock));
-        List<Task> i = gc.getFinishedTasksInGroup(1);
-        ArrayList<Task> expected = new ArrayList<>();
-        assertEquals(expected, i);
     }
 
 }
