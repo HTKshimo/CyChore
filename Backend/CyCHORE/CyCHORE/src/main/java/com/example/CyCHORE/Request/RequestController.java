@@ -23,13 +23,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class RequestController {
 
     @Autowired
-    RequestRepository rr;
-    @Autowired
-    UserRepository ur;
+    static RequestRepository rr;
 
     @RequestMapping(value = "/fileNewRequest", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String fileNewRequest(HttpServletRequest request) throws JSONException, IOException {
+    public static String fileNewRequest(HttpServletRequest request) throws JSONException, IOException {
 //    @RequestMapping("fileNewRequest/{uid}/{type}")
 //    public String fileNewRequest(@PathVariable Integer uid, @PathVariable Integer type) throws JSONException {
         String data = request.getReader().lines().collect(Collectors.joining());
@@ -46,7 +44,7 @@ public class RequestController {
             toSend.put("status", "1");
         }
         return toSend.toString();
-        //TODO: an idea: real time update on admin screen when received new request?
+        //an idea: real time update on admin screen when received new request?
     }
 
     /**
@@ -59,7 +57,7 @@ public class RequestController {
      */
     @RequestMapping(value = "/getRequest", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getRequest(HttpServletRequest request) throws JSONException, IOException {
+    public static String getRequest(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
@@ -106,7 +104,7 @@ public class RequestController {
      */
     @RequestMapping(value = "/changeRequestStatus", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String changeRequestStatus(HttpServletRequest request) throws JSONException, IOException {
+    public static String changeRequestStatus(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer rid = Integer.valueOf((Integer) jsonObj.get("rid"));

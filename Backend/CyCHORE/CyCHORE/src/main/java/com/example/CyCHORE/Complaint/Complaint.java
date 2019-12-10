@@ -1,6 +1,7 @@
 package com.example.CyCHORE.Complaint;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="complaint")
@@ -34,12 +35,21 @@ public class Complaint {
     @Column(name = "admin_id")
     Integer admin_id;
 
+    @Column(name = "lastUpdated")
+    Long lastUpdated;
+
+    public Complaint(){
+
+    }
+
     public Complaint(int task_id, String title, String description, int filer_id){
         this.task_id = task_id;
         this.filer_id = filer_id;
         this.title = title;
         this.description = description;
         this.status = 0;
+        Date date= new Date();
+        this.lastUpdated = date.getTime();
     }
 
     public Integer getId() { return id; }
@@ -49,7 +59,12 @@ public class Complaint {
     public String getDescription() { return description; }
     public Integer getStatus() { return status; }
     public Integer getFiler_id() { return filer_id; }
+    public Long getLastUpdated() { return lastUpdated; }
 
     public void setAdmin_id(Integer admin_id) { this.admin_id = admin_id; }
     public void setStatus(Integer status) { this.status = status; }
+    public void setLastUpdated() {
+        Date date= new Date();
+        this.lastUpdated = date.getTime();
+    }
 }

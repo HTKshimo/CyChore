@@ -25,14 +25,11 @@ import java.io.IOException;
 public class Complaint_Test {
 
     @MockBean
-
     ComplaintController complaint_mock;
     @Mock
     HttpServletRequest request;
 
     @Test
-    @RequestMapping(value = "/getComplaintListforUser", method = POST, produces ="application/json;charset=UTF-8")
-    @ResponseBody
     public void ValidateComplaintsTest() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -49,8 +46,6 @@ public class Complaint_Test {
 
     }
     @Test
-    @RequestMapping(value = "/getComplaintListforUser", method = POST, produces ="application/json;charset=UTF-8")
-    @ResponseBody
     public void ValidateComplaintsTest2() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
@@ -67,8 +62,6 @@ public class Complaint_Test {
 
     }
     @Test
-    @RequestMapping(value = "/getComplaintListforUser", method = POST, produces ="application/json;charset=UTF-8")
-    @ResponseBody
     public void ValidateComplaintsTest3() throws IOException {
 
         MockHttpServletRequest request = new MockHttpServletRequest();
