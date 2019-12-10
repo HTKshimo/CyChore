@@ -235,7 +235,9 @@ public class GroupController {
         JSONObject toSend = new JSONObject();
         Group g = new Group(address, numOfTenants);
         gr.save(g);
+        int id = g.getId();
         toSend.put("status", "0");
+        toSend.put("gid", id);
         return toSend.toString();
     }
 
