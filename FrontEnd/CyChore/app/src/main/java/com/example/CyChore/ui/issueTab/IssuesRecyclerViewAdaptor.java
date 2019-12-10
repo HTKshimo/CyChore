@@ -1,8 +1,10 @@
 package com.example.CyChore.ui.issueTab;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +43,10 @@ public class IssuesRecyclerViewAdaptor extends RecyclerView.Adapter<IssuesRecycl
         holder.mItem = mValues.get(position);
         holder.IssueName.setText(mValues.get(position).detail);
         holder.IssueComplain.setText(mValues.get(position).complain);
+        if(mValues.get(position).status == 1) {
+            holder.IssueName.setBackgroundColor(Color.parseColor("#72AA2855"));
+            holder.IssueComplain.setBackgroundColor(Color.parseColor("#72AA2855"));
+        }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +103,10 @@ public class IssuesRecyclerViewAdaptor extends RecyclerView.Adapter<IssuesRecycl
 
         public ViewHolder(View itemView) {
             super(itemView);
+
             mView = itemView;
             IssueName = itemView.findViewById(R.id.IssueItemName);
             IssueComplain = itemView.findViewById(R.id.IssueItemComplain);
-
 
         }
 

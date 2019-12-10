@@ -31,14 +31,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.demo01.MESSAGE";
 
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
-    private static final String login_url0 = "https://us-central1-login-demo-309.cloudfunctions.net/log_2";
-    private static final String login_url1 = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
-    private static final String login_url2 = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
+//    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_2";
+    private static final String login_url = "https://us-central1-login-demo-309.cloudfunctions.net/log_3";
+//    private static final String login_url = "http://coms-309-ks-2.misc.iastate.edu:8080/home/login";
 
     private Button login;
     private Button register;
@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String name, final String pwd) {
-        final String url = login_url1;
+        final String url = login_url;
 
         // create json to be send
         final JSONObject param = new JSONObject();
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
          * setXXX func return Dialog object
          */
         final AlertDialog.Builder normalDialog =
-                new AlertDialog.Builder(MainActivity.this);
+                new AlertDialog.Builder(LoginPage.this);
         normalDialog.setTitle("Login failed");
 
         switch (fail_code) {

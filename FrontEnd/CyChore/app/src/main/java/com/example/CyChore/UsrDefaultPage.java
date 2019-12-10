@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.CyChore.data.ChatCollection;
+import com.example.CyChore.data.IssueCollection;
 import com.example.CyChore.data.ListItem;
 import com.example.CyChore.data.TaskCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
@@ -59,7 +60,7 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
     public void logout() {
         getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 
@@ -84,6 +85,8 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
             logout();
         } else if (item.title.equals("My Account")) {
             jumpProfileEdit();
+        } else if (item.title.equals("My Complains")) {
+            jumpMyComplains();
         } else if (item.title.equals("chat")) {
 
             ChatCollection.ChatSelection chat = (ChatCollection.ChatSelection) item;
@@ -110,9 +113,26 @@ public class UsrDefaultPage extends AppCompatActivity implements OnListFragmentI
 
 
             startActivity(intent);
-        }else if (item.title.equals("sublease")){
+        } else if (item.title.equals("sublease")) {
 
+        }else if (item.title.equals("issue")) {
+            IssueCollection.IssueItem issue = (IssueCollection.IssueItem) item;
+            Intent intent = new Intent(this, IssueDetail.class);
+
+
+            IssueDetail.tid = issue.tid;
+            IssueDetail.uid = uid;
+            IssueDetail.Complain = issue.complain;
+            IssueDetail.fid = issue.fid;
+
+
+            startActivity(intent);
         }
 
+    }
+
+    private void jumpMyComplains() {
+        Intent intent = new Intent(this, MyComplainsPage.class);
+        startActivity(intent);
     }
 }

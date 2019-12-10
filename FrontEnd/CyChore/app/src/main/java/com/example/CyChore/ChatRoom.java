@@ -43,8 +43,8 @@ public class ChatRoom extends AppCompatActivity {
     private Handler chatUpdateHandler;
     private EditText msgToSend;
     private WebSocket chatSocket;
-    private String wsurl = "ws://coms-309-ks-2.misc.iastate.edu:8080//websocket/1/1";
-
+    //    private String wsurl = "ws://coms-309-ks-2.misc.iastate.edu:8080//websocket/1/1";
+    private String wsurl = "wss://echo.websocket.org";
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -53,13 +53,12 @@ public class ChatRoom extends AppCompatActivity {
         setContentView(R.layout.activity_chat_room);
 
 
-        
         chatContents = findViewById(R.id.ChatContents);
         chatContents.setLayoutManager(new LinearLayoutManager(chatContents.getContext()));
         chatContents_adaptor = new chatRoomRecyclerViewAdapter(chatlog);
         chatContents.setAdapter(chatContents_adaptor);
 
-        chatUpdateHandler = new Handler(){
+        chatUpdateHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what) {
@@ -67,10 +66,10 @@ public class ChatRoom extends AppCompatActivity {
                         chatContents_adaptor.notifyDataSetChanged();
                         break;
                     case 1:
-                        Toast.makeText(ChatRoom.this,"Conneted!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatRoom.this, "Conneted!", Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        Toast.makeText(ChatRoom.this,"Failed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatRoom.this, "Failed!", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -91,15 +90,11 @@ public class ChatRoom extends AppCompatActivity {
         client.dispatcher().executorService().shutdown();
 
 
-
-
-
-
     }
 
-    public void onClickSend(View view){
-        String toSend = uname+": "+msgToSend.getText().toString();
-        if(toSend.length()==0 || toSend.replace(" ", "").length()==0){
+    public void onClickSend(View view) {
+        String toSend = uname + ": " + msgToSend.getText().toString();
+        if (toSend.length() == 0 || toSend.replace(" ", "").length() == 0) {
             Toast.makeText(view.getContext(), R.string.msg_send_null, Toast.LENGTH_SHORT).show();
             return;
 
@@ -112,24 +107,29 @@ public class ChatRoom extends AppCompatActivity {
 
     private final class ChatWebSocketListener extends WebSocketListener {
         private static final int NORMAL_CLOSURE_STATUS = 1000;
+
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
             chatUpdateHandler.sendEmptyMessage(1);
         }
+
         @Override
         public void onMessage(WebSocket webSocket, String text) {
             Log.d("onMessage: ", text);
-            output( text);
+            output(text);
         }
+
         @Override
         public void onMessage(WebSocket webSocket, ByteString bytes) {
             output("Receiving bytes : " + bytes.hex());
         }
+
         @Override
         public void onClosing(WebSocket webSocket, int code, String reason) {
             webSocket.close(NORMAL_CLOSURE_STATUS, null);
             output("Closing : " + code + " / " + reason);
         }
+
         @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
             output("Error : " + t.getMessage());
@@ -137,16 +137,16 @@ public class ChatRoom extends AppCompatActivity {
         }
     }
 
-    private void output(final String txt){
+    private void output(final String txt) {
         chatItems.ITEMS.get(chatPosition).ChatContent.add(txt);
         chatItems.ITEMS.get(chatPosition).lastestLine = txt;
         chatUpdateHandler.sendEmptyMessage(0);
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
         ChatTabFragment.chatlist_adaptor.notifyDataSetChanged();
     }
-    
+
 }

@@ -204,6 +204,7 @@ public class JoinGroup extends AppCompatActivity
     private void jumpHome()
     {
         Intent intent = new Intent(this, UsrDefaultPage.class);
+        UsrDefaultPage.groupid = Integer.parseInt(gID.getText().toString());
         startActivity(intent);
     }
 
