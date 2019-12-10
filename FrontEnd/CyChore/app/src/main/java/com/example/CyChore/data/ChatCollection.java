@@ -12,22 +12,22 @@ public class ChatCollection {
     public static final Map<String, ChatSelection> ITEM_MAP = new HashMap<String, ChatSelection>();
 
     static {
-//        // Add some sample items.
-//        ArrayList<String> MrHouseChatLog = new ArrayList<>();
-//
-//        MrHouseChatLog.add("JohnSmith: I'll take care of it.");
-//        MrHouseChatLog.add("MrHouse: With this accomplished, all preparations will have been made. ");
-//
-//        MrHouseChatLog.add("JohnSmith: Before I leave, I have a question. What the hell are you?");
-//        MrHouseChatLog.add("MrHouse: A crude question, crudely asked.");
-//
-//        MrHouseChatLog.add("JohnSmith: Goodbye.");
-//        MrHouseChatLog.add("MrHouse: Well enough. Be on your way.");
-//        addItem(new ChatSelection("MrHouse",MrHouseChatLog));
-//
-//        ArrayList<String> echoLog = new ArrayList<>();
-//        echoLog.add("echo test start");
-//        addItem(new ChatSelection("Echo",echoLog));
+        // Add some sample items.
+        ArrayList<String> MrHouseChatLog = new ArrayList<>();
+
+        MrHouseChatLog.add("JohnSmith: I'll take care of it.");
+        MrHouseChatLog.add("MrHouse: With this accomplished, all preparations will have been made. ");
+
+        MrHouseChatLog.add("JohnSmith: Before I leave, I have a question. What the hell are you?");
+        MrHouseChatLog.add("MrHouse: A crude question, crudely asked.");
+
+        MrHouseChatLog.add("JohnSmith: Goodbye.");
+        MrHouseChatLog.add("MrHouse: Well enough. Be on your way.");
+        addItem(new ChatSelection("MrHouse",MrHouseChatLog));
+
+        ArrayList<String> echoLog = new ArrayList<>();
+        echoLog.add("echo test start");
+        addItem(new ChatSelection("Echo",echoLog));
     }
     public ChatCollection()
     {
@@ -46,13 +46,17 @@ public class ChatCollection {
         ITEM_MAP.clear();
     }
 
+    public static ChatSelection get(int pos)
+    {
+        return ITEMS.get(pos);
+    }
 
     public static class ChatSelection extends ListItem
     {
 
         public String ChatTitle;
         public ArrayList<String> ChatContent;
-        public String lastestLine;
+        public String lastestLine="";
 
         public ChatSelection(String givenTitle, List<String> givenChatContent)
         {
@@ -60,8 +64,9 @@ public class ChatCollection {
 
             ChatTitle = givenTitle;
             ChatContent = new ArrayList<>(givenChatContent);
-            lastestLine = givenChatContent.get(givenChatContent.size()-1);
-
+            if(givenChatContent.size()!=0) {
+                lastestLine = givenChatContent.get(givenChatContent.size() - 1);
+            }
         }
 
         @Override

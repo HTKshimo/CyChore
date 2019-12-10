@@ -65,6 +65,7 @@
         android:layout_marginStart="113dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="114dp"
+        android:onClick="chatResponsible"
         android:text="Contact Responsible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

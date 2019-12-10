@@ -16,34 +16,12 @@ import com.example.CyChore.R;
 import com.example.CyChore.data.ProfileCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
 public class ProfileFragment extends Fragment {
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    public static boolean isAdmin = false;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public ProfileFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static ProfileFragment newInstance(int columnCount) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -51,9 +29,6 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
     @Override
@@ -65,12 +40,19 @@ public class ProfileFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
+
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+
+            if(!isAdmin) {
+                recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(ProfileCollection.ITEMS, mListener));
+            }else{
+                ProfileCollection options = new ProfileCollection();
+                options.clear();
+                options.addItem(new ProfileCollection.ProfileSelection("My Account", "edit personal info"));
+                options.addItem(new ProfileCollection.ProfileSelection("Group Management", "manage group info"));
+                options.addItem(new ProfileCollection.ProfileSelection("Log Out"));
+                recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(options.ITEMS, mListener));
             }
-            recyclerView.setAdapter(new MyProfileRecyclerViewAdapter(ProfileCollection.ITEMS, mListener));
         }
         return view;
     }

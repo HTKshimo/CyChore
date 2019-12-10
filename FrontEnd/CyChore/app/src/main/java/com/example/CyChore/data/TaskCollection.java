@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.CyChore.MainActivity;
-
 public class TaskCollection {
     public static final List<TaskItem> ITEMS = new ArrayList<TaskItem>();
 

@@ -3,14 +3,13 @@ package com.example.CyChore;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.CyChore.data.ChatCollection;
 import com.example.CyChore.data.IssueCollection;
 import com.example.CyChore.data.ListItem;
-import com.example.CyChore.data.TaskCollection;
 import com.example.CyChore.ui.OnListFragmentInteractionListener;
 import com.example.CyChore.ui.chatTab.ChatTabFragment;
+import com.example.CyChore.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +22,7 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
 
     public static String usrName;
     public static int uid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
         NavigationUI.setupWithNavController(navView, navController);
         ChatTabFragment.uid = uid;
         ChatTabFragment.uname = usrName;
+        ProfileFragment.isAdmin = true;
         getSupportActionBar().hide();
     }
 
@@ -66,7 +67,8 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
             IssueDetail.uid = uid;
             IssueDetail.Complain = issue.complain;
             IssueDetail.fid = issue.fid;
-
+            IssueDetail.usrName = usrName;
+            IssueDetail.name = issue.detail;
 
             startActivity(intent);
         }
@@ -80,7 +82,7 @@ public class AdminDefaultPage extends AppCompatActivity implements OnListFragmen
 
     public void logout() {
         getSharedPreferences("accountInfo", Context.MODE_PRIVATE).edit().putBoolean("auto_login", false).commit();
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 

@@ -25,10 +25,15 @@ public class ProfileCollection
     {
 
     }
-    private static void addItem(ProfileSelection item)
+    public static void addItem(ProfileSelection item)
     {
         ITEMS.add(item);
         ITEM_MAP.put(item.title, item);
+    }
+    public static void clear()
+    {
+        ITEMS.clear();
+        ITEM_MAP.clear();
     }
 
     public static class ProfileSelection extends ListItem

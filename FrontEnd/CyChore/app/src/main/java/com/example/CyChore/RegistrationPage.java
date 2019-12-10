@@ -47,7 +47,7 @@ public class RegistrationPage extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(LoginPage.EXTRA_MESSAGE);
 
         getSupportActionBar().hide();
 
@@ -227,7 +227,7 @@ public class RegistrationPage extends AppCompatActivity {
 
     private void jumpLogin()
     {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
 }

@@ -43,6 +43,7 @@ public class IssueCollection {
     public static class IssueItem extends ListItem {
         public int tid;
         public int fid;
+        public int status;
         public String complain = "";
 
         public IssueItem(int givenTid, String name, String complainContent, int filerid)
@@ -51,6 +52,16 @@ public class IssueCollection {
             tid = givenTid;
             complain = complainContent;
             fid = filerid;
+            status = 1;
+        }
+
+        public IssueItem(int givenTid, String name, String complainContent, int filerid, int givenstatus)
+        {
+            super("issue", name);
+            tid = givenTid;
+            complain = complainContent;
+            fid = filerid;
+            status = givenstatus;
         }
 
 
