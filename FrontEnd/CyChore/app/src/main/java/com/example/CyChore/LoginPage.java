@@ -57,7 +57,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_Login);
+        setContentView(R.layout.activity_main);
         in = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         login = (Button) findViewById(R.id.LoginButton);
