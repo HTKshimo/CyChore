@@ -33,7 +33,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 //import org.mockito.mock.*;
-        //mockitousage.IMethods;
+//mockitousage.IMethods;
 //import org.mockitoutil.TestBase;
 
 public class MockitoTest {
