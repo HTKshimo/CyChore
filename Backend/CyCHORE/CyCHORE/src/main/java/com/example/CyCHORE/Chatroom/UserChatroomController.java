@@ -1,5 +1,6 @@
 package com.example.CyCHORE.Chatroom;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,15 @@ public class UserChatroomController {
     }
 
     @RequestMapping(value = "/createChatroomWithUsers", method = POST, produces = "application/json;charset=UTF-8")
-    public String createChatroomWithUsers(HttpServletRequest request) throws JSONException, IOException {
+    @ResponseBody
+    public static String createChatroomWithUsers(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
-        Integer[] user_ids = (Integer[]) jsonObj.get("user_ids");
+        JSONArray user_ids_raw = (JSONArray) jsonObj.get("user_ids");
+        ArrayList<Integer> user_ids = new ArrayList<>();
+        for (int i = 0; i < user_ids_raw.length(); i++){
+            user_ids.add(user_ids_raw.getInt(i));
+        }
         Chatroom cr = new Chatroom();
         chr.save(cr);
         int cr_id = cr.getId();
