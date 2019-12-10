@@ -17,11 +17,11 @@ import java.util.List;
 public class groupManagementRecyclerViewAdaptor extends RecyclerView.Adapter<groupManagementRecyclerViewAdaptor.ViewHolder> {
 
     private final List<GroupCollection.GroupItem> mValues;
-    private OnListFragmentInteractionListener mlistener;
+    private OnListFragmentInteractionListener mListener;
 
     public groupManagementRecyclerViewAdaptor(List<GroupCollection.GroupItem> items, OnListFragmentInteractionListener listener){
         mValues = items;
-        mlistener = listener;
+        mListener = listener;
     }
 
     @NonNull
@@ -33,20 +33,32 @@ public class groupManagementRecyclerViewAdaptor extends RecyclerView.Adapter<gro
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        holder.mItem = mValues.get(position);
+        holder.name.setText(mValues.get(position).detail);
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    mListener.onListFragmentInteraction(holder.mItem, 0);
+                }
+            }
+        });
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
 
         public TextView name;
+        public GroupCollection.GroupItem mItem;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

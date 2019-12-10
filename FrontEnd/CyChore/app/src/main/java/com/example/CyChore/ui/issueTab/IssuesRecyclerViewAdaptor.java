@@ -43,7 +43,10 @@ public class IssuesRecyclerViewAdaptor extends RecyclerView.Adapter<IssuesRecycl
         holder.mItem = mValues.get(position);
         holder.IssueName.setText(mValues.get(position).detail);
         holder.IssueComplain.setText(mValues.get(position).complain);
-        if(mValues.get(position).status == 1) {
+        if (mValues.get(position).detail.equals( "Access request")) {
+            holder.IssueName.setBackgroundColor(Color.parseColor("#86F1C43C"));
+            holder.IssueComplain.setBackgroundColor(Color.parseColor("#86F1C43C"));
+        }else if (mValues.get(position).status == 1) {
             holder.IssueName.setBackgroundColor(Color.parseColor("#72AA2855"));
             holder.IssueComplain.setBackgroundColor(Color.parseColor("#72AA2855"));
         }
@@ -54,7 +57,7 @@ public class IssuesRecyclerViewAdaptor extends RecyclerView.Adapter<IssuesRecycl
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem,0);
+                    mListener.onListFragmentInteraction(holder.mItem, 0);
                     // TODO: set onclick listener for buttons in holder
                 }
             }

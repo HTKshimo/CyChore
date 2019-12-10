@@ -26,6 +26,9 @@ public class GroupDetail extends AppCompatActivity implements OnMapReadyCallback
     public groupMemberRVAdaptor groupMemberList_adaptor;
     public MapView mMapView;
 
+    public static double lat = 42.016278;
+    public static double lng = -93.647852;
+
     public static boolean isAdmin = false;
 
 
@@ -63,8 +66,7 @@ public class GroupDetail extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap map) {
-        double lat = 42.016278;
-        double lng = -93.647852;
+
         LatLng appointLoc = new LatLng(lat, lng);
 
         map.addMarker(new MarkerOptions().position(appointLoc).title("Marker"));

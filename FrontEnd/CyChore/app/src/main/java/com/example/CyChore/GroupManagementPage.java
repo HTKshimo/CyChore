@@ -1,10 +1,12 @@
 package com.example.CyChore;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.CyChore.data.GroupCollection;
 import com.example.CyChore.data.ListItem;
@@ -18,6 +20,8 @@ public class GroupManagementPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        groupItems = new GroupCollection();
+
         setContentView(R.layout.activity_group_management_page);
         groupsRV = findViewById(R.id.GroupMngRV);
         OnListFragmentInteractionListener mlistener = new OnListFragmentInteractionListener(){
@@ -28,7 +32,10 @@ public class GroupManagementPage extends AppCompatActivity {
             }
         };
         groupsRV_adpator = new groupManagementRecyclerViewAdaptor(groupItems.ITEMS, mlistener);
-
+        groupsRV.setLayoutManager(new LinearLayoutManager(groupsRV.getContext()));
+        groupsRV.setAdapter(groupsRV_adpator);
+        getSupportActionBar().hide();
+        Log.d("groupitems", groupItems.toString());
     }
 
     private void jumpGroupDetail(GroupCollection.GroupItem gitem) {
@@ -37,6 +44,8 @@ public class GroupManagementPage extends AppCompatActivity {
         GroupDetail.address = gitem.address;
         GroupDetail.members = gitem.groupMembers;
         GroupDetail.isAdmin = true;
+        GroupDetail.lat = gitem.la;
+        GroupDetail.lng = gitem.ln;
         startActivity(intent);
     }
 
