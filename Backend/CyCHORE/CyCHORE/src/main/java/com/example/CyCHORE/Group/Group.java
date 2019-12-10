@@ -23,8 +23,7 @@ public class Group {
         this.num_of_tenants = null;
     }
 
-    public Group(Integer id, String address, Integer num_of_tenants) {
-        this.id = id;
+    public Group(String address, Integer num_of_tenants) {
         this.address = address;
         this.num_of_tenants = num_of_tenants;
     }

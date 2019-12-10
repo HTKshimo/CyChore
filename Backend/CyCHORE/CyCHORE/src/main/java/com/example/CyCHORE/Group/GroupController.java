@@ -4,10 +4,7 @@ import com.example.CyCHORE.Complaint.Complaint;
 import com.example.CyCHORE.Listings.Listings;
 import com.example.CyCHORE.Task.*;
 import com.example.CyCHORE.User.*;
-<<<<<<< Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
 import org.json.JSONArray;
-=======
->>>>>>> Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,25 +13,21 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-<<<<<<< Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
+
 import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.math.BigDecimal;
-=======
 import java.io.IOException;
->>>>>>> Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-<<<<<<< Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-=======
+
 import java.util.stream.Collectors;
 
->>>>>>> Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
@@ -231,39 +224,7 @@ public class GroupController {
         return toSend.toString();
     }
 
-<<<<<<< Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
-    //Make a new group
-    @RequestMapping(value = "/createGroup", method = POST, produces = "application/json;charset=UTF-8")
-    public String createGroup(HttpServletRequest request) throws JSONException, IOException {
-        String data = request.getReader().lines().collect(Collectors.joining());
-        JSONObject jsonObj = new JSONObject(data);
-        //Integer group_id = Integer.valueOf((Integer) jsonObj.get("group_id"));
-        String address = (String) jsonObj.get("address");
-        List<Group> allGroup = gr.findAll();
-        JSONObject toReturn = new JSONObject();
-        Group g = new Group();
-        int isDuplicate = 0;
-        for (int i = 0; i < allGroup.size(); i++) {
-            Group list = allGroup.get(i);
-            if (!list.address.equals(address)) {
-                //if (!list.id.equals(group_id)) {
-                                g.address = address;
-                                //g.id = group_id;
-                                gr.save(g);
-                                toReturn.put("status", "0");
-                                toReturn.put("address", g.address);
-                                //toReturn.put("group_id", g.id);
-                //}
-            }
-            else {
-                isDuplicate = 1;
-                toReturn.put("status", "1");
-            }
-        }
-        return toReturn.toString();
-    }
-}
-=======
+
     @RequestMapping(value = "/createGroup", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
     public String createGroup(HttpServletRequest request) throws JSONException, IOException {
@@ -279,4 +240,3 @@ public class GroupController {
     }
 
 }
->>>>>>> Backend/CyCHORE/CyCHORE/src/main/java/com/example/CyCHORE/Group/GroupController.java
