@@ -20,15 +20,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class ComplaintController {
 
     @Autowired
-    ComplaintRepository cr;
+    static ComplaintRepository cr;
     @Autowired
-    TaskRepository tr;
+    static TaskRepository tr;
     @Autowired
-    UserRepository ur;
+    static UserRepository ur;
 
     @RequestMapping(value = "/fileNewComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String fileNewComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String fileNewComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         JSONObject toSend = new JSONObject();
@@ -57,7 +57,7 @@ public class ComplaintController {
      */
     @RequestMapping(value = "/getComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String getComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String getComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer uid = Integer.valueOf((Integer) jsonObj.get("uid"));
@@ -92,7 +92,7 @@ public class ComplaintController {
 
     @RequestMapping(value = "/approveComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String approveComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String approveComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer cid = Integer.valueOf((Integer) jsonObj.get("cid"));
@@ -127,7 +127,7 @@ public class ComplaintController {
 
     @RequestMapping(value = "/rejectComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String rejectComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String rejectComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer cid = Integer.valueOf((Integer) jsonObj.get("cid"));
@@ -147,7 +147,7 @@ public class ComplaintController {
 
     @RequestMapping(value = "/processingComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String processingComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String processingComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer cid = Integer.valueOf((Integer) jsonObj.get("cid"));
@@ -169,7 +169,7 @@ public class ComplaintController {
 
     @RequestMapping(value = "/retrieveComplaint", method = POST, produces ="application/json;charset=UTF-8")
     @ResponseBody
-    public String retrieveComplaint(HttpServletRequest request) throws JSONException, IOException {
+    public static String retrieveComplaint(HttpServletRequest request) throws JSONException, IOException {
         String data = request.getReader().lines().collect(Collectors.joining());
         JSONObject jsonObj = new JSONObject(data);
         Integer cid = Integer.valueOf((Integer) jsonObj.get("cid"));
