@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyComplainsPage"></activity>
+        <activity android:name=".GroupManagementPage"></activity>
+        <activity android:name=".MyComplainsPage" />
         <activity android:name=".IssueDetail" />
         <activity android:name=".ProfileEditPage" />
         <activity
