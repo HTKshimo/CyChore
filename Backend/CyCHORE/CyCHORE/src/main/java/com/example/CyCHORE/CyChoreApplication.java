@@ -1,29 +1,37 @@
 package com.example.CyCHORE;
-
-import com.example.CyCHORE.Task.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import com.example.CyCHORE.MyDatabase;
+import org.json.JSONException;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.io.IOException;
+
+import static com.example.CyCHORE.Chatroom.MessageController.getChatroomMessages;
+import static com.example.CyCHORE.Chatroom.UserChatroomController.getUserChatHistory;
+
 
 
 @SpringBootApplication
-public class CyChoreApplication{
+public class CyChoreApplication {
 
 //	@Autowired
 //	DataSource dataSource;
 //	@Autowired
-//	MyDatabase db;
 //	@Autowired
 //    TaskRepository tr;
 
-	public static void main(String[] args) {
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//		return builder.sources(CyChoreApplication.class);
+//	}
+
+	public static void main(String[] args){
 		SpringApplication.run(CyChoreApplication.class, args);
 	}
+
+//	public static void main(String[] args) {
+//		SpringApplication.run(CyChoreApplication.class, args);
+//	}
 
 //	@Override
 //	public void run(String... args) throws Exception {

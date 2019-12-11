@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPage"
+    >
+
+    <TextView
+        android:id="@+id/TitleText"
+        android:layout_width="209dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="80dp"
+        android:text="Welcome!"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/LoginEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/LoginEmail"
+        android:layout_width="273dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="69dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+
+    <EditText
+        android:id="@+id/LoginPassword"
+        android:layout_width="273dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="69dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginEmail" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="159dp"
+        android:background="#B2FF3401"
+        android:onClick="login"
+        android:text="Login!"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPassword" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="309dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="51dp"
+        android:background="#6FFF8C00"
+        android:onClick="register"
+        android:text="Don't have an account? Register here!"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginButton" />
+
+    <CheckBox
+        android:id="@+id/SavePwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="30dp"
+        android:onClick="checkSavePwd"
+        android:text="@string/save_pwd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPassword" />
+
+    <CheckBox
+        android:id="@+id/AutoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="69dp"
+        android:onClick="checkAutoLogin"
+        android:text="@string/auto_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

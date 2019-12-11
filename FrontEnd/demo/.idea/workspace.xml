@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Registration" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eaa79f41-a89b-4f88-8f6a-6cab94913464" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/AddTaskPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2046">
+              <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/util/TaskStatusUpadateUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="795">
+              <caret line="73" column="71" selection-start-line="73" selection-start-column="71" selection-end-line="73" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="232" selection-start-line="232" selection-end-line="232" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/demo01/MockitoTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/TaskCollection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="21" column="66" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="valueResourceFile" />
+        <option value="Interface" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>dummy</find>
+      <find>dumm</find>
+      <find>log</find>
+      <find>DUMMY</find>
+      <find>prof</find>
+      <find>equal</find>
+      <find>onAttach</find>
+      <find>remove</find>
+      <find>index</find>
+      <find>clear</find>
+      <find>toast</find>
+      <find>OnFragmentInteractionListener</find>
+      <find>OnListFragmentInteractionListener</find>
+      <find>adap</find>
+      <find>mListener</find>
+      <find>add</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="mohanz &lt;mohanz@iatsate.edu&gt;" />
+      </list>
+    </option>
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="master" />
+      </map>
+    </option>
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/TasksFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/profile_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registration_page.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/MyProfileRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/profile/OnListFragmentInteractionListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/ListItem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksFragement/TasksFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksFragement/tasksRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile_list.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/profile/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/JoinGroup.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_join_group.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/ProfileCollection.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/groupTab/DashboardFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tasks.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_usr_default_page.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/pool_task.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/intValue.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/usr_task.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_task_page.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_tab.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/TaskCollection.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_task_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/OnListFragmentInteractionListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/groupTab/GroupTabFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/profile/MyProfileRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/UsrDefaultPage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/TaskDetail.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksTab/tasksRecyclerViewAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksTab/TasksList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/RegistrationPage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/AddTaskPage.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/test/java/com/example/demo01/ExampleUnitTest.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/test/java/com/example/demo01/MockitoTest.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/demo01/util/TaskStatusUpadateUtil.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="714" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="demo01" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="demo01" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="demo01" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="demo01" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="demo01" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+            </path>
+            <path>
+              <item name="demo01" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="demo01" type="58d84e3e:PackageViewProjectNode" />
+              <item name="app" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="FA71S0306779" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-09-29T02:06:31.230Z" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+    </key>
+    <key name="android.template.packageName">
+      <recent name="com.example.demo01" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.demo01" />
+      <recent name="com.example.demo01.ui.tasksFragement" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="ExampleUnitTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo01.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo01" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo01.ExampleUnitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MockitoTest.testTasks" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demo01.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.demo01" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo01.MockitoTest" />
+      <option name="METHOD_NAME" value="testTasks" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.MockitoTest.testTasks" />
+        <item itemvalue="Android JUnit.ExampleUnitTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eaa79f41-a89b-4f88-8f6a-6cab94913464" name="Default Changelist" comment="" />
+      <created>1568848870243</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1568848870243</updated>
+    </task>
+    <task id="LOCAL-00001" summary="copy project to new directory">
+      <created>1568848965425</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1568848965425</updated>
+    </task>
+    <task id="LOCAL-00002" summary="change request url to postman post testing url.&#10;login logic need reimplement since post test has pass">
+      <created>1568853492581</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568853492581</updated>
+    </task>
+    <task id="LOCAL-00003" summary="change request url to postman post testing url.&#10;try implement decode json function">
+      <created>1568871504257</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568871504257</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change request url to postman post testing url.&#10;try implement decode json function and jump logic with handler">
+      <created>1568871603652</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1568871603652</updated>
+    </task>
+    <task id="LOCAL-00005" summary="hide action bar for some screen&#10;implement basic list of option in my profile tab&#10;change package structure">
+      <created>1569278710751</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1569278710751</updated>
+    </task>
+    <task id="LOCAL-00006" summary="implement registration page and function&#10;improve input validation check on reg/login page&#10;disable some unnecessary go back button listener&#10;respond json decode function and login/registration success check need implement">
+      <created>1569396462166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1569396462166</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implement login and registration function with dummy url and dummy check&#10;implement behavior for different respond from server&#10;need implement true url and json format for more tests">
+      <created>1569401633661</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1569401633661</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix a bug of dialog not able to show correctly">
+      <created>1569403131594</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1569403131594</updated>
+    </task>
+    <task id="LOCAL-00009" summary="change login test url and fully tested&#10;now after login uid will be send to home&#10;need implement recycler view of tasks page, adaptor and listener">
+      <created>1569575470935</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1569575470935</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add save password and auto login func to login page&#10;implement layout of my profile tab while on click action need implement">
+      <created>1569747394860</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1569747394861</updated>
+    </task>
+    <task id="LOCAL-00011" summary="implement log out &#10;clean directory">
+      <created>1569801479504</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1569801479504</updated>
+    </task>
+    <task id="LOCAL-00012" summary="change package structure for better implement">
+      <created>1569831059943</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1569831059943</updated>
+    </task>
+    <task id="LOCAL-00013" summary="implement tasklist&#10;TODO: parse json array to tasklist items&#10;TODO: implement button onclick for task list items&#10;TODO: (low priority) debug and implement tasklist delItem method">
+      <created>1569878319842</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1569878319842</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fully implement tasklist&#10;url need be change to given server&#10;TODO: implement button onclick for task list items">
+      <created>1569887650146</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1569887650147</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add a comment&#10;fully implement tasklist&#10;url need be change to given server&#10;TODO: implement button onclick for task list items">
+      <created>1569896282086</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1569896282086</updated>
+    </task>
+    <task id="LOCAL-00016" summary="change url from test server to 309 server&#10;add internet access permission for 309 server&#10;TODO: implement button onclick for task list items">
+      <created>1569956083929</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1569956083930</updated>
+    </task>
+    <task id="LOCAL-00017" summary="change time implement and add due time calculation&#10;TODO: implement button onclick for task list items">
+      <created>1569958205429</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1569958205429</updated>
+    </task>
+    <task id="LOCAL-00018" summary="implement tasklist fragment for usr without a group&#10;change login info passing method &#10;add join group activity without implement">
+      <created>1571207786318</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1571207786318</updated>
+    </task>
+    <task id="LOCAL-00019" summary="implement ui of task detail activity, button func need implement">
+      <created>1571218401543</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1571218401543</updated>
+    </task>
+    <task id="LOCAL-00020" summary="implement ui of group tab&#10;todo: group tab recycler view&#10;todo: group tab button&#10;debug: update task status">
+      <created>1571354615894</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1571354615894</updated>
+    </task>
+    <task id="LOCAL-00021" summary="implement reuse ui for task item&#10;todo: group tab recycler view&#10;todo: group tab button&#10;debug: update task status">
+      <created>1571357956125</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1571357956125</updated>
+    </task>
+    <task id="LOCAL-00022" summary="implement reuse ui for all task item&#10;todo: group tab button&#10;debug: update task status">
+      <created>1571362716140</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1571362716140</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix bug of update task status&#10;improve task item implement">
+      <created>1571524427544</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1571524427544</updated>
+    </task>
+    <task id="LOCAL-00024" summary="implement join group button for group tab and set up logic of view&#10;TODO: addTaskPage, joinGroupPage, complain page">
+      <created>1571528285408</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1571528285408</updated>
+    </task>
+    <task id="LOCAL-00025" summary="improve complain button&#10;TODO: addTaskPage, joinGroupPage, complain page">
+      <created>1571531578480</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1571531578480</updated>
+    </task>
+    <task id="LOCAL-00026" summary="implement task detail page with complain page inside&#10;TODO: addTaskPage">
+      <created>1571609529347</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1571609529347</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix a bug on list update&#10;TODO: addTaskPage">
+      <created>1571610010826</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1571610010826</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fix a bug on history list update&#10;TODO: addTaskPage">
+      <created>1571610306582</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1571610306582</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add mockito&#10;TODO: addTaskPage">
+      <created>1571929959629</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1571929959629</updated>
+    </task>
+    <task id="LOCAL-00030" summary="add mockito update ignore&#10;TODO: addTaskPage">
+      <created>1571930221018</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1571930221018</updated>
+    </task>
+    <task id="LOCAL-00031" summary="add mockito update ignore&#10;TODO: addTaskPage">
+      <created>1571931607572</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1571931607572</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="ExampleUnitTest - 2019.10.24 at 09h 26m 12s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="MockitoTest_testTasks - 2019.10.24 at 09h 35m 25s.xml">
+      <configuration name="MockitoTest.testTasks" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="MockitoTest_testTasks - 2019.10.24 at 09h 38m 35s.xml">
+      <configuration name="MockitoTest.testTasks" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="MockitoTest_testTasks - 2019.10.24 at 09h 38m 55s.xml">
+      <configuration name="MockitoTest.testTasks" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="MockitoTest_testTasks - 2019.10.24 at 10h 19m 56s.xml">
+      <configuration name="MockitoTest.testTasks" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="MockitoTest_testTasks - 2019.10.24 at 10h 26m 06s.xml">
+      <configuration name="MockitoTest.testTasks" configurationId="AndroidJUnit" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.17596567" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Resources Explorer" order="7" weight="0.3297568" />
+      <window_info id="Capture Tool" order="8" />
+      <window_info anchor="bottom" id="Messages" order="0" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49785408" visible="true" weight="0.24819277" />
+      <window_info anchor="bottom" id="Logcat" order="2" sideWeight="0.49713877" weight="0.2746988" />
+      <window_info anchor="bottom" id="TODO" order="3" weight="0.32891566" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.32891566" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5028612" side_tool="true" visible="true" weight="0.5566265" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="6" sideWeight="0.49713877" visible="true" weight="0.5566265" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49713877" weight="0.43975905" />
+      <window_info anchor="bottom" id="Build" order="8" sideWeight="0.49713877" weight="0.2253012" />
+      <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" sideWeight="0.49928468" weight="0.32891566" />
+      <window_info anchor="bottom" id="Find" order="10" weight="0.32891566" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="StringPreview" order="6" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="me" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="implement login and registration function with dummy url and dummy check&#10;implement behavior for different respond from server&#10;need implement true url and json format for more tests" />
+    <MESSAGE value="fix a bug of dialog not able to show correctly" />
+    <MESSAGE value="change login test url and fully tested&#10;now after login uid will be send to home&#10;need implement recycler view of tasks page, adaptor and listener" />
+    <MESSAGE value="add save password and auto login func to login page&#10;implement layout of my profile tab while on click action need implement" />
+    <MESSAGE value="implement log out &#10;clean directory" />
+    <MESSAGE value="change package structure for better implement" />
+    <MESSAGE value="implement tasklist&#10;TODO: parse json array to tasklist items&#10;TODO: implement button onclick for task list items&#10;TODO: (low priority) debug and implement tasklist delItem method" />
+    <MESSAGE value="fully implement tasklist&#10;url need be change to given server&#10;TODO: implement button onclick for task list items" />
+    <MESSAGE value="add a comment&#10;fully implement tasklist&#10;url need be change to given server&#10;TODO: implement button onclick for task list items" />
+    <MESSAGE value="change url from test server to 309 server&#10;add internet access permission for 309 server&#10;TODO: implement button onclick for task list items" />
+    <MESSAGE value="change time implement and add due time calculation&#10;TODO: implement button onclick for task list items" />
+    <MESSAGE value="implement tasklist fragment for usr without a group&#10;change login info passing method &#10;add join group activity without implement" />
+    <MESSAGE value="implement ui of task detail activity, button func need implement" />
+    <MESSAGE value="implement ui of group tab&#10;todo: group tab recycler view&#10;todo: group tab button&#10;debug: update task status" />
+    <MESSAGE value="implement reuse ui for task item&#10;todo: group tab recycler view&#10;todo: group tab button&#10;debug: update task status" />
+    <MESSAGE value="implement reuse ui for all task item&#10;todo: group tab button&#10;debug: update task status" />
+    <MESSAGE value="fix bug of update task status&#10;improve task item implement" />
+    <MESSAGE value="implement join group button for group tab and set up logic of view&#10;TODO: addTaskPage, joinGroupPage" />
+    <MESSAGE value="implement join group button for group tab and set up logic of view&#10;TODO: addTaskPage, joinGroupPage, complain page" />
+    <MESSAGE value="improve complain button&#10;TODO: addTaskPage, joinGroupPage, complain page" />
+    <MESSAGE value="implement task detail page with complain page inside&#10;TODO: addTaskPage" />
+    <MESSAGE value="fix a bug on list update&#10;TODO: addTaskPage" />
+    <MESSAGE value="fix a bug on history list update&#10;TODO: addTaskPage" />
+    <MESSAGE value="add mockito&#10;TODO: addTaskPage" />
+    <MESSAGE value="add mockito update ignore&#10;TODO: addTaskPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mockito update ignore&#10;TODO: addTaskPage" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="71" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="71" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/groupTab/DashboardViewModel.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_group.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/ProfileCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="73" selection-start-line="17" selection-start-column="73" selection-end-line="17" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/ListItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/4.1.1/8b14260502684c226128e726b27a52a3a65ee721/okhttp-4.1.1-sources.jar!/okhttp3/HttpUrl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-915">
+          <caret line="288" column="6" selection-start-line="288" selection-start-column="6" selection-end-line="288" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/java/util/concurrent/CountDownLatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="272" column="72" lean-forward="true" selection-start-line="272" selection-start-column="72" selection-end-line="272" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dashboard.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="21" column="74" lean-forward="true" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
+        </state>
+      </provider>
+      <provider editor-type-id="nav-designer" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.0.2/e38e7c85994112b70d4548176128c72b8477c110/appcompat-1.0.2-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="121" column="6" selection-start-line="121" selection-start-column="6" selection-end-line="121" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/bottom_nav_menu.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.0.0/2151d26c3b241f0a887f2dadb9ab091649fcf020/recyclerview-1.0.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="10830" column="15" selection-start-line="10830" selection-start-column="15" selection-end-line="10830" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pool_task.xml" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/arrays.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/intValue.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/usr_task.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_usr_default_page.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/icons8add.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="563">
+          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/icons8addproperty_80.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_group_tab.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tasks.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/android/app/Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70731">
+          <caret line="5487" column="16" selection-start-line="5487" selection-start-column="16" selection-end-line="5487" selection-end-column="16" />
+          <folding>
+            <element signature="e#235826#235827#0" expanded="true" />
+            <element signature="e#235874#235875#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-29/java/sql/Time.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="75" column="68" lean-forward="true" selection-start-line="75" selection-start-column="68" selection-end-line="75" selection-end-column="68" />
+          <folding>
+            <element signature="e#3163#3164#0" expanded="true" />
+            <element signature="e#3198#3199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registration_page.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.core/core/1.0.1/ae10d2e1965b944830c2c2aaf154765ceb32e0bc/core-1.0.1-sources.jar!/androidx/core/content/ContextCompat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="244" column="23" selection-start-line="244" selection-start-column="23" selection-end-line="244" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/OnListFragmentInteractionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/profile/MyProfileRecyclerViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="50" column="70" selection-start-line="50" selection-start-column="70" selection-end-line="50" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/profile/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-297">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_task_detail.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_task_page.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/JoinGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/TaskDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="106" column="33" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/groupTab/GroupTabFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="351" column="39" selection-start-line="351" selection-start-column="36" selection-end-line="351" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/RegistrationPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2501">
+          <caret line="37" column="103" selection-start-line="37" selection-start-column="103" selection-end-line="37" selection-end-column="103" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksTab/tasksRecyclerViewAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="215" selection-start-line="215" selection-end-line="215" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="56" lean-forward="true" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/ui/tasksTab/TasksList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-754">
+          <caret line="115" column="46" selection-start-line="115" selection-start-column="46" selection-end-line="115" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/demo01/ExampleUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/UsrDefaultPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="93" column="31" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/util/TaskStatusUpadateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="73" column="71" selection-start-line="73" selection-start-column="71" selection-end-line="73" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/com/example/demo01/MockitoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/data/TaskCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="21" column="66" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="232" selection-start-line="232" selection-end-line="232" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/demo01/AddTaskPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2046">
+          <caret line="70" lean-forward="true" selection-start-line="70" selection-end-line="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -40,6 +40,21 @@ public class Task {
     @Column(name = "title")
     String title;
 
+    public Task(int id, String description, int assigned_to, boolean completed, String deadline, String time_completed, boolean in_pool, int completed_by, int group_id, String title){
+        this.group_id = group_id;
+        this.description = description;
+        this.deadline = deadline;
+        this.in_pool = in_pool;
+        this.assigned_to = assigned_to;
+        this.time_completed = time_completed;
+        this.completed = completed;
+        this.id = id;
+        this.completed_by = completed_by;
+        this.title = title;
+    }
+
+    public Task(){}
+
     public Integer getId() { return id; }
 
     public Boolean is_completed() { return completed; }
@@ -49,8 +64,11 @@ public class Task {
     public String toString() { return description; }
 
     public String getDdl() { return deadline; }
+    public String getDescription() { return description; }
 
     public String getTimeCompleted() { return time_completed; }
+
+    public Integer getAssigned_to() { return assigned_to; }
 
     public String getTitle() { return title; }
 
