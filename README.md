@@ -1,3 +1,3 @@
-# KS_2_CyChore
+# CyChore
 
-### //Is this going to be a place where we have a tutorial of how our app works? 
+### This app will help registered tenants manage chore assignment between roommates. 
